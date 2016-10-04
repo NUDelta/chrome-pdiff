@@ -22,6 +22,13 @@ Chrome(OPTIONS)
       console.log(params.request.url);
     });
 
+    /**
+     * Call own function on page load. Syntax is short for:
+     *
+     * chrome.on('Page.loadEventFired', (params) => {
+     *   getOwnStyles(chrome, OPTIONS);
+     * });
+     */
     Page.loadEventFired(getOwnStyles.bind(null, chrome, OPTIONS));
 
     /**
@@ -31,6 +38,10 @@ Chrome(OPTIONS)
     DOM.enable();
     CSS.enable();
 
+    /**
+     * This will log every network request made, so we disable unless
+     * verbose option is true.
+     */
     if (OPTIONS.verbose) {
       Network.enable();
 
