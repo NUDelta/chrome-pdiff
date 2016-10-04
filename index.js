@@ -1,16 +1,22 @@
 import Chrome from 'chrome-remote-interface';
-import getOwnStyles from './src/getOwnStyles';
+import main from './src/main';
+
+/**
+ * Driver wrapper for Chrome Remote Debugging Protocol.
+ * Expects an inspectable instance of Chrome running (use `npm run chrome`).
+ */
 
 const OPTIONS = {
   host: 'localhost',
   port: 9222,
   url: 'https://tumblr.com',
-  selector: '.blogs-section',
+  selector: '.showcase',
   maxRuleSelectors: 50,
   verbose: false,
 };
 
-Chrome(OPTIONS)
+Chrome.New(OPTIONS)
+  .then(() => Chrome(OPTIONS))
   .then((chrome) => {
     const { Network, Page, DOM, CSS } = chrome;
 
@@ -26,10 +32,10 @@ Chrome(OPTIONS)
      * Call own function on page load. Syntax is short for:
      *
      * chrome.on('Page.loadEventFired', (params) => {
-     *   getOwnStyles(chrome, OPTIONS);
+     *   main(chrome, OPTIONS);
      * });
      */
-    Page.loadEventFired(getOwnStyles.bind(null, chrome, OPTIONS));
+    Page.loadEventFired(main.bind(null, chrome, OPTIONS));
 
     /**
      * Enable domain agents for the protocol instance
