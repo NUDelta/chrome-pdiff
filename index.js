@@ -18,7 +18,7 @@ Chrome()
       console.log(params.request.url);
     });
 
-    Page.loadEventFired(chrome.close);
+    // Page.loadEventFired(chrome.close);
 
     /**
      * Enable domain agents for the protocol instance
@@ -27,6 +27,10 @@ Chrome()
     Page.enable();
     DOM.enable();
     CSS.enable();
+
+    chrome.on('event', (message) => {
+      console.log(message.params);
+    });
 
     chrome.once('ready', () => {
       const { url, selector } = OPTIONS;
@@ -93,30 +97,15 @@ Chrome()
              * API returns stylesheets in reverse order of application.
              * Rules at the end have the highest precedence/specificity.
              */
-            .reverse();
+            .reverse()
+            .map((ruleMatch) => ruleMatch.rule);
 
           return ownStyles;
         })
         .then((res) => {
-          // res.map((ruleMatch) => {
-          //   const { style, styleSheetId, selectorList } = ruleMatch.rule;
-
-          //   const selectors = selectorList.selectors.map((selector) => selector.text);
-
-          //   // console.log(styleSheetId, selectors);
-          //   // console.log(style.cssProperties);
-          // });
-          return res.map((res) => res.rule);
-        })
-        .then((res) => {
-          // console.log(JSON.stringify(res, null, 2));
-          return res;
-        })
-        .then((res) => {
           /**
            * Response consists of an array of selectors, with each selector mapped
-           * to an array of styles. We can normalize to get an array of styles of the
-           * form:
+           * to an array of styles. We can normalize to get an array of styles of the form:
            *   {
            *     styleSheetId: string,
            *     selectors: [string],
@@ -124,31 +113,19 @@ Chrome()
            *   }
            */
           const normalizedRules = res.reduce((acc, rule) => {
-            const normalized = Object.assign({}, rule.style.cssProperties, {
+            const normalized = Object.assign({}, {
               styleSheetId: rule.styleSheetId,
+              selectors: rule.selectorList.selectors.map((selector) => selector.text),
+              styles: rule.style.cssProperties,
+            });
 
             return [...acc, normalized];
           }, []);
 
           return normalizedRules;
         })
-        // .then((res) => {
-
-        //   /**
-        //    * Log results for testing.
-        //    */
-        //   res.forEach((rule) => {
-        //     const { styleSheetId, selectorList, style } = rule;
-
-        //     console.log(styleSheetId);
-        //     console.log(selectorList.selectors.map((selector) => selector.text));
-        //     console.log(style.cssProperties);
-        //   });
-        // })
         .then((res) => { console.log(JSON.stringify(res, null, 2)) })
-        .catch((err) => { console.error(err
-              selectors: rule.selectorList.selectors.map((selector) => selector.text),
-            });) });
+        .catch((err) => { console.error(err) });
     });
   })
   .catch((err) => {
