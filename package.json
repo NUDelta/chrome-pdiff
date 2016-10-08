@@ -13,7 +13,8 @@
   "author": "Sarah Lim <sarah@sarahlim.com> (http://sarahlim.com)",
   "license": "ISC",
   "dependencies": {
-    "chrome-remote-interface": "^0.14.3"
+    "chrome-remote-interface": "^0.14.3",
+    "pixelmatch": "^4.0.2"
   },
   "devDependencies": {
     "babel-cli": "^6.14.0",
