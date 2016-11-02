@@ -9,8 +9,8 @@ import main from './src/main';
 const OPTIONS = {
   host: 'localhost',
   port: 9222,
-  url: 'https://tumblr.com',
-  selector: '.showcase',
+  url: 'http://jsbin.com/lutuqe',
+  selector: '.test-element',
   maxRuleSelectors: 50,
   verbose: false,
 };
@@ -65,4 +65,3 @@ Chrome.New(OPTIONS)
   .catch((err) => {
     console.error('Cannot connect to Chrome:', err);
   });
-

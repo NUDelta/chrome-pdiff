@@ -1,0 +1,6 @@
+[ignore]
+.*/node_modules/fbjs/.*
+.*/scripts/.*
+
+[libs]
+decls/
