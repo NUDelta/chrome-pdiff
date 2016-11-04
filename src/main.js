@@ -1,27 +1,36 @@
+// @flow
 import fs from 'fs';
 import co from 'co';
 import getElementStyles from './getElementStyles';
 import disableProperty from './disableProperty';
 import screenshotPage from './screenshotPage';
-import createDiffer from './pdiff';
+import { fileToPNG, stringToPNG, createDiffer } from './pdiff';
 
+/**
+ * Function to execute once the page loads in Canary.
+ */
 export default function main (instance, options) {
-  return Promise.resolve(instance)
-    .then(getElementStyles.bind(null, instance, options))
+  debugger;
+  return getElementStyles.call(null, instance, options)
     .then((rm) => {
       // console.log(rm.matchedCSSRules[1].rule.style);
       return rm.matchedCSSRules[1].rule.style;
     })
     .then((style) => {
       return co(function* () {
+
+        // Capture and write the base screenshot for comparison.
         const baseShot = yield screenshotPage(instance);
-        fs.writeFile(`../screenshots/base.png`, baseShot, { encoding: 'base64' });
+        fs.writeFile('../screenshots/base.png', baseShot, { encoding: 'base64' });
 
         const differ = yield createDiffer(baseShot);
 
         const props = style.cssProperties;
         const diffScores = [];
 
+        /**
+         * Iterate over props and toggle/screenshot each.
+         */
         for (let prop of props) {
           const propName = prop.name;
 
@@ -33,6 +42,7 @@ export default function main (instance, options) {
           const reenabler = yield disableProperty(instance, style, propName);
           const shot = yield screenshotPage(instance);
 
+          // Write the "before" screenshot to disk.
           fs.writeFile(`../screenshots/${prop.name}.png`, shot, { encoding: 'base64' });
 
           const [ diff ] = yield Promise.all([
@@ -48,7 +58,7 @@ export default function main (instance, options) {
         return diffScores;
       });
     })
-    .then((res) => console.log(JSON.stringify(res, null, 4)))
+    .then((res) => console.log(JSON.stringify(res, null, 2)))
     .then(() => instance.close())
     // .then(captureScreenshot.bind(null, instance, 'after'))
     // .then(() => instance.close())

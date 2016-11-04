@@ -4,7 +4,7 @@ import pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
 import co from 'co';
 
-function fileToPNG (path) {
+export function fileToPNG (path) {
   return new Promise((resolve, reject) => {
     const png = fs.createReadStream(path).pipe(new PNG());
 
@@ -13,7 +13,7 @@ function fileToPNG (path) {
   });
 }
 
-function stringToPNG (str) {
+export function stringToPNG (str) {
   return new Promise((resolve, reject) => {
     const png = new PNG().parse(new Buffer(str, 'base64'), (error, data) => {
       if (error) { reject(new Error(error)); return; }
@@ -23,7 +23,7 @@ function stringToPNG (str) {
   });
 }
 
-export default function createDiffer (baseImageString) {
+export function createDiffer (baseImageString) {
   return co(function* () {
     const basePNG = yield stringToPNG(baseImageString);
 

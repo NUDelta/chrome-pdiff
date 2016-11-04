@@ -15,8 +15,7 @@ const OPTIONS = {
   verbose: false,
 };
 
-Chrome.New(OPTIONS)
-  .then(() => Chrome(OPTIONS))
+Chrome(OPTIONS)
   .then((chrome) => {
     const { Network, Page, DOM, CSS } = chrome;
 

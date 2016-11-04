@@ -94,10 +94,10 @@ export default function getElementStyles (instance, options) {
 
     //   return normalizedRules;
     // })
-    // .then((res) => {
-    //   console.log(JSON.stringify(res, null, 2));
+    .then((res) => {
+      console.log(JSON.stringify(res, null, 2));
 
-    //   return res;
-    // })
+      return res;
+    })
     .catch((err) => { console.error(err); });
 }

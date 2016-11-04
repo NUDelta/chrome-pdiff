@@ -19,7 +19,7 @@ function captureScreenshot (instance: Object): Promise<string> {
  * Captures a screenshot of the current page state, optionally delaying
  * by a specified number of milliseconds.
  *
- * Returns a Promise which resolves to a Buffer of the data.
+ * Returns a Promise which resolves to a string of the data.
  * TODO: Streamify this.
  */
 export default function screenshotPage (instance: Object, delay?: number): Promise<string> {
