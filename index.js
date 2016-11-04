@@ -15,17 +15,11 @@ const OPTIONS = {
   verbose: false,
 };
 
-Chrome(OPTIONS)
+Chrome.New(OPTIONS)
+  // After defining a new tab, need to initialize a connection
+  .then((chrome) => Chrome(OPTIONS))
   .then((chrome) => {
     const { Network, Page, DOM, CSS } = chrome;
-
-    /**
-     * Log all network requests, when the Network
-     * domain is enabled.
-     */
-    Network.requestWillBeSent((params) => {
-      console.log(params.request.url);
-    });
 
     /**
      * Call own function on page load. Syntax is short for:
@@ -34,7 +28,8 @@ Chrome(OPTIONS)
      *   main(chrome, OPTIONS);
      * });
      */
-    Page.loadEventFired(main.bind(null, chrome, OPTIONS));
+    const mainFunction = main.bind(null, chrome, OPTIONS);
+    Page.loadEventFired(mainFunction);
 
     /**
      * Enable domain agents for the protocol instance

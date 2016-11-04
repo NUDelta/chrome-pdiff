@@ -12,6 +12,8 @@ import { fileToPNG, stringToPNG, createDiffer } from './pdiff';
 export default function main (instance, options) {
   return getElementStyles.call(null, instance, options)
     .then((rm) => {
+      console.log('rm');
+      console.log(rm);
       // console.log(rm.matchedCSSRules[1].rule.style);
       return rm.matchedCSSRules[1].rule.style;
     })
