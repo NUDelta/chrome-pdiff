@@ -10,7 +10,6 @@ import { fileToPNG, stringToPNG, createDiffer } from './pdiff';
  * Function to execute once the page loads in Canary.
  */
 export default function main (instance, options) {
-  debugger;
   return getElementStyles.call(null, instance, options)
     .then((rm) => {
       // console.log(rm.matchedCSSRules[1].rule.style);

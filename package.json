@@ -1,7 +1,7 @@
 {
-  "name": "ply-middleware",
-  "version": "1.0.0",
-  "description": "",
+  "name": "chrome-pdiff",
+  "version": "0.0.1",
+  "description": "get pdiffs for elements using the Chrome Remote Protocol Viewer",
   "main": "index.js",
   "scripts": {
     "inspect": "chrome-remote-interface inspect",
@@ -15,8 +15,9 @@
   "license": "ISC",
   "dependencies": {
     "chrome-remote-interface": "^0.14.3",
+    "co": "^4.6.0",
     "pixelmatch": "^4.0.2",
-    "co": "^4.6.0"
+    "pngjs": "^3.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.14.0",
