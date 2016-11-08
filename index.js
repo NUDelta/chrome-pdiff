@@ -13,6 +13,8 @@ const OPTIONS = {
   selector: '.test-element',
   maxRuleSelectors: 50,
   verbose: false,
+  screenshotDir: 'screenshots',
+  writeScreenshots: true,
 };
 
 Chrome.New(OPTIONS)

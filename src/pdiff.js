@@ -1,25 +1,55 @@
 import fs from 'fs';
 import path from 'path';
+import { PassThrough } from 'stream';
 import pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
 import co from 'co';
 
-export function fileToPNG (path) {
+/**
+ * Writes a screenshot in either base64 string or PNG form to disk.
+ * @param  {string} screenshotDir        output directory for screenshot
+ * @param  {string} fileName             filename for screenshot
+ * @param  {string | PNG} data           image data in PNG or b64 string form
+ * @return {void}
+ */
+export function writeScreenshot (screenshotDir: string, fileName: string, data: string | PNG): void {
+  const screenshotPath = path.resolve(__dirname, '../', screenshotDir, fileName);
+  if (typeof data === 'string') {
+    fs.writeFile(screenshotPath, data, { encoding: 'base64' });
+  } else {
+    // Data is a PNG
+    data.pack().pipe(fs.createWriteStream(screenshotPath));
+  }
+}
+
+/**
+ * Reads a file at the specified path, and converts it into a PNG object.
+ * @param  {string} filePath        path to the PNG file on disk
+ * @return {Promise<PNG>}           parsed PNG object
+ */
+export function fileToPNG (filePath: string): Promise<PNG> {
   return new Promise((resolve, reject) => {
-    const png = fs.createReadStream(path).pipe(new PNG());
+    const png = fs.createReadStream(filePath).pipe(new PNG());
 
     png.on('error', (err) => { return reject(err) });
     png.on('parsed', () => { resolve(png) });
   });
 }
 
-export function stringToPNG (str) {
+/**
+ * Converts PNG image data in b64 format into a PNG object.
+ * @param  {string} data            b64 PNG image data
+ * @return {Promise<PNG>}           parsed PNG object
+ */
+export function stringToPNG (data: string): Promise<PNG> {
   return new Promise((resolve, reject) => {
-    const png = new PNG().parse(new Buffer(str, 'base64'), (error, data) => {
-      if (error) { reject(new Error(error)); return; }
+    // Initiate the source
+    const bufferStream = new PassThrough();
+    bufferStream.end(new Buffer(data, 'base64'));
 
-      resolve(data);
-    });
+    const png = bufferStream.pipe(new PNG());
+    png.on('error', (err) => { return reject(err) });
+    png.on('parsed', () => { resolve(png) });
   });
 }
 
