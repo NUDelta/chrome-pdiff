@@ -14,7 +14,7 @@ const OPTIONS = {
   maxRuleSelectors: 50,
   verbose: false,
   screenshotDir: 'screenshots',
-  writeScreenshots: true,
+  writeScreenshots: false,
 };
 
 Chrome.New(OPTIONS)
