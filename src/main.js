@@ -1,13 +1,12 @@
 // @flow
-import fs from 'fs';
+import path from 'path';
 import co from 'co';
+import { PNG } from 'pngjs';
+
 import getElementStyles from './getElementStyles';
 import disableProperty from './disableProperty';
-import screenshotPage from './screenshotPage';
-import { fileToPNG, stringToPNG, createDiffer, writeScreenshot } from './pdiff';
-
-import pixelmatch from 'pixelmatch';
-import { PNG } from 'pngjs';
+import screenshotPage from './screenshot';
+import createDiffer from './pdiff';
 
 function diffRuleMatches (
   instance: Object,
@@ -15,16 +14,16 @@ function diffRuleMatches (
   ruleMatches: RuleMatch[]
 ): Promise<Object[]> {
   return co(function* () {
+
+    // Base path for all screenshots
+    const screenshotDirPath: string = path.resolve(__dirname, '../', options.screenshotDir);
+
     /**
      * Capture and write the base screenshot for comparison.
      */
-    const baseShot: string = yield screenshotPage(instance);
-    const basePNG: PNG = yield stringToPNG(baseShot);
+    const basePNG: PNG = yield screenshotPage(instance, true, path.resolve(screenshotDirPath, 'base.png'));
 
-    // Write base screenshot to disk if `options.writeScreenshots` is true
-    if (options.writeScreenshots) {
-      writeScreenshot(options.screenshotDir, 'base.png', baseShot);
-    }
+    const differ = yield createDiffer(basePNG);
 
     // Collect diff scores
     // TODO: replace with a heap (or some other way to keep track of the sorting)
@@ -46,45 +45,24 @@ function diffRuleMatches (
         // Disable the property and save the reenabler function
         const reenabler: () => Promise<CSSStyle> = yield disableProperty(instance, rmRuleStyle, propName);
 
-        // Screenshot the page, optionally writing to disk
-        const shot: string = yield screenshotPage(instance);
-        const comparisonPNG: PNG = yield stringToPNG(shot);
-
-        if (options.writeScreenshots) {
-          writeScreenshot(
-            options.screenshotDir,
-            `${prop.name}.png`,
-            shot,
-          );
-        }
-
-        // Write target for the pdiff image
-        const diffPNG: PNG = new PNG({ width: basePNG.width, height: basePNG.height });
-
-        const diffSize = pixelmatch(
-          basePNG.data,
-          comparisonPNG.data,
-          diffPNG.data,
-          basePNG.width,
-          basePNG.height,
-          { threshold: 0.2 }
+        // Screenshot page
+        const comparisonPNG: PNG = yield screenshotPage(
+          instance,
+          options.writeScreenshots,
+          path.resolve(screenshotDirPath, `${prop.name}.png`)
         );
 
-        if (options.writeScreenshots) {
-          writeScreenshot(
-            options.screenshotDir,
-            `${propName}-diff.png`,
-            diffPNG,
-          );
-        }
-
-        console.log(prop.name, diffSize);
-
-        // Re-enable everything
+        // Re-enable and compute diff simultaneously
         const [ diff ] = yield Promise.all([
-          diffSize,
+          differ(
+            comparisonPNG,
+            options.writeScreenshots,
+            path.resolve(screenshotDirPath, `${prop.name}-diff.png`)
+          ),
           reenabler(),
         ]);
+
+        console.log(prop.name, diff);
 
         diffScores.push([prop.name, diff]);
       }
@@ -103,7 +81,5 @@ export default function main (instance, options) {
     .then((rm) => diffRuleMatches(instance, options, rm))
     .then((res) => console.log(JSON.stringify(res, null, 0)))
     .then(() => instance.close())
-    // .then(captureScreenshot.bind(null, instance, 'after'))
-    // .then(() => instance.close())
     .catch((err) => console.error(err));
 }
