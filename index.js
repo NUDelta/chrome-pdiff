@@ -9,8 +9,20 @@ import main from './src/main';
 const OPTIONS = {
   host: 'localhost',
   port: 9222,
-  url: 'http://jsbin.com/lutuqe',
-  selector: '.test-element',
+
+  // url: 'http://jsbin.com/lutuqe',
+  // selector: '.test-element',
+
+  // url: 'http://tumblr.com',
+  // selector: '.login-section',
+
+  url: 'http://tympanus.net/Development/TooltipStylesInspiration/',
+  selector: 'body > div > div.content > div > p:nth-child(1) > span.tooltip.tooltip-effect-1 > span.tooltip-content.clearfix',
+  pseudoStates: [{
+    selector: 'body > div > div.content > div > p:nth-child(1) > span.tooltip.tooltip-effect-1',
+    forcePseudoClasses: ['hover'],
+  }],
+
   maxRuleSelectors: 50,
   verbose: false,
   screenshotDir: 'screenshots',
