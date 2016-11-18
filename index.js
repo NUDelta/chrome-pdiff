@@ -18,7 +18,7 @@ const OPTIONS = {
 
   url: 'http://tympanus.net/Development/TooltipStylesInspiration/',
   selector: 'body > div > div.content > div > p:nth-child(1) > span.tooltip.tooltip-effect-1 > span.tooltip-content.clearfix',
-  pseudoStates: [{
+  pseudoStatesToForce: [{
     selector: 'body > div > div.content > div > p:nth-child(1) > span.tooltip.tooltip-effect-1',
     forcePseudoClasses: ['hover'],
   }],
@@ -36,7 +36,7 @@ Chrome.New(OPTIONS)
     const { Network, Page, DOM, CSS } = chrome;
 
     /**
-     * Call own function on page load. Syntax is short for:
+     * Call main function on page load. Syntax is short for:
      *
      * chrome.on('Page.loadEventFired', (params) => {
      *   main(chrome, OPTIONS);

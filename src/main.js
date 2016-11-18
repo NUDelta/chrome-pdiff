@@ -3,13 +3,11 @@ import path from 'path';
 import co from 'co';
 import { PNG } from 'pngjs';
 
-import getElementStyles from './getElementStyles';
+import { applyPseudoStates } from './preparePage';
+import { getElementStyles, getDocumentRootId } from './elements';
 import disableProperty from './disableProperty';
 import screenshotPage from './screenshot';
 import createDiffer from './pdiff';
-
-type DiffResults = { [prop: string]: number };
-type DiffPair = [ string, number ];
 
 function diffRuleMatches (
   instance: Object,
@@ -43,10 +41,6 @@ function diffRuleMatches (
       const props: CSSProperty[] = rmRuleStyle.cssProperties;
 
       console.log(JSON.stringify(rm.rule.selectorList.text, null, 4));
-
-      const currentRm = {
-
-      };
 
       /**
        * Iterate over props and toggle/screenshot each.
@@ -89,30 +83,22 @@ function diffRuleMatches (
  * @param  {DiffResults} propDiffs   map from properties to pdiff scores
  * @return {DiffPair[]}              pairs ordered from largest to smallest score
  */
-function normalizeScores (propDiffs: DiffResults): DiffPair[] {
-  // First compute the max pdiff value
-  let maxScore: number = 0;
-
+function normalizeScores (propDiffs: DiffResults): DiffResults {
   const props: string[] = Object.keys(propDiffs);
 
-  for (const prop of props) {
-    if (propDiffs[prop] > maxScore) {
-      maxScore = propDiffs[prop];
-    }
+  // First compute the max pdiff value
+  const allScores: number[] = props.map(k => propDiffs[k]);
+  const maxScore: number = Math.max.apply(allScores);
+
+  // Normalize everything
+  const normalized: DiffResults = {};
+
+  for (const [prop, score] of Object.entries(propDiffs)) {
+    const normalizedScore: number = score / maxScore;
+    normalized[prop] = normalizedScore;
   }
 
-  /**
-   * Given the max value, normalize the rest of the data
-   */
-  const normalized: DiffPair[] = [];
-
-  for (const prop of props) {
-    // If maxScore is still 0, just return the sorted list.
-    if (maxScore > 0) {
-
-    }
-
-  }
+  return normalized;
 }
 
 // color                         127999
@@ -142,10 +128,21 @@ function normalizeScores (propDiffs: DiffResults): DiffPair[] {
  * Function to execute once the page loads in Canary.
  */
 export default function main (instance, options) {
-  return getElementStyles(instance, options)
-    .then((rm) => diffRuleMatches(instance, options, rm))
-    // .then(normalizeScores)
-    .then((res) => console.log(JSON.stringify(res, null, 0)))
-    .then(() => instance.close())
-    .catch((err) => console.error(err));
+  return co(function* () {
+
+    // Get root node
+    const rootId: number = yield getDocumentRootId(instance);
+
+    // Apply pseudo-states
+    const pseudoStates = yield applyPseudoStates(instance, rootId, options);
+
+    // Get element styles
+    const ruleMatches: RuleMatch[] = yield getElementStyles(instance, rootId, options);
+
+    // Diff everything
+    const diffResults: DiffResults = yield diffRuleMatches(instance, options, ruleMatches);
+
+    console.log(JSON.stringify(diffResults, null, 2));
+    instance.close();
+  });
 }

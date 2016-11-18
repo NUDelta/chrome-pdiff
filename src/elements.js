@@ -1,19 +1,29 @@
 // @flow
 import co from 'co';
+import { applyPseudoStates } from './preparePage';
 
-/**
- * Get the nodeId of the node matching the given selector.
- * @param  {ChromeRemoteInterface} instance
- * @param  {string}                selector
- * @return {number}                nodeId
- */
-export function getNodeId (instance: Object, selector: string): Promise<number> {
+export function getDocumentRootId (instance: Object): Promise<number> {
   return co(function* () {
     const { DOM } = instance;
 
     // Get nodeId of document root
     const documentResponse: Object = yield DOM.getDocument();
     const rootId: number = documentResponse.root.nodeId;
+
+    return rootId;
+  });
+}
+
+/**
+ * Get the nodeId of the node matching the given selector.
+ * @param  {ChromeRemoteInterface} instance
+ * @param  {number}                rootId
+ * @param  {string}                selector
+ * @return {number}                nodeId
+ */
+export function getNodeId (instance: Object, rootId: number, selector: string): Promise<number> {
+  return co(function* () {
+    const { DOM } = instance;
 
     // Get nodeId of selected element
     const queryResponse: Object = yield DOM.querySelector({
@@ -53,17 +63,19 @@ function keepRuleMatch (options: Object, rm: RuleMatch): boolean {
 /**
  * Get the matched styles for an element corresponding to a nodeId.
  * @param  {Object} instance chrome-remote-interface session
+ * @param  {number} rootId   nodeId of root node
  * @param  {Object} options  options object
  * @return {RuleMatch}
  */
-export default function getElementStyles (instance: Object, options: Object): Promise<RuleMatch[]> {
+export function getElementStyles (instance: Object, rootId: number, options: Object): Promise<RuleMatch[]> {
   return co(function* () {
     const { CSS } = instance;
+
 
     const { selector } = options;
 
     // Get the nodeId of the element matching the selector
-    const nodeId: number = yield getNodeId(instance, selector);
+    const nodeId: number = yield getNodeId(instance, rootId, selector);
 
     // Get all matched styles for node
     const matchedStylesResponse: Object = yield CSS.getMatchedStylesForNode({
