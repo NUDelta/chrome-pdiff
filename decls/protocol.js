@@ -1,5 +1,15 @@
 // @flow
 
+// For diffs
+type DiffResults = { [prop: string]: number };
+type DiffPair = [ string, number ];
+
+/**
+ * Pseudoclass.
+ * @type {String}
+ */
+declare type PseudoClass = 'active' | 'focus' | 'hover' | 'visited';
+
 /**
  * CSS style sheet identifier.
  * Absent for UA styles and user-specified stylesheet rules.
