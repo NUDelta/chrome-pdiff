@@ -38,13 +38,17 @@ function diffRuleMatches (
      */
     for (const rm: RuleMatch of ruleMatches) {
       const rmRuleStyle: CSSStyle = rm.rule.style;
-      const props: CSSProperty[] = rmRuleStyle.cssProperties;
+      const selectorString: string = rm.rule.selectorList.text;
 
-      console.log(JSON.stringify(rm.rule.selectorList.text, null, 4));
+      // const
+
+      console.log(JSON.stringify(selectorString, null, 4));
 
       /**
        * Iterate over props and toggle/screenshot each.
        */
+      const props: CSSProperty[] = rmRuleStyle.cssProperties;
+
       for (let prop of props) {
         const propName = prop.name;
 
