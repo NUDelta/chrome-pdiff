@@ -8,7 +8,10 @@
     "chrome": "/Applications/Google\\ Chrome\\ Canary.app/Contents/MacOS/Google\\ Chrome\\ Canary --remote-debugging-port=9222 http://localhost:9222",
     "start": "babel-node index.js",
     "lint": "eslint . || true",
-    "flow": "flow; test $? -eq 0 -o $? -eq 2"
+    "flow": "flow; test $? -eq 0 -o $? -eq 2",
+    "di": "node-inspector -d=7000 -p=8000 --save-live-edit --hidden node_modules/",
+    "ds1": "babel ./src -d ./build/server/src -s -w; babel index.js -d ./build/server -s -w",
+    "ds2": "nodemon --watch ./build/server --delay 100ms --debug=7000 ./build/server/index.js"
   },
   "keywords": [],
   "author": "Sarah Lim <sarah@sarahlim.com> (http://sarahlim.com)",
@@ -22,7 +25,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.14.0",
-    "babel-core": "^6.14.0",
+    "babel-core": "^6.17.0",
     "babel-eslint": "^6.1.2",
     "babel-loader": "^6.2.5",
     "babel-plugin-transform-flow-strip-types": "^6.18.0",

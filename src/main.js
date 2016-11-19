@@ -2,18 +2,13 @@
 import path from 'path';
 import co from 'co';
 import { PNG } from 'pngjs';
-
 import { applyPseudoStates } from './preparePage';
 import { getElementStyles, getDocumentRootId } from './elements';
 import disableProperty from './disableProperty';
 import screenshotPage from './screenshot';
 import createDiffer from './pdiff';
 
-function diffRuleMatches (
-  instance: Object,
-  options: Object,
-  ruleMatches: RuleMatch[]
-): Promise<DiffResults> {
+function diffRuleMatches (instance: Object, options: Object, ruleMatches: RuleMatch[]): Promise<DiffResults> {
   return co(function* () {
 
     // Base path for all screenshots
@@ -40,9 +35,10 @@ function diffRuleMatches (
       const rmRuleStyle: CSSStyle = rm.rule.style;
       const selectorString: string = rm.rule.selectorList.text;
 
-      // const
-
       console.log(JSON.stringify(selectorString, null, 4));
+
+      // Collect the diff for this rule
+      const rmDiff: DiffResults = {};
 
       /**
        * Iterate over props and toggle/screenshot each.
@@ -66,7 +62,7 @@ function diffRuleMatches (
         const [ diff ] = yield Promise.all([
           differ(
             comparisonPNG,
-            options.writeScreenshots,
+            options.writeScreenshots || prop.name === 'background-repeat-x' || prop.name === 'transition-duration',
             path.resolve(screenshotDirPath, `${prop.name}-diff.png`)
           ),
           reenabler(),
@@ -74,11 +70,15 @@ function diffRuleMatches (
 
         console.log(prop.name, diff);
 
-        diffScores[prop.name] = diff;
+        // Add the result for this prop to the rmDiff object for this rule block
+        rmDiff[prop.name] = diff;
       }
+
+      // Add the diff results for this rule to the structure-preserving cssRules object.
+      cssRules[selectorString] = rmDiff;
     }
 
-    return diffScores;
+    return cssRules;
   });
 }
 
@@ -92,48 +92,59 @@ function normalizeScores (propDiffs: DiffResults): DiffResults {
 
   // First compute the max pdiff value
   const allScores: number[] = props.map(k => propDiffs[k]);
-  const maxScore: number = Math.max.apply(allScores);
+  const maxScore: number = Math.max.apply(null, allScores);
+  const minScore: number = Math.min.apply(null, allScores);
+  const range: number = maxScore - minScore;
+
+  // console.log(Object.entries(propDiffs).find(pair => pair[1] === maxScore));
+  // console.log(Object.entries(propDiffs).find(pair => pair[1] === minScore));
 
   // Normalize everything
   const normalized: DiffResults = {};
 
-  for (const [prop, score] of Object.entries(propDiffs)) {
-    const normalizedScore: number = score / maxScore;
+  for (const [ prop: string, score: number ] of Object.entries(propDiffs)) {
+    const normalizedScore: number = range > 0
+      ? (score - minScore) / range
+      : 0;
+
     normalized[prop] = normalizedScore;
   }
 
   return normalized;
 }
 
-// color                         127999
-// height                       1262598
-// left                           81288
-// overflow                      137474
-// position                      124006
-// top                           130289
-// text-align                    127999
-// width                        1200443
-// -webkit-transform             137537
-// transform                     141342
-// transition                    119614
-// transition                    140787
-// overflow-x                    113539
-// overflow-y                    109058
-// transition-duration           133669
-// transition-timing-function    139477
-// transition-delay               81288
-// transition-property           128418
-// color                         133420
-// padding-top                   133897
-// z-index                       139879
-
-
 /**
  * Function to execute once the page loads in Canary.
  */
-export default function main (instance, options) {
-  return co(function* () {
+// export default function main (instance, options) {
+//   return co(function* () {
+//     debugger;
+//     // Get root node
+//     const rootId: number = yield getDocumentRootId(instance);
 
+//     // Apply pseudo-states
+//     const pseudoStates = yield applyPseudoStates(instance, rootId, options);
+
+//     // Get element styles
+//     const ruleMatches: RuleMatch[] = yield getElementStyles(instance, rootId, options);
+
+//     // Diff everything
+//     const cssRules: DiffResults = yield diffRuleMatches(instance, options, ruleMatches);
+//     console.log(JSON.stringify(cssRules, null, 2));
+
+//     const normalized: DiffResults = {};
+
+//     for (const [ selector, dr ] of Object.entries(cssRules)) {
+//       normalized[selector] = normalizeScores(dr);
+//     }
+
+//     console.log(JSON.stringify(normalized, null, 2));
+
+//     instance.close();
+//   });
+// }
+export default async function main (instance, options) {
+  return co(function* () {
     // Get root node
     const rootId: number = yield getDocumentRootId(instance);
 
@@ -144,9 +155,17 @@ export default function main (instance, options) {
     const ruleMatches: RuleMatch[] = yield getElementStyles(instance, rootId, options);
 
     // Diff everything
-    const diffResults: DiffResults = yield diffRuleMatches(instance, options, ruleMatches);
+    const cssRules: DiffResults = yield diffRuleMatches(instance, options, ruleMatches);
+    console.log(JSON.stringify(cssRules, null, 2));
 
-    console.log(JSON.stringify(diffResults, null, 2));
+    const normalized: DiffResults = {};
+
+    for (const [ selector, dr ] of Object.entries(cssRules)) {
+      normalized[selector] = normalizeScores(dr);
+    }
+
+    console.log(JSON.stringify(normalized, null, 2));
+
     instance.close();
   });
 }
