@@ -38,7 +38,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function diffRuleMatches(instance, options, ruleMatches) {
   return (0, _co2.default)(regeneratorRuntime.mark(function _callee() {
-    var screenshotDirPath, basePNG, differ, diffScores, cssRules, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, rm, rmRuleStyle, selectorString, props, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, prop, propName, reenabler, comparisonPNG, _ref, _ref2, diff;
+    var screenshotDirPath, basePNG, differ, diffScores, cssRules, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, rm, rmRuleStyle, selectorString, rmDiff, props, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, prop, propName, reenabler, comparisonPNG, _ref, _ref2, diff;
 
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
@@ -53,7 +53,7 @@ function diffRuleMatches(instance, options, ruleMatches) {
              */
 
             _context.next = 3;
-            return (0, _screenshot2.default)(instance, true, _path2.default.resolve(screenshotDirPath, 'base.png'));
+            return (0, _screenshot2.default)(instance, options.writeScreenshots, _path2.default.resolve(screenshotDirPath, 'base.png'));
 
           case 3:
             basePNG = _context.sent;
@@ -83,7 +83,7 @@ function diffRuleMatches(instance, options, ruleMatches) {
 
           case 14:
             if (_iteratorNormalCompletion = (_step = _iterator.next()).done) {
-              _context.next = 61;
+              _context.next = 63;
               break;
             }
 
@@ -94,19 +94,23 @@ function diffRuleMatches(instance, options, ruleMatches) {
 
             console.log(JSON.stringify(selectorString, null, 4));
 
+            // Collect the diff for this rule
+            rmDiff = {};
+
             /**
              * Iterate over props and toggle/screenshot each.
              */
+
             props = rmRuleStyle.cssProperties;
             _iteratorNormalCompletion2 = true;
             _didIteratorError2 = false;
             _iteratorError2 = undefined;
-            _context.prev = 23;
+            _context.prev = 24;
             _iterator2 = props[Symbol.iterator]();
 
-          case 25:
+          case 26:
             if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
-              _context.next = 44;
+              _context.next = 45;
               break;
             }
 
@@ -115,20 +119,20 @@ function diffRuleMatches(instance, options, ruleMatches) {
 
             // Disable the property and save the reenabler function
 
-            _context.next = 30;
+            _context.next = 31;
             return (0, _disableProperty2.default)(instance, rmRuleStyle, propName);
 
-          case 30:
+          case 31:
             reenabler = _context.sent;
-            _context.next = 33;
+            _context.next = 34;
             return (0, _screenshot2.default)(instance, options.writeScreenshots, _path2.default.resolve(screenshotDirPath, prop.name + '.png'));
 
-          case 33:
+          case 34:
             comparisonPNG = _context.sent;
-            _context.next = 36;
-            return Promise.all([differ(comparisonPNG, options.writeScreenshots, _path2.default.resolve(screenshotDirPath, prop.name + '-diff.png')), reenabler()]);
+            _context.next = 37;
+            return Promise.all([differ(comparisonPNG, options.writeScreenshots || prop.name === 'background-repeat-x' || prop.name === 'transition-duration', _path2.default.resolve(screenshotDirPath, prop.name + '-diff.png')), reenabler()]);
 
-          case 36:
+          case 37:
             _ref = _context.sent;
             _ref2 = _slicedToArray(_ref, 1);
             diff = _ref2[0];
@@ -136,95 +140,101 @@ function diffRuleMatches(instance, options, ruleMatches) {
 
             console.log(prop.name, diff);
 
-            diffScores[prop.name] = diff;
+            // Add the result for this prop to the rmDiff object for this rule block
+            rmDiff[prop.name] = diff;
 
-          case 41:
+          case 42:
             _iteratorNormalCompletion2 = true;
-            _context.next = 25;
+            _context.next = 26;
             break;
 
-          case 44:
-            _context.next = 50;
+          case 45:
+            _context.next = 51;
             break;
 
-          case 46:
-            _context.prev = 46;
-            _context.t0 = _context['catch'](23);
+          case 47:
+            _context.prev = 47;
+            _context.t0 = _context['catch'](24);
             _didIteratorError2 = true;
             _iteratorError2 = _context.t0;
 
-          case 50:
-            _context.prev = 50;
+          case 51:
             _context.prev = 51;
+            _context.prev = 52;
 
             if (!_iteratorNormalCompletion2 && _iterator2.return) {
               _iterator2.return();
             }
 
-          case 53:
-            _context.prev = 53;
+          case 54:
+            _context.prev = 54;
 
             if (!_didIteratorError2) {
-              _context.next = 56;
+              _context.next = 57;
               break;
             }
 
             throw _iteratorError2;
 
-          case 56:
-            return _context.finish(53);
-
           case 57:
-            return _context.finish(50);
+            return _context.finish(54);
 
           case 58:
+            return _context.finish(51);
+
+          case 59:
+
+            // Add the diff results for this rule to the structure-preserving cssRules object.
+            cssRules[selectorString] = rmDiff;
+
+          case 60:
             _iteratorNormalCompletion = true;
             _context.next = 14;
             break;
 
-          case 61:
-            _context.next = 67;
+          case 63:
+            _context.next = 69;
             break;
 
-          case 63:
-            _context.prev = 63;
+          case 65:
+            _context.prev = 65;
             _context.t1 = _context['catch'](12);
             _didIteratorError = true;
             _iteratorError = _context.t1;
 
-          case 67:
-            _context.prev = 67;
-            _context.prev = 68;
+          case 69:
+            _context.prev = 69;
+            _context.prev = 70;
 
             if (!_iteratorNormalCompletion && _iterator.return) {
               _iterator.return();
             }
 
-          case 70:
-            _context.prev = 70;
+          case 72:
+            _context.prev = 72;
 
             if (!_didIteratorError) {
-              _context.next = 73;
+              _context.next = 75;
               break;
             }
 
             throw _iteratorError;
 
-          case 73:
-            return _context.finish(70);
-
-          case 74:
-            return _context.finish(67);
-
           case 75:
-            return _context.abrupt('return', diffScores);
+            return _context.finish(72);
 
           case 76:
+            return _context.finish(69);
+
+          case 77:
+            return _context.abrupt('return', cssRules);
+
+          case 78:
           case 'end':
             return _context.stop();
         }
       }
-    }, _callee, this, [[12, 63, 67, 75], [23, 46, 50, 58], [51,, 53, 57], [68,, 70, 74]]);
+    }, _callee, this, [[12, 65, 69, 77], [24, 47, 51, 59], [52,, 54, 58], [70,, 72, 76]]);
   }));
 }
 
@@ -240,7 +250,12 @@ function normalizeScores(propDiffs) {
   var allScores = props.map(function (k) {
     return propDiffs[k];
   });
-  var maxScore = Math.max.apply(allScores);
+  var maxScore = Math.max.apply(null, allScores);
+  var minScore = Math.min.apply(null, allScores);
+  var range = maxScore - minScore;
+
+  // console.log(Object.entries(propDiffs).find(pair => pair[1] === maxScore));
+  // console.log(Object.entries(propDiffs).find(pair => pair[1] === minScore));
 
   // Normalize everything
   var normalized = {};
@@ -255,7 +270,8 @@ function normalizeScores(propDiffs) {
           prop = _step3$value[0],
           score = _step3$value[1];
 
-      var normalizedScore = score / maxScore;
+      var normalizedScore = range > 0 ? (score - minScore) / range : 0;
+
       normalized[prop] = normalizedScore;
     }
   } catch (err) {
@@ -276,72 +292,103 @@ function normalizeScores(propDiffs) {
   return normalized;
 }
 
-// color                         127999
-// height                       1262598
-// left                           81288
-// overflow                      137474
-// position                      124006
-// top                           130289
-// text-align                    127999
-// width                        1200443
-// -webkit-transform             137537
-// transform                     141342
-// transition                    119614
-// transition                    140787
-// overflow-x                    113539
-// overflow-y                    109058
-// transition-duration           133669
-// transition-timing-function    139477
-// transition-delay               81288
-// transition-property           128418
-// color                         133420
-// padding-top                   133897
-// z-index                       139879
-
-
 /**
  * Function to execute once the page loads in Canary.
  */
 function main(instance, options) {
   return (0, _co2.default)(regeneratorRuntime.mark(function _callee2() {
-    var rootId, pseudoStates, ruleMatches, diffResults;
+    var rootId, pseudoStates, ruleMatches, cssRules, normalized, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, _step4$value, selector, dr;
+
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             debugger;
+            console.log(require.main.filename);
+            console.log(module);
+            console.log(process.cwd());
+
             // Get root node
-            _context2.next = 3;
+            _context2.next = 6;
             return (0, _elements.getDocumentRootId)(instance);
 
-          case 3:
+          case 6:
             rootId = _context2.sent;
-            _context2.next = 6;
+            _context2.next = 9;
             return (0, _preparePage.applyPseudoStates)(instance, rootId, options);
 
-          case 6:
+          case 9:
             pseudoStates = _context2.sent;
-            _context2.next = 9;
+            _context2.next = 12;
             return (0, _elements.getElementStyles)(instance, rootId, options);
 
-          case 9:
+          case 12:
             ruleMatches = _context2.sent;
-            _context2.next = 12;
+            _context2.next = 15;
             return diffRuleMatches(instance, options, ruleMatches);
 
-          case 12:
-            diffResults = _context2.sent;
+          case 15:
+            cssRules = _context2.sent;
+
+            console.log(JSON.stringify(cssRules, null, 2));
+
+            normalized = {};
+            _iteratorNormalCompletion4 = true;
+            _didIteratorError4 = false;
+            _iteratorError4 = undefined;
+            _context2.prev = 21;
 
 
-            console.log(JSON.stringify(diffResults, null, 2));
+            for (_iterator4 = Object.entries(cssRules)[Symbol.iterator](); !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+              _step4$value = _slicedToArray(_step4.value, 2), selector = _step4$value[0], dr = _step4$value[1];
+
+              normalized[selector] = normalizeScores(dr);
+            }
+
+            _context2.next = 29;
+            break;
+
+          case 25:
+            _context2.prev = 25;
+            _context2.t0 = _context2['catch'](21);
+            _didIteratorError4 = true;
+            _iteratorError4 = _context2.t0;
+
+          case 29:
+            _context2.prev = 29;
+            _context2.prev = 30;
+
+            if (!_iteratorNormalCompletion4 && _iterator4.return) {
+              _iterator4.return();
+            }
+
+          case 32:
+            _context2.prev = 32;
+
+            if (!_didIteratorError4) {
+              _context2.next = 35;
+              break;
+            }
+
+            throw _iteratorError4;
+
+          case 35:
+            return _context2.finish(32);
+
+          case 36:
+            return _context2.finish(29);
+
+          case 37:
+            console.log(JSON.stringify(normalized, null, 2));
+
             instance.close();
 
-          case 15:
+          case 39:
           case 'end':
             return _context2.stop();
         }
       }
-    }, _callee2, this);
+    }, _callee2, this, [[21, 25, 29, 37], [30,, 32, 36]]);
   }));
 }
 //# sourceMappingURL=main.js.map
