@@ -75,9 +75,36 @@ function init(chrome) {
 }
 
 // eslint-disable-next-line new-cap
-(0, _chromeRemoteInterface2.default)(OPTIONS, init).on('error', function (err) {
+// Chrome(OPTIONS, init).on('error', function (err) {
+//   console.error('Cannot connect to Chrome:', err);
+//   this.close();
+// });
+
+(0, _chromeRemoteInterface2.default)(OPTIONS).then(function () {
+  return (0, _chromeRemoteInterface2.default)(OPTIONS);
+}).then(init).catch(function (err) {
   console.error('Cannot connect to Chrome:', err);
-  this.close();
+
+  _chromeRemoteInterface2.default.New(OPTIONS).then(function () {
+    return (0, _chromeRemoteInterface2.default)(OPTIONS);
+  }).then(init).catch(function (err) {
+    return console.error(err);
+  });
+
+  // Close all tabs
+  // Chrome.List(OPTIONS, (err, tabs) => {
+  //   if (err) {
+  //     console.error('Error fetching tabs:', err);
+  //   }
+
+  //   // Promise.all(tabs.map((tab) => {
+  //   //   const { id } = tab;
+  //   //   return Chrome.Close(Object.assign({}, OPTIONS, { id }));
+  //   // }))
+  //   //   .then(Chrome.New(OPTIONS, init));
+
+  //   console.log(JSON.stringify(tabs, null, 2));
+  // })
 });
 
 //# sourceMappingURL=index.js.map

@@ -61,7 +61,34 @@ function init (chrome) {
 }
 
 // eslint-disable-next-line new-cap
-Chrome(OPTIONS, init).on('error', function (err) {
-  console.error('Cannot connect to Chrome:', err);
-  this.close();
-});
+// Chrome(OPTIONS, init).on('error', function (err) {
+//   console.error('Cannot connect to Chrome:', err);
+//   this.close();
+// });
+
+Chrome(OPTIONS)
+  .then(() => Chrome(OPTIONS))
+  .then(init)
+  .catch((err) => {
+    console.error('Cannot connect to Chrome:', err);
+
+    Chrome.New(OPTIONS)
+      .then(() => Chrome(OPTIONS))
+      .then(init)
+      .catch(err => console.error(err));
+
+    // Close all tabs
+    // Chrome.List(OPTIONS, (err, tabs) => {
+    //   if (err) {
+    //     console.error('Error fetching tabs:', err);
+    //   }
+
+    //   // Promise.all(tabs.map((tab) => {
+    //   //   const { id } = tab;
+    //   //   return Chrome.Close(Object.assign({}, OPTIONS, { id }));
+    //   // }))
+    //   //   .then(Chrome.New(OPTIONS, init));
+
+    //   console.log(JSON.stringify(tabs, null, 2));
+    // })
+  });

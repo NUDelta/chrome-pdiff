@@ -68,20 +68,8 @@ async function captureScreenshot (instance: Object): Promise<string> {
  */
 export default async function screenshotPage (instance: Object, writeToDisk: boolean = false, screenshotFilePath?: string, delay?: number): Promise<PNG> {
   if (delay) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        captureScreenshot(instance)
-          .then(stringToPNG)
-          .then((png) => {
-            if (writeToDisk) {
-              writeScreenshot(screenshotFilePath, png);
-            }
-
-            resolve(png);
-          })
-          .catch((err) => reject(err));
-      }, delay);
-    });
+    const timeout = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+    await timeout(delay);
   }
 
   const shotString: string = await captureScreenshot(instance);

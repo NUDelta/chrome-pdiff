@@ -116,40 +116,35 @@ exports.default = function () {
     var writeToDisk = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
     var screenshotFilePath = arguments[2];
     var delay = arguments[3];
-    var shotString, shotPNG;
+    var timeout, shotString, shotPNG;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             if (!delay) {
-              _context2.next = 2;
+              _context2.next = 4;
               break;
             }
 
-            return _context2.abrupt('return', new Promise(function (resolve, reject) {
-              setTimeout(function () {
-                captureScreenshot(instance).then(stringToPNG).then(function (png) {
-                  if (writeToDisk) {
-                    writeScreenshot(screenshotFilePath, png);
-                  }
+            timeout = function timeout(ms) {
+              return new Promise(function (resolve) {
+                return setTimeout(resolve, ms);
+              });
+            };
 
-                  resolve(png);
-                }).catch(function (err) {
-                  return reject(err);
-                });
-              }, delay);
-            }));
-
-          case 2:
             _context2.next = 4;
-            return captureScreenshot(instance);
+            return timeout(delay);
 
           case 4:
+            _context2.next = 6;
+            return captureScreenshot(instance);
+
+          case 6:
             shotString = _context2.sent;
-            _context2.next = 7;
+            _context2.next = 9;
             return stringToPNG(shotString);
 
-          case 7:
+          case 9:
             shotPNG = _context2.sent;
 
 
@@ -159,7 +154,7 @@ exports.default = function () {
 
             return _context2.abrupt('return', shotPNG);
 
-          case 10:
+          case 12:
           case 'end':
             return _context2.stop();
         }
