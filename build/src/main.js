@@ -299,7 +299,7 @@ function normalizeScores(propDiffs) {
 
 exports.default = function () {
   var _ref4 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(instance, options) {
-    var rootId, pseudoStates, ruleMatches, cssRules, normalized, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, _step4$value, selector, dr;
+    var rootId, ruleMatches, cssRules, normalized, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, _step4$value, selector, dr;
 
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
@@ -307,26 +307,31 @@ exports.default = function () {
           case 0:
             debugger;
 
-            // Get root node
-            _context2.next = 3;
+            _context2.prev = 1;
+            _context2.next = 4;
             return (0, _elements.getDocumentRootId)(instance);
 
-          case 3:
+          case 4:
             rootId = _context2.sent;
-            _context2.next = 6;
+
+            if (!options.pseudoStatesToForce.length) {
+              _context2.next = 8;
+              break;
+            }
+
+            _context2.next = 8;
             return (0, _preparePage.applyPseudoStates)(instance, rootId, options);
 
-          case 6:
-            pseudoStates = _context2.sent;
-            _context2.next = 9;
+          case 8:
+            _context2.next = 10;
             return (0, _elements.getElementStyles)(instance, rootId, options);
 
-          case 9:
+          case 10:
             ruleMatches = _context2.sent;
-            _context2.next = 12;
+            _context2.next = 13;
             return diffRuleMatches(instance, options, ruleMatches);
 
-          case 12:
+          case 13:
             cssRules = _context2.sent;
 
             console.log(JSON.stringify(cssRules, null, 2));
@@ -335,7 +340,7 @@ exports.default = function () {
             _iteratorNormalCompletion4 = true;
             _didIteratorError4 = false;
             _iteratorError4 = undefined;
-            _context2.prev = 18;
+            _context2.prev = 19;
 
 
             for (_iterator4 = Object.entries(cssRules)[Symbol.iterator](); !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
@@ -344,50 +349,59 @@ exports.default = function () {
               normalized[selector] = normalizeScores(dr);
             }
 
-            _context2.next = 26;
+            _context2.next = 27;
             break;
 
-          case 22:
-            _context2.prev = 22;
-            _context2.t0 = _context2['catch'](18);
+          case 23:
+            _context2.prev = 23;
+            _context2.t0 = _context2['catch'](19);
             _didIteratorError4 = true;
             _iteratorError4 = _context2.t0;
 
-          case 26:
-            _context2.prev = 26;
+          case 27:
             _context2.prev = 27;
+            _context2.prev = 28;
 
             if (!_iteratorNormalCompletion4 && _iterator4.return) {
               _iterator4.return();
             }
 
-          case 29:
-            _context2.prev = 29;
+          case 30:
+            _context2.prev = 30;
 
             if (!_didIteratorError4) {
-              _context2.next = 32;
+              _context2.next = 33;
               break;
             }
 
             throw _iteratorError4;
 
-          case 32:
-            return _context2.finish(29);
-
           case 33:
-            return _context2.finish(26);
+            return _context2.finish(30);
 
           case 34:
+            return _context2.finish(27);
+
+          case 35:
             console.log(JSON.stringify(normalized, null, 2));
 
             instance.close();
+            _context2.next = 43;
+            break;
 
-          case 36:
+          case 39:
+            _context2.prev = 39;
+            _context2.t1 = _context2['catch'](1);
+
+            console.error(_context2.t1);
+            instance.close();
+
+          case 43:
           case 'end':
             return _context2.stop();
         }
       }
-    }, _callee2, this, [[18, 22, 26, 34], [27,, 29, 33]]);
+    }, _callee2, this, [[1, 39], [19, 23, 27, 35], [28,, 30, 34]]);
   }));
 
   function main(_x4, _x5) {

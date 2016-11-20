@@ -42,7 +42,7 @@ async function diffRuleMatches (instance: Object, options: Object, ruleMatches: 
      */
     const props: CSSProperty[] = rmRuleStyle.cssProperties;
 
-    for (let prop of props) {
+    for (const prop of props) {
       const propName = prop.name;
 
       // Disable the property and save the reenabler function
@@ -115,26 +115,33 @@ function normalizeScores (propDiffs: DiffResults): DiffResults {
 export default async function main (instance, options) {
   debugger;
 
-  // Get root node
-  const rootId: number = await getDocumentRootId(instance);
+  try {
+    // Get root node
+    const rootId: number = await getDocumentRootId(instance);
 
-  // Apply pseudo-states
-  const pseudoStates = await applyPseudoStates(instance, rootId, options);
+    // Apply pseudo-states
+    if (options.pseudoStatesToForce.length) {
+      await applyPseudoStates(instance, rootId, options);
+    }
 
-  // Get element styles
-  const ruleMatches: RuleMatch[] = await getElementStyles(instance, rootId, options);
+    // Get element styles
+    const ruleMatches: RuleMatch[] = await getElementStyles(instance, rootId, options);
 
-  // Diff everything
-  const cssRules: DiffResults = await diffRuleMatches(instance, options, ruleMatches);
-  console.log(JSON.stringify(cssRules, null, 2));
+    // Diff everything
+    const cssRules: DiffResults = await diffRuleMatches(instance, options, ruleMatches);
+    console.log(JSON.stringify(cssRules, null, 2));
 
-  const normalized: DiffResults = {};
+    const normalized: DiffResults = {};
 
-  for (const [ selector, dr ] of Object.entries(cssRules)) {
-    normalized[selector] = normalizeScores(dr);
+    for (const [ selector, dr ] of Object.entries(cssRules)) {
+      normalized[selector] = normalizeScores(dr);
+    }
+
+    console.log(JSON.stringify(normalized, null, 2));
+
+    instance.close();
+  } catch (err) {
+    console.error(err);
+    instance.close();
   }
-
-  console.log(JSON.stringify(normalized, null, 2));
-
-  instance.close();
 }

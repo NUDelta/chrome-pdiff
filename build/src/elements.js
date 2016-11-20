@@ -113,13 +113,23 @@ var getElementStyles = exports.getElementStyles = function () {
 
           case 4:
             nodeId = _context3.sent;
-            _context3.next = 7;
+
+            if (!(nodeId === 0)) {
+              _context3.next = 8;
+              break;
+            }
+
+            instance.close();
+            throw new Error('Selected element not found');
+
+          case 8:
+            _context3.next = 10;
             return CSS.getMatchedStylesForNode({
               nodeId: nodeId,
               includeInherited: false
             });
 
-          case 7:
+          case 10:
             matchedStylesResponse = _context3.sent;
 
 
@@ -136,7 +146,7 @@ var getElementStyles = exports.getElementStyles = function () {
             filteredRuleMatches = matchedCSSRules.filter(keepRuleMatch.bind(null, options));
             return _context3.abrupt('return', filteredRuleMatches);
 
-          case 11:
+          case 14:
           case 'end':
             return _context3.stop();
         }

@@ -71,6 +71,12 @@ export async function getElementStyles (instance: Object, rootId: number, option
   // Get the nodeId of the element matching the selector
   const nodeId: number = await getNodeId(instance, rootId, selector);
 
+  // Handle the case where the element is not returned
+  if (nodeId === 0) {
+    instance.close();
+    throw new Error('Selected element not found');
+  }
+
   // Get all matched styles for node
   const matchedStylesResponse: Object = await CSS.getMatchedStylesForNode({
     nodeId,
