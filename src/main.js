@@ -17,7 +17,7 @@ function diffRuleMatches (instance: Object, options: Object, ruleMatches: RuleMa
     /**
      * Capture and write the base screenshot for comparison.
      */
-    const basePNG: PNG = yield screenshotPage(instance, true, path.resolve(screenshotDirPath, 'base.png'));
+    const basePNG: PNG = yield screenshotPage(instance, options.writeScreenshots, path.resolve(screenshotDirPath, 'base.png'));
 
     const differ = yield createDiffer(basePNG);
 
@@ -116,35 +116,13 @@ function normalizeScores (propDiffs: DiffResults): DiffResults {
 /**
  * Function to execute once the page loads in Canary.
  */
-// export default function main (instance, options) {
-//   return co(function* () {
-//     debugger;
-//     // Get root node
-//     const rootId: number = yield getDocumentRootId(instance);
-
-//     // Apply pseudo-states
-//     const pseudoStates = yield applyPseudoStates(instance, rootId, options);
-
-//     // Get element styles
-//     const ruleMatches: RuleMatch[] = yield getElementStyles(instance, rootId, options);
-
-//     // Diff everything
-//     const cssRules: DiffResults = yield diffRuleMatches(instance, options, ruleMatches);
-//     console.log(JSON.stringify(cssRules, null, 2));
-
-//     const normalized: DiffResults = {};
-
-//     for (const [ selector, dr ] of Object.entries(cssRules)) {
-//       normalized[selector] = normalizeScores(dr);
-//     }
-
-//     console.log(JSON.stringify(normalized, null, 2));
-
-//     instance.close();
-//   });
-// }
-export default async function main (instance, options) {
+export default function main (instance, options) {
   return co(function* () {
+    debugger;
+    console.log(require.main.filename);
+    console.log(module);
+    console.log(process.cwd());
+
     // Get root node
     const rootId: number = yield getDocumentRootId(instance);
 

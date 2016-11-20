@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import Chrome from 'chrome-remote-interface';
 import main from './src/main';
 
@@ -66,11 +67,11 @@ function init (chrome) {
   });
 }
 
-
 Chrome(OPTIONS)
   // After defining a new tab, need to initialize a connection
   // .then((chrome) => Chrome(OPTIONS))
   .then(init)
   .catch((err) => {
+    this.close();  // TODO: No idea if this works.
     console.error('Cannot connect to Chrome:', err);
   });
