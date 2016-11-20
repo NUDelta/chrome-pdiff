@@ -9,14 +9,16 @@
     "start": "babel-node index.js",
     "lint": "eslint . || true",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
-    "di": "node-inspector -d=7000 -p=8000 --save-live-edit --hidden node_modules/",
-    "ds1": "babel ./src -d ./build/server/src -s -w; babel index.js -d ./build/server -s -w",
-    "ds2": "nodemon --watch ./build/server --delay 100ms --debug=7000 ./build/server/index.js"
+    "denode": "denode build/index.js",
+    "build:src": "babel ./src -d ./build/src -s -w",
+    "build:index": "babel ./index.js -o ./build/index.js -s -w",
+    "debug": "denode build/index.js"
   },
   "keywords": [],
   "author": "Sarah Lim <sarah@sarahlim.com> (http://sarahlim.com)",
   "license": "ISC",
   "dependencies": {
+    "babel-polyfill": "^6.16.0",
     "chrome-remote-interface": "^0.14.3",
     "co": "^4.6.0",
     "pixelmatch": "^4.0.2",
