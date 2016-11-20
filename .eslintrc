@@ -12,7 +12,6 @@
     "generator-star-spacing": 0,
     "babel/generator-star-spacing": 1,
     "space-before-function-paren": ["error", "always"],
-    "arrow-parens": ["warn", "always"],
     "no-magic-numbers": ["error", {
       "ignore": [0, 1, -1]
     }],

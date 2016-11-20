@@ -82,29 +82,31 @@ function init(chrome) {
 
 (0, _chromeRemoteInterface2.default)(OPTIONS).then(function () {
   return (0, _chromeRemoteInterface2.default)(OPTIONS);
-}).then(init).catch(function (err) {
-  console.error('Cannot connect to Chrome:', err);
+}).then(init).catch(function () {
+  console.log('Opening new tab...');
 
   _chromeRemoteInterface2.default.New(OPTIONS).then(function () {
     return (0, _chromeRemoteInterface2.default)(OPTIONS);
   }).then(init).catch(function (err) {
-    return console.error(err);
+    return console.error('Cannot connect to Chrome:', err);
   });
 
   // Close all tabs
-  // Chrome.List(OPTIONS, (err, tabs) => {
-  //   if (err) {
-  //     console.error('Error fetching tabs:', err);
-  //   }
+  _chromeRemoteInterface2.default.List(OPTIONS, function (err, tabs) {
+    if (err) {
+      console.error('Error fetching tabs:', err);
+    }
 
-  //   // Promise.all(tabs.map((tab) => {
-  //   //   const { id } = tab;
-  //   //   return Chrome.Close(Object.assign({}, OPTIONS, { id }));
-  //   // }))
-  //   //   .then(Chrome.New(OPTIONS, init));
+    console.log('Closing tabs...');
 
-  //   console.log(JSON.stringify(tabs, null, 2));
-  // })
+    Promise.all(tabs.slice(1).map(function (tab) {
+      var id = tab.id;
+
+      return _chromeRemoteInterface2.default.Close(Object.assign({}, OPTIONS, { id: id }));
+    }));
+
+    // console.log(JSON.stringify(tabs, null, 2));
+  });
 });
 
 //# sourceMappingURL=index.js.map

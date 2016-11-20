@@ -69,26 +69,27 @@ function init (chrome) {
 Chrome(OPTIONS)
   .then(() => Chrome(OPTIONS))
   .then(init)
-  .catch((err) => {
-    console.error('Cannot connect to Chrome:', err);
+  .catch(() => {
+    console.log('Opening new tab...');
 
     Chrome.New(OPTIONS)
       .then(() => Chrome(OPTIONS))
       .then(init)
-      .catch(err => console.error(err));
+      .catch(err => console.error('Cannot connect to Chrome:', err));
 
     // Close all tabs
-    // Chrome.List(OPTIONS, (err, tabs) => {
-    //   if (err) {
-    //     console.error('Error fetching tabs:', err);
-    //   }
+    Chrome.List(OPTIONS, (err, tabs) => {
+      if (err) {
+        console.error('Error fetching tabs:', err);
+      }
 
-    //   // Promise.all(tabs.map((tab) => {
-    //   //   const { id } = tab;
-    //   //   return Chrome.Close(Object.assign({}, OPTIONS, { id }));
-    //   // }))
-    //   //   .then(Chrome.New(OPTIONS, init));
+      console.log('Closing tabs...');
 
-    //   console.log(JSON.stringify(tabs, null, 2));
-    // })
+      Promise.all(tabs.slice(1).map((tab) => {
+        const { id } = tab;
+        return Chrome.Close(Object.assign({}, OPTIONS, { id }));
+      }));
+
+      // console.log(JSON.stringify(tabs, null, 2));
+    })
   });
