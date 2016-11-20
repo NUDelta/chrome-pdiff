@@ -86,8 +86,8 @@ function init(chrome) {
 // After defining a new tab, need to initialize a connection
 // .then((chrome) => Chrome(OPTIONS))
 .then(init).catch(function (err) {
-  undefined.close(); // TODO: No idea if this works.
   console.error('Cannot connect to Chrome:', err);
+  undefined.close(); // TODO: No idea if this works.
 });
 
 //# sourceMappingURL=index.js.map

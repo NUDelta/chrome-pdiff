@@ -1,17 +1,14 @@
 // @flow
-import co from 'co';
 import { applyPseudoStates } from './preparePage';
 
-export function getDocumentRootId (instance: Object): Promise<number> {
-  return co(function* () {
-    const { DOM } = instance;
+export async function getDocumentRootId (instance: Object): Promise<number> {
+  const { DOM } = instance;
 
-    // Get nodeId of document root
-    const documentResponse: Object = yield DOM.getDocument();
-    const rootId: number = documentResponse.root.nodeId;
+  // Get nodeId of document root
+  const documentResponse: Object = await DOM.getDocument();
+  const rootId: number = documentResponse.root.nodeId;
 
-    return rootId;
-  });
+  return rootId;
 }
 
 /**
@@ -21,19 +18,17 @@ export function getDocumentRootId (instance: Object): Promise<number> {
  * @param  {string}                selector
  * @return {number}                nodeId
  */
-export function getNodeId (instance: Object, rootId: number, selector: string): Promise<number> {
-  return co(function* () {
-    const { DOM } = instance;
+export async function getNodeId (instance: Object, rootId: number, selector: string): Promise<number> {
+  const { DOM } = instance;
 
-    // Get nodeId of selected element
-    const queryResponse: Object = yield DOM.querySelector({
-      nodeId: rootId,
-      selector,
-    });
-    const selectedNodeId: number = queryResponse.nodeId;
-
-    return selectedNodeId;
+  // Get nodeId of selected element
+  const queryResponse: Object = await DOM.querySelector({
+    nodeId: rootId,
+    selector,
   });
+  const selectedNodeId: number = queryResponse.nodeId;
+
+  return selectedNodeId;
 }
 
 /**
@@ -67,39 +62,37 @@ function keepRuleMatch (options: Object, rm: RuleMatch): boolean {
  * @param  {Object} options  options object
  * @return {RuleMatch}
  */
-export function getElementStyles (instance: Object, rootId: number, options: Object): Promise<RuleMatch[]> {
-  return co(function* () {
-    const { CSS } = instance;
+export async function getElementStyles (instance: Object, rootId: number, options: Object): Promise<RuleMatch[]> {
+  const { CSS } = instance;
 
 
-    const { selector } = options;
+  const { selector } = options;
 
-    // Get the nodeId of the element matching the selector
-    const nodeId: number = yield getNodeId(instance, rootId, selector);
+  // Get the nodeId of the element matching the selector
+  const nodeId: number = await getNodeId(instance, rootId, selector);
 
-    // Get all matched styles for node
-    const matchedStylesResponse: Object = yield CSS.getMatchedStylesForNode({
-      nodeId,
-      includeInherited: false,
-    });
-
-    // Extract only the parts we care about from the matched styles response
-    const {
-      matchedCSSRules,
-      // pseudoElements,
-      // cssKeyframesRules,
-    }: {
-      matchedCSSRules: RuleMatch[],
-    } = matchedStylesResponse;
-
-    /**
-     * Disregard rules if any of the following are true:
-     * - origin is the user-agent
-     * - global selector (*) is used
-     * - exceeds the specified upper bound of selectors (probably a reset)
-     */
-    const filteredRuleMatches: RuleMatch[] = matchedCSSRules.filter(keepRuleMatch.bind(null, options));
-
-    return filteredRuleMatches;
+  // Get all matched styles for node
+  const matchedStylesResponse: Object = await CSS.getMatchedStylesForNode({
+    nodeId,
+    includeInherited: false,
   });
+
+  // Extract only the parts we care about from the matched styles response
+  const {
+    matchedCSSRules,
+    // pseudoElements,
+    // cssKeyframesRules,
+  }: {
+    matchedCSSRules: RuleMatch[],
+  } = matchedStylesResponse;
+
+  /**
+   * Disregard rules if any of the following are true:
+   * - origin is the user-agent
+   * - global selector (*) is used
+   * - exceeds the specified upper bound of selectors (probably a reset)
+   */
+  const filteredRuleMatches: RuleMatch[] = matchedCSSRules.filter(keepRuleMatch.bind(null, options));
+
+  return filteredRuleMatches;
 }

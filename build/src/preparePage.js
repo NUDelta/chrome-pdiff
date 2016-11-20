@@ -3,15 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.applyPseudoStates = applyPseudoStates;
-
-var _co = require('co');
-
-var _co2 = _interopRequireDefault(_co);
-
-var _elements = require('./elements');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+exports.applyPseudoStates = undefined;
 
 /**
  * Force a pseudo state on a particular element.
@@ -21,8 +13,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @param {PseudoClass[]} forcePseudoStates   array of pseudoclasses to force
  * @return {Promise<void>}
  */
-function forcePseudoState(instance, rootId, selector, pseudoStatesToForce) {
-  return (0, _co2.default)(regeneratorRuntime.mark(function _callee() {
+var forcePseudoState = function () {
+  var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(instance, rootId, selector, pseudoStatesToForce) {
     var CSS, nodeId;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
@@ -46,13 +38,19 @@ function forcePseudoState(instance, rootId, selector, pseudoStatesToForce) {
       }
     }, _callee, this);
   }));
-}
+
+  return function forcePseudoState(_x, _x2, _x3, _x4) {
+    return _ref.apply(this, arguments);
+  };
+}();
 
 /**
  * Add pseudoclasses to elements on the page before screenshotting.
  */
-function applyPseudoStates(instance, rootId, options) {
-  return (0, _co2.default)(regeneratorRuntime.mark(function _callee2() {
+
+
+var applyPseudoStates = exports.applyPseudoStates = function () {
+  var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(instance, rootId, options) {
     var CSS, pseudoStatesToForce, promisify, promises;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
@@ -71,10 +69,13 @@ function applyPseudoStates(instance, rootId, options) {
             return _context2.abrupt('return');
 
           case 4:
-            // pseudoStates: [{
-            //   selector: 'body > div > div.content > div > p:nth-child(1) > span.tooltip.tooltip-effect-1',
-            //   forcePseudoClasses: ['hover'],
-            // }],
+
+            /**
+             * pseudoStates: [{
+             *   selector: 'body > div > div.content > div > p:nth-child(1) > span.tooltip.tooltip-effect-1',
+             *   forcePseudoClasses: ['hover'],
+             * }],
+             */
 
             // Bind the helper promisifier to the current instance.
             promisify = forcePseudoState.bind(null, instance, rootId);
@@ -94,5 +95,13 @@ function applyPseudoStates(instance, rootId, options) {
       }
     }, _callee2, this);
   }));
-}
+
+  return function applyPseudoStates(_x5, _x6, _x7) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
+var _elements = require('./elements');
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 //# sourceMappingURL=preparePage.js.map

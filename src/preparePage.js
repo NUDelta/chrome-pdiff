@@ -1,5 +1,4 @@
 // @flow
-import co from 'co';
 import { getNodeId } from './elements';
 
 /**
@@ -10,40 +9,39 @@ import { getNodeId } from './elements';
  * @param {PseudoClass[]} forcePseudoStates   array of pseudoclasses to force
  * @return {Promise<void>}
  */
-function forcePseudoState (instance: Object, rootId: number, selector: string, pseudoStatesToForce: PseudoClass[]): Promise<> {
-  return co(function* () {
-    const { CSS } = instance;
+async function forcePseudoState (instance: Object, rootId: number, selector: string, pseudoStatesToForce: PseudoClass[]): Promise<> {
+  const { CSS } = instance;
 
-    const nodeId: number = yield getNodeId(instance, rootId, selector);
+  const nodeId: number = await getNodeId(instance, rootId, selector);
 
-    return CSS.forcePseudoState({
-      nodeId,
-      forcedPseudoClasses: pseudoStatesToForce,
-    });
+  return CSS.forcePseudoState({
+    nodeId,
+    forcedPseudoClasses: pseudoStatesToForce,
   });
 }
 
 /**
  * Add pseudoclasses to elements on the page before screenshotting.
  */
-export function applyPseudoStates (instance: Object, rootId: number, options: Object): Promise<Object> {
-  return co(function* () {
-    const { CSS } = instance;
-    const { pseudoStatesToForce } = options;
+export async function applyPseudoStates (instance: Object, rootId: number, options: Object): Promise<Object> {
+  const { CSS } = instance;
+  const { pseudoStatesToForce } = options;
 
-    // If `options.pseudoStatesToForce` was undefined or an empty array, ignore
-    if (!pseudoStatesToForce || !pseudoStatesToForce.length) {
-      return;
-    }
-    // pseudoStates: [{
-    //   selector: 'body > div > div.content > div > p:nth-child(1) > span.tooltip.tooltip-effect-1',
-    //   forcePseudoClasses: ['hover'],
-    // }],
+  // If `options.pseudoStatesToForce` was undefined or an empty array, ignore
+  if (!pseudoStatesToForce || !pseudoStatesToForce.length) {
+    return;
+  }
 
-    // Bind the helper promisifier to the current instance.
-    const promisify = forcePseudoState.bind(null, instance, rootId);
-    const promises = yield Promise.all(pseudoStatesToForce.map(ps => promisify(ps.selector, ps.forcePseudoClasses)));
+  /**
+   * pseudoStates: [{
+   *   selector: 'body > div > div.content > div > p:nth-child(1) > span.tooltip.tooltip-effect-1',
+   *   forcePseudoClasses: ['hover'],
+   * }],
+   */
 
-    return instance;
-  });
+  // Bind the helper promisifier to the current instance.
+  const promisify = forcePseudoState.bind(null, instance, rootId);
+  const promises = await Promise.all(pseudoStatesToForce.map(ps => promisify(ps.selector, ps.forcePseudoClasses)));
+
+  return instance;
 }

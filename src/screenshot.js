@@ -2,7 +2,6 @@
 import fs from 'fs';
 import path from 'path';
 import { PassThrough } from 'stream';
-import co from 'co';
 import { PNG } from 'pngjs';
 
 /**
@@ -51,15 +50,13 @@ function writeScreenshot (screenshotFilePath: string, data: PNG): void {
 /**
  * Utility function to capture the screenshot of the current page state.
  */
-function captureScreenshot (instance: Object): Promise<string> {
-  return co(function* () {
-    const { Page } = instance;
+async function captureScreenshot (instance: Object): Promise<string> {
+  const { Page } = instance;
 
-    const response: any = yield Page.captureScreenshot();
-    const data: string = response.data;
+  const response: any = await Page.captureScreenshot();
+  const data: string = response.data;
 
-    return data;
-  });
+  return data;
 }
 
 /**
@@ -69,32 +66,30 @@ function captureScreenshot (instance: Object): Promise<string> {
  * Returns a Promise which resolves to a string of the data.
  * TODO: Streamify this.
  */
-export default function screenshotPage (instance: Object, writeToDisk: boolean = false, screenshotFilePath?: string, delay?: number): Promise<PNG> {
-  return co(function* () {
-    if (delay) {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          captureScreenshot(instance)
-            .then(stringToPNG)
-            .then((png) => {
-              if (writeToDisk) {
-                writeScreenshot(screenshotFilePath, png);
-              }
+export default async function screenshotPage (instance: Object, writeToDisk: boolean = false, screenshotFilePath?: string, delay?: number): Promise<PNG> {
+  if (delay) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        captureScreenshot(instance)
+          .then(stringToPNG)
+          .then((png) => {
+            if (writeToDisk) {
+              writeScreenshot(screenshotFilePath, png);
+            }
 
-              resolve(png);
-            })
-            .catch((err) => reject(err));
-        }, delay);
-      });
-    }
+            resolve(png);
+          })
+          .catch((err) => reject(err));
+      }, delay);
+    });
+  }
 
-    const shotString: string = yield captureScreenshot(instance);
-    const shotPNG: PNG = yield stringToPNG(shotString);
+  const shotString: string = await captureScreenshot(instance);
+  const shotPNG: PNG = await stringToPNG(shotString);
 
-    if (writeToDisk) {
-      writeScreenshot(screenshotFilePath, shotPNG);
-    }
+  if (writeToDisk) {
+    writeScreenshot(screenshotFilePath, shotPNG);
+  }
 
-    return shotPNG;
-  });
+  return shotPNG;
 }

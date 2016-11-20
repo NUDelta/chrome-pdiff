@@ -3,20 +3,10 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getDocumentRootId = getDocumentRootId;
-exports.getNodeId = getNodeId;
-exports.getElementStyles = getElementStyles;
+exports.getElementStyles = exports.getNodeId = exports.getDocumentRootId = undefined;
 
-var _co = require('co');
-
-var _co2 = _interopRequireDefault(_co);
-
-var _preparePage = require('./preparePage');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function getDocumentRootId(instance) {
-  return (0, _co2.default)(regeneratorRuntime.mark(function _callee() {
+var getDocumentRootId = exports.getDocumentRootId = function () {
+  var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(instance) {
     var DOM, documentResponse, rootId;
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
@@ -41,7 +31,11 @@ function getDocumentRootId(instance) {
       }
     }, _callee, this);
   }));
-}
+
+  return function getDocumentRootId(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
 
 /**
  * Get the nodeId of the node matching the given selector.
@@ -50,8 +44,10 @@ function getDocumentRootId(instance) {
  * @param  {string}                selector
  * @return {number}                nodeId
  */
-function getNodeId(instance, rootId, selector) {
-  return (0, _co2.default)(regeneratorRuntime.mark(function _callee2() {
+
+
+var getNodeId = exports.getNodeId = function () {
+  var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(instance, rootId, selector) {
     var DOM, queryResponse, selectedNodeId;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
@@ -79,7 +75,11 @@ function getNodeId(instance, rootId, selector) {
       }
     }, _callee2, this);
   }));
-}
+
+  return function getNodeId(_x2, _x3, _x4) {
+    return _ref2.apply(this, arguments);
+  };
+}();
 
 /**
  * Predicate to filter out RuleMatch objects.
@@ -87,23 +87,7 @@ function getNodeId(instance, rootId, selector) {
  * @param  {RuleMatch} rm    a RuleMatch object
  * @return {boolean}         whether to keep the RuleMatch
  */
-function keepRuleMatch(options, rm) {
-  var selectorList = rm.rule.selectorList;
-  var origin = rm.rule.origin;
-  var maxRuleSelectors = options.maxRuleSelectors;
 
-  /**
-   * Disregard rules if any of the following are true:
-   * - origin is the user-agent
-   * - global selector (*) is used
-   * - exceeds the specified upper bound of selectors (probably a reset)
-   */
-  var exclude = origin === 'user-agent' || selectorList.selectors.length > maxRuleSelectors || selectorList.selectors.some(function (selector) {
-    return selector.text === '*';
-  });
-
-  return !exclude;
-}
 
 /**
  * Get the matched styles for an element corresponding to a nodeId.
@@ -112,8 +96,8 @@ function keepRuleMatch(options, rm) {
  * @param  {Object} options  options object
  * @return {RuleMatch}
  */
-function getElementStyles(instance, rootId, options) {
-  return (0, _co2.default)(regeneratorRuntime.mark(function _callee3() {
+var getElementStyles = exports.getElementStyles = function () {
+  var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee3(instance, rootId, options) {
     var CSS, selector, nodeId, matchedStylesResponse, matchedCSSRules, filteredRuleMatches;
     return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
@@ -159,5 +143,31 @@ function getElementStyles(instance, rootId, options) {
       }
     }, _callee3, this);
   }));
+
+  return function getElementStyles(_x5, _x6, _x7) {
+    return _ref3.apply(this, arguments);
+  };
+}();
+
+var _preparePage = require('./preparePage');
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+function keepRuleMatch(options, rm) {
+  var selectorList = rm.rule.selectorList;
+  var origin = rm.rule.origin;
+  var maxRuleSelectors = options.maxRuleSelectors;
+
+  /**
+   * Disregard rules if any of the following are true:
+   * - origin is the user-agent
+   * - global selector (*) is used
+   * - exceeds the specified upper bound of selectors (probably a reset)
+   */
+  var exclude = origin === 'user-agent' || selectorList.selectors.length > maxRuleSelectors || selectorList.selectors.some(function (selector) {
+    return selector.text === '*';
+  });
+
+  return !exclude;
 }
 //# sourceMappingURL=elements.js.map

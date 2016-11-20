@@ -6,45 +6,14 @@ Object.defineProperty(exports, "__esModule", {
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-exports.default = main;
-
-var _path = require('path');
-
-var _path2 = _interopRequireDefault(_path);
-
-var _co = require('co');
-
-var _co2 = _interopRequireDefault(_co);
-
-var _pngjs = require('pngjs');
-
-var _preparePage = require('./preparePage');
-
-var _elements = require('./elements');
-
-var _disableProperty = require('./disableProperty');
-
-var _disableProperty2 = _interopRequireDefault(_disableProperty);
-
-var _screenshot = require('./screenshot');
-
-var _screenshot2 = _interopRequireDefault(_screenshot);
-
-var _pdiff = require('./pdiff');
-
-var _pdiff2 = _interopRequireDefault(_pdiff);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function diffRuleMatches(instance, options, ruleMatches) {
-  return (0, _co2.default)(regeneratorRuntime.mark(function _callee() {
-    var screenshotDirPath, basePNG, differ, diffScores, cssRules, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, rm, rmRuleStyle, selectorString, rmDiff, props, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, prop, propName, reenabler, comparisonPNG, _ref, _ref2, diff;
+var diffRuleMatches = function () {
+  var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(instance, options, ruleMatches) {
+    var screenshotDirPath, basePNG, differ, diffScores, cssRules, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, rm, rmRuleStyle, selectorString, rmDiff, props, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, prop, propName, reenabler, comparisonPNG, _ref2, _ref3, diff;
 
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-
             // Base path for all screenshots
             screenshotDirPath = _path2.default.resolve(__dirname, '../', options.screenshotDir);
 
@@ -133,9 +102,9 @@ function diffRuleMatches(instance, options, ruleMatches) {
             return Promise.all([differ(comparisonPNG, options.writeScreenshots || prop.name === 'background-repeat-x' || prop.name === 'transition-duration', _path2.default.resolve(screenshotDirPath, prop.name + '-diff.png')), reenabler()]);
 
           case 37:
-            _ref = _context.sent;
-            _ref2 = _slicedToArray(_ref, 1);
-            diff = _ref2[0];
+            _ref2 = _context.sent;
+            _ref3 = _slicedToArray(_ref2, 1);
+            diff = _ref3[0];
 
 
             console.log(prop.name, diff);
@@ -236,13 +205,45 @@ function diffRuleMatches(instance, options, ruleMatches) {
       }
     }, _callee, this, [[12, 65, 69, 77], [24, 47, 51, 59], [52,, 54, 58], [70,, 72, 76]]);
   }));
-}
+
+  return function diffRuleMatches(_x, _x2, _x3) {
+    return _ref.apply(this, arguments);
+  };
+}();
 
 /**
  * Iterate over the diff results and return an ordering of normalized prop-diff pairs.
  * @param  {DiffResults} propDiffs   map from properties to pdiff scores
  * @return {DiffPair[]}              pairs ordered from largest to smallest score
  */
+
+
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
+var _pngjs = require('pngjs');
+
+var _preparePage = require('./preparePage');
+
+var _elements = require('./elements');
+
+var _disableProperty = require('./disableProperty');
+
+var _disableProperty2 = _interopRequireDefault(_disableProperty);
+
+var _screenshot = require('./screenshot');
+
+var _screenshot2 = _interopRequireDefault(_screenshot);
+
+var _pdiff = require('./pdiff');
+
+var _pdiff2 = _interopRequireDefault(_pdiff);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 function normalizeScores(propDiffs) {
   var props = Object.keys(propDiffs);
 
@@ -295,8 +296,9 @@ function normalizeScores(propDiffs) {
 /**
  * Function to execute once the page loads in Canary.
  */
-function main(instance, options) {
-  return (0, _co2.default)(regeneratorRuntime.mark(function _callee2() {
+
+exports.default = function () {
+  var _ref4 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(instance, options) {
     var rootId, pseudoStates, ruleMatches, cssRules, normalized, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, _step4$value, selector, dr;
 
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
@@ -304,30 +306,27 @@ function main(instance, options) {
         switch (_context2.prev = _context2.next) {
           case 0:
             debugger;
-            console.log(require.main.filename);
-            console.log(module);
-            console.log(process.cwd());
 
             // Get root node
-            _context2.next = 6;
+            _context2.next = 3;
             return (0, _elements.getDocumentRootId)(instance);
 
-          case 6:
+          case 3:
             rootId = _context2.sent;
-            _context2.next = 9;
+            _context2.next = 6;
             return (0, _preparePage.applyPseudoStates)(instance, rootId, options);
 
-          case 9:
+          case 6:
             pseudoStates = _context2.sent;
-            _context2.next = 12;
+            _context2.next = 9;
             return (0, _elements.getElementStyles)(instance, rootId, options);
 
-          case 12:
+          case 9:
             ruleMatches = _context2.sent;
-            _context2.next = 15;
+            _context2.next = 12;
             return diffRuleMatches(instance, options, ruleMatches);
 
-          case 15:
+          case 12:
             cssRules = _context2.sent;
 
             console.log(JSON.stringify(cssRules, null, 2));
@@ -336,7 +335,7 @@ function main(instance, options) {
             _iteratorNormalCompletion4 = true;
             _didIteratorError4 = false;
             _iteratorError4 = undefined;
-            _context2.prev = 21;
+            _context2.prev = 18;
 
 
             for (_iterator4 = Object.entries(cssRules)[Symbol.iterator](); !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
@@ -345,50 +344,56 @@ function main(instance, options) {
               normalized[selector] = normalizeScores(dr);
             }
 
-            _context2.next = 29;
+            _context2.next = 26;
             break;
 
-          case 25:
-            _context2.prev = 25;
-            _context2.t0 = _context2['catch'](21);
+          case 22:
+            _context2.prev = 22;
+            _context2.t0 = _context2['catch'](18);
             _didIteratorError4 = true;
             _iteratorError4 = _context2.t0;
 
-          case 29:
-            _context2.prev = 29;
-            _context2.prev = 30;
+          case 26:
+            _context2.prev = 26;
+            _context2.prev = 27;
 
             if (!_iteratorNormalCompletion4 && _iterator4.return) {
               _iterator4.return();
             }
 
-          case 32:
-            _context2.prev = 32;
+          case 29:
+            _context2.prev = 29;
 
             if (!_didIteratorError4) {
-              _context2.next = 35;
+              _context2.next = 32;
               break;
             }
 
             throw _iteratorError4;
 
-          case 35:
-            return _context2.finish(32);
-
-          case 36:
+          case 32:
             return _context2.finish(29);
 
-          case 37:
+          case 33:
+            return _context2.finish(26);
+
+          case 34:
             console.log(JSON.stringify(normalized, null, 2));
 
             instance.close();
 
-          case 39:
+          case 36:
           case 'end':
             return _context2.stop();
         }
       }
-    }, _callee2, this, [[21, 25, 29, 37], [30,, 32, 36]]);
+    }, _callee2, this, [[18, 22, 26, 34], [27,, 29, 33]]);
   }));
-}
+
+  function main(_x4, _x5) {
+    return _ref4.apply(this, arguments);
+  }
+
+  return main;
+}();
 //# sourceMappingURL=main.js.map

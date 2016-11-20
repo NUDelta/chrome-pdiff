@@ -72,6 +72,6 @@ Chrome(OPTIONS)
   // .then((chrome) => Chrome(OPTIONS))
   .then(init)
   .catch((err) => {
-    this.close();  // TODO: No idea if this works.
     console.error('Cannot connect to Chrome:', err);
+    this.close();  // TODO: No idea if this works.
   });
