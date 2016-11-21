@@ -27,7 +27,7 @@ export default async function main (instance, options) {
 
     instance.close();
   } catch (err) {
-    console.error('Error in main process:', err);
+    console.error('Error in main function:', err);
     instance.close();
   }
 }

@@ -65,7 +65,7 @@ exports.default = function () {
             _context.prev = 18;
             _context.t0 = _context['catch'](1);
 
-            console.error('Error in main process:', _context.t0);
+            console.error('Error in main function:', _context.t0);
             instance.close();
 
           case 22:
