@@ -14,6 +14,10 @@ export const cdpConfig = {
 
 export const sites: TestSite[] = [
   {
+    url: 'file:///Users/sarah/git/chrome-pdiff/examples/SectionSeparators/index.html',
+    selector: 'body > div > section.col-2.ss-style-triangles',
+    pseudoElement: 'before',
+  }, {
     url: 'file:///Users/sarah/git/chrome-pdiff/examples/TooltipStylesInspiration/index.html',
     selector: 'body > div > div.content > div > p:nth-child(1) > span.tooltip.tooltip-effect-1 > span.tooltip-content.clearfix',
     pseudoStatesToForce: [{

@@ -3,6 +3,7 @@
 type TestSite = {
   url: string,
   selector: string,
+  pseudoElement?: string,
   pseudoStatesToForce?: [{
     selector: string,
     forcePseudoClasses: PseudoClass[],

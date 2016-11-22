@@ -162,17 +162,25 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 function keepRuleMatch(options, rm) {
   var selectorList = rm.rule.selectorList;
+  var selectors = selectorList.selectors;
+
   var origin = rm.rule.origin;
+  var startsWithLetter = /^[a-z]/;
+
   var maxRuleSelectors = options.maxRuleSelectors;
+  var maxRuleSelectorsForReset = 3;
 
   /**
    * Disregard rules if any of the following are true:
    * - origin is the user-agent
-   * - global selector (*) is used
    * - exceeds the specified upper bound of selectors (probably a reset)
+   * - global selector (*) is used
+   * - > 3 selectors, all beginning with a letter (probably a reset)
    */
-  var exclude = origin === 'user-agent' || selectorList.selectors.length > maxRuleSelectors || selectorList.selectors.some(function (selector) {
-    return selector.text === '*';
+  var exclude = origin === 'user-agent' || selectors.length > maxRuleSelectors || selectors.some(function (s) {
+    return s.text === '*';
+  }) || selectors.length > maxRuleSelectorsForReset && selectors.every(function (s) {
+    return startsWithLetter.test(s.text);
   });
 
   return !exclude;

@@ -38,8 +38,8 @@ export default async function disableProperty (
 
   // Since the protocol returns a response object, need to destructure
   // twice to get the modified CSSStyle object
-  const { styles: modifiedStyles }: { styles: CSSStyle[] } = response;
-  const [ modifiedStyle ]: CSSStyle = modifiedStyles;
+  const modifiedStyles: CSSStyle[] = response.styles;
+  const modifiedStyle: CSSStyle = modifiedStyles[0];
 
   // Get the modified range from the modified CSSStyle object
   const modifiedStyleRange: SourceRange = modifiedStyle.range;

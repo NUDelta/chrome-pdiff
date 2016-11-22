@@ -38,18 +38,26 @@ export async function getNodeId (instance: Object, rootId: number, selector: str
  */
 function keepRuleMatch (options: Object, rm: RuleMatch): boolean {
   const selectorList: SelectorList = rm.rule.selectorList;
+  const selectors: Value[] = selectorList.selectors;
+
   const origin: StyleSheetOrigin = rm.rule.origin;
+  const startsWithLetter: RegExp = /^[a-z]/;
+
   const maxRuleSelectors: number = options.maxRuleSelectors;
+  const maxRuleSelectorsForReset: number = 3;
 
   /**
    * Disregard rules if any of the following are true:
    * - origin is the user-agent
-   * - global selector (*) is used
    * - exceeds the specified upper bound of selectors (probably a reset)
+   * - global selector (*) is used
+   * - > 3 selectors, all beginning with a letter (probably a reset)
    */
   const exclude = origin === 'user-agent'
-    || selectorList.selectors.length > maxRuleSelectors
-    || selectorList.selectors.some((selector) => selector.text === '*');
+    || selectors.length > maxRuleSelectors
+    || selectors.some(s => s.text === '*')
+    || (selectors.length > maxRuleSelectorsForReset
+        && selectors.every(s => startsWithLetter.test(s.text)));
 
   return !exclude;
 }

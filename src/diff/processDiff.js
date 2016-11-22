@@ -8,7 +8,7 @@ import createDiffer from './pdiff';
  * @param  {DiffResults} propDiffs   map from properties to pdiff scores
  * @return {DiffPair[]}              pairs ordered from largest to smallest score
  */
-function normalizeScores (propDiffs: DiffResults): DiffResults {
+export function normalizeScores (propDiffs: DiffResults): DiffResults {
   const props: string[] = Object.keys(propDiffs);
 
   // First compute the max pdiff value
@@ -34,7 +34,7 @@ function normalizeScores (propDiffs: DiffResults): DiffResults {
   return normalized;
 }
 
-export default async function diffRuleMatches (instance: Object, options: Object, ruleMatches: RuleMatch[]): Promise<DiffResults> {
+export async function diffRuleMatches (instance: Object, options: Object, ruleMatches: RuleMatch[]): Promise<[ string, DiffResults ][]> {
   // Base path for all screenshots
   const screenshotDirPath: string = path.resolve(__dirname, '../../', options.screenshotDir);
 
@@ -46,14 +46,22 @@ export default async function diffRuleMatches (instance: Object, options: Object
   const differ = await createDiffer(basePNG);
 
   // Collect diff scores
-  const cssRules = {};
+  const cssRules: [ string, DiffResults ][] = [];
 
   /**
    * Iterate over each RuleMatch and toggle its styles
    */
   for (const rm: RuleMatch of ruleMatches) {
     const rmRuleStyle: CSSStyle = rm.rule.style;
-    const selectorString: string = rm.rule.selectorList.text;
+
+    /**
+     * Want to extract just the matched selector from the RuleMatch
+     * selector string.
+     */
+    const matchingSelectorIndices: number = rm.matchingSelectors;
+    const selectors: Value[] = rm.rule.selectorList.selectors;
+    const selectorString: string = matchingSelectorIndices.map(i => selectors[i].text)
+      .join(', ');
 
     console.log(JSON.stringify(selectorString, null, 2));
 
@@ -71,7 +79,7 @@ export default async function diffRuleMatches (instance: Object, options: Object
       // Disable the property and save the reenabler function
       const reenabler: () => Promise<CSSStyle> = await disableProperty(instance, rmRuleStyle, propName);
 
-      // Only continue of the property is not browser-prefixed
+      // Only continue if prop isn't browser-prefixed. If so, keep disabled and continue loop
       const prefix: RegExp = /^-webkit-/;
 
       if (!prefix.test(propName)) {
@@ -86,7 +94,7 @@ export default async function diffRuleMatches (instance: Object, options: Object
         const [ diff ] = await Promise.all([
           differ(
             comparisonPNG,
-            options.writeScreenshots || prop.name === 'background-repeat-x' || prop.name === 'transition-duration',
+            options.writeScreenshots,
             path.resolve(screenshotDirPath, `${prop.name}-diff.png`)
           ),
           reenabler(),
@@ -94,7 +102,7 @@ export default async function diffRuleMatches (instance: Object, options: Object
 
         console.log(prop.name, diff);
 
-        // Add the result for this prop to the rmDiff object for this rule block
+        // Add the result for this prop to the rmDiff for this rule block
         rmDiff[prop.name] = diff;
       } else {
         // If it's a browser-prefixed property, keep disabled and continue loop
@@ -102,17 +110,11 @@ export default async function diffRuleMatches (instance: Object, options: Object
       }
     }
 
-    // Add the diff results for this rule to the structure-preserving cssRules object.
-    cssRules[selectorString] = rmDiff;
+    // Add the diff results for this rule to the structure-preserving cssRules list.
+    cssRules.push([ selectorString, rmDiff ]);
   }
 
   console.log(JSON.stringify(cssRules, null, 2));
 
-  const normalized: DiffResults = {};
-
-  for (const [ selector, dr ] of Object.entries(cssRules)) {
-    normalized[selector] = normalizeScores(dr);
-  }
-
-  return normalized;
+  return cssRules;
 }
