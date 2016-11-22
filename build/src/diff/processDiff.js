@@ -82,7 +82,7 @@ function normalizeScores(propDiffs) {
 
 exports.default = function () {
   var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(instance, options, ruleMatches) {
-    var screenshotDirPath, basePNG, differ, cssRules, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, rm, rmRuleStyle, selectorString, rmDiff, props, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, prop, propName, reenabler, comparisonPNG, _ref2, _ref3, diff, normalized, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, _step3$value, selector, dr;
+    var screenshotDirPath, basePNG, differ, cssRules, _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, rm, rmRuleStyle, selectorString, rmDiff, props, _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, prop, propName, reenabler, prefix, comparisonPNG, _ref2, _ref3, diff, normalized, _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, _step3$value, selector, dr;
 
     return regeneratorRuntime.wrap(function _callee$(_context) {
       while (1) {
@@ -122,7 +122,7 @@ exports.default = function () {
 
           case 13:
             if (_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done) {
-              _context.next = 62;
+              _context.next = 67;
               break;
             }
 
@@ -149,7 +149,7 @@ exports.default = function () {
 
           case 25:
             if (_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done) {
-              _context.next = 44;
+              _context.next = 49;
               break;
             }
 
@@ -163,15 +163,25 @@ exports.default = function () {
 
           case 30:
             reenabler = _context.sent;
-            _context.next = 33;
+
+
+            // Only continue of the property is not browser-prefixed
+            prefix = /^-webkit-/;
+
+            if (prefix.test(propName)) {
+              _context.next = 45;
+              break;
+            }
+
+            _context.next = 35;
             return (0, _screenshot2.default)(instance, options.writeScreenshots, _path2.default.resolve(screenshotDirPath, prop.name + '.png'));
 
-          case 33:
+          case 35:
             comparisonPNG = _context.sent;
-            _context.next = 36;
+            _context.next = 38;
             return Promise.all([differ(comparisonPNG, options.writeScreenshots || prop.name === 'background-repeat-x' || prop.name === 'transition-duration', _path2.default.resolve(screenshotDirPath, prop.name + '-diff.png')), reenabler()]);
 
-          case 36:
+          case 38:
             _ref2 = _context.sent;
             _ref3 = _slicedToArray(_ref2, 1);
             diff = _ref3[0];
@@ -181,91 +191,97 @@ exports.default = function () {
 
             // Add the result for this prop to the rmDiff object for this rule block
             rmDiff[prop.name] = diff;
+            _context.next = 46;
+            break;
 
-          case 41:
+          case 45:
+            // If it's a browser-prefixed property, keep disabled and continue loop
+            console.log('Disabled browser-prefixed property ' + propName);
+
+          case 46:
             _iteratorNormalCompletion4 = true;
             _context.next = 25;
             break;
 
-          case 44:
-            _context.next = 50;
+          case 49:
+            _context.next = 55;
             break;
 
-          case 46:
-            _context.prev = 46;
+          case 51:
+            _context.prev = 51;
             _context.t0 = _context['catch'](23);
             _didIteratorError4 = true;
             _iteratorError4 = _context.t0;
 
-          case 50:
-            _context.prev = 50;
-            _context.prev = 51;
+          case 55:
+            _context.prev = 55;
+            _context.prev = 56;
 
             if (!_iteratorNormalCompletion4 && _iterator4.return) {
               _iterator4.return();
             }
 
-          case 53:
-            _context.prev = 53;
+          case 58:
+            _context.prev = 58;
 
             if (!_didIteratorError4) {
-              _context.next = 56;
+              _context.next = 61;
               break;
             }
 
             throw _iteratorError4;
 
-          case 56:
-            return _context.finish(53);
+          case 61:
+            return _context.finish(58);
 
-          case 57:
-            return _context.finish(50);
+          case 62:
+            return _context.finish(55);
 
-          case 58:
+          case 63:
 
             // Add the diff results for this rule to the structure-preserving cssRules object.
             cssRules[selectorString] = rmDiff;
 
-          case 59:
+          case 64:
             _iteratorNormalCompletion2 = true;
             _context.next = 13;
             break;
 
-          case 62:
-            _context.next = 68;
+          case 67:
+            _context.next = 73;
             break;
 
-          case 64:
-            _context.prev = 64;
+          case 69:
+            _context.prev = 69;
             _context.t1 = _context['catch'](11);
             _didIteratorError2 = true;
             _iteratorError2 = _context.t1;
 
-          case 68:
-            _context.prev = 68;
-            _context.prev = 69;
+          case 73:
+            _context.prev = 73;
+            _context.prev = 74;
 
             if (!_iteratorNormalCompletion2 && _iterator2.return) {
               _iterator2.return();
             }
 
-          case 71:
-            _context.prev = 71;
+          case 76:
+            _context.prev = 76;
 
             if (!_didIteratorError2) {
-              _context.next = 74;
+              _context.next = 79;
               break;
             }
 
             throw _iteratorError2;
 
-          case 74:
-            return _context.finish(71);
+          case 79:
+            return _context.finish(76);
 
-          case 75:
-            return _context.finish(68);
+          case 80:
+            return _context.finish(73);
 
-          case 76:
+          case 81:
 
             console.log(JSON.stringify(cssRules, null, 2));
 
@@ -273,7 +289,7 @@ exports.default = function () {
             _iteratorNormalCompletion3 = true;
             _didIteratorError3 = false;
             _iteratorError3 = undefined;
-            _context.prev = 81;
+            _context.prev = 86;
 
 
             for (_iterator3 = Object.entries(cssRules)[Symbol.iterator](); !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
@@ -282,48 +298,48 @@ exports.default = function () {
               normalized[selector] = normalizeScores(dr);
             }
 
-            _context.next = 89;
+            _context.next = 94;
             break;
 
-          case 85:
-            _context.prev = 85;
-            _context.t2 = _context['catch'](81);
+          case 90:
+            _context.prev = 90;
+            _context.t2 = _context['catch'](86);
             _didIteratorError3 = true;
             _iteratorError3 = _context.t2;
 
-          case 89:
-            _context.prev = 89;
-            _context.prev = 90;
+          case 94:
+            _context.prev = 94;
+            _context.prev = 95;
 
             if (!_iteratorNormalCompletion3 && _iterator3.return) {
               _iterator3.return();
             }
 
-          case 92:
-            _context.prev = 92;
+          case 97:
+            _context.prev = 97;
 
             if (!_didIteratorError3) {
-              _context.next = 95;
+              _context.next = 100;
               break;
             }
 
             throw _iteratorError3;
 
-          case 95:
-            return _context.finish(92);
+          case 100:
+            return _context.finish(97);
 
-          case 96:
-            return _context.finish(89);
+          case 101:
+            return _context.finish(94);
 
-          case 97:
+          case 102:
             return _context.abrupt('return', normalized);
 
-          case 98:
+          case 103:
           case 'end':
             return _context.stop();
         }
       }
-    }, _callee, this, [[11, 64, 68, 76], [23, 46, 50, 58], [51,, 53, 57], [69,, 71, 75], [81, 85, 89, 97], [90,, 92, 96]]);
+    }, _callee, this, [[11, 69, 73, 81], [23, 51, 55, 63], [56,, 58, 62], [74,, 76, 80], [86, 90, 94, 102], [95,, 97, 101]]);
   }));
 
   function diffRuleMatches(_x, _x2, _x3) {

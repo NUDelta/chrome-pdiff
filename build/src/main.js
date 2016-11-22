@@ -28,52 +28,43 @@ exports.default = function () {
           case 0:
             debugger;
 
-            _context.prev = 1;
-            _context.next = 4;
+            // Get root node
+            _context.next = 3;
             return (0, _elements.getDocumentRootId)(instance);
 
-          case 4:
+          case 3:
             rootId = _context.sent;
 
             if (!options.pseudoStatesToForce.length) {
-              _context.next = 8;
+              _context.next = 7;
               break;
             }
 
-            _context.next = 8;
+            _context.next = 7;
             return (0, _preparePage.applyPseudoStates)(instance, rootId, options);
 
-          case 8:
-            _context.next = 10;
+          case 7:
+            _context.next = 9;
             return (0, _elements.getElementStyles)(instance, rootId, options);
 
-          case 10:
+          case 9:
             ruleMatches = _context.sent;
-            _context.next = 13;
+            _context.next = 12;
             return (0, _processDiff2.default)(instance, options, ruleMatches);
 
-          case 13:
+          case 12:
             normalizedResults = _context.sent;
 
             console.log(JSON.stringify(normalizedResults, null, 2));
 
             instance.close();
-            _context.next = 22;
-            break;
 
-          case 18:
-            _context.prev = 18;
-            _context.t0 = _context['catch'](1);
-
-            console.error('Error in main function:', _context.t0);
-            instance.close();
-
-          case 22:
+          case 15:
           case 'end':
             return _context.stop();
         }
       }
-    }, _callee, this, [[1, 18]]);
+    }, _callee, this);
   }));
 
   function main(_x, _x2) {

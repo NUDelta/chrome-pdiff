@@ -9,25 +9,20 @@ import diffRuleMatches from './diff/processDiff';
 export default async function main (instance, options) {
   debugger;
 
-  try {
-    // Get root node
-    const rootId: number = await getDocumentRootId(instance);
+  // Get root node
+  const rootId: number = await getDocumentRootId(instance);
 
-    // Apply pseudo-states
-    if (options.pseudoStatesToForce.length) {
-      await applyPseudoStates(instance, rootId, options);
-    }
-
-    // Get element styles
-    const ruleMatches: RuleMatch[] = await getElementStyles(instance, rootId, options);
-
-    // Diff everything
-    const normalizedResults: DiffResults = await diffRuleMatches(instance, options, ruleMatches);
-    console.log(JSON.stringify(normalizedResults, null, 2));
-
-    instance.close();
-  } catch (err) {
-    console.error('Error in main function:', err);
-    instance.close();
+  // Apply pseudo-states
+  if (options.pseudoStatesToForce.length) {
+    await applyPseudoStates(instance, rootId, options);
   }
+
+  // Get element styles
+  const ruleMatches: RuleMatch[] = await getElementStyles(instance, rootId, options);
+
+  // Diff everything
+  const normalizedResults: DiffResults = await diffRuleMatches(instance, options, ruleMatches);
+  console.log(JSON.stringify(normalizedResults, null, 2));
+
+  instance.close();
 }

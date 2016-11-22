@@ -71,27 +71,35 @@ export default async function diffRuleMatches (instance: Object, options: Object
       // Disable the property and save the reenabler function
       const reenabler: () => Promise<CSSStyle> = await disableProperty(instance, rmRuleStyle, propName);
 
-      // Screenshot page
-      const comparisonPNG: PNG = await screenshotPage(
-        instance,
-        options.writeScreenshots,
-        path.resolve(screenshotDirPath, `${prop.name}.png`),
-      );
+      // Only continue of the property is not browser-prefixed
+      const prefix: RegExp = /^-webkit-/;
 
-      // Re-enable and compute diff simultaneously
-      const [ diff ] = await Promise.all([
-        differ(
-          comparisonPNG,
-          options.writeScreenshots || prop.name === 'background-repeat-x' || prop.name === 'transition-duration',
-          path.resolve(screenshotDirPath, `${prop.name}-diff.png`)
-        ),
-        reenabler(),
-      ]);
+      if (!prefix.test(propName)) {
+        // Screenshot page
+        const comparisonPNG: PNG = await screenshotPage(
+          instance,
+          options.writeScreenshots,
+          path.resolve(screenshotDirPath, `${prop.name}.png`),
+        );
 
-      console.log(prop.name, diff);
+        // Re-enable and compute diff simultaneously
+        const [ diff ] = await Promise.all([
+          differ(
+            comparisonPNG,
+            options.writeScreenshots || prop.name === 'background-repeat-x' || prop.name === 'transition-duration',
+            path.resolve(screenshotDirPath, `${prop.name}-diff.png`)
+          ),
+          reenabler(),
+        ]);
 
-      // Add the result for this prop to the rmDiff object for this rule block
-      rmDiff[prop.name] = diff;
+        console.log(prop.name, diff);
+
+        // Add the result for this prop to the rmDiff object for this rule block
+        rmDiff[prop.name] = diff;
+      } else {
+        // If it's a browser-prefixed property, keep disabled and continue loop
+        console.log(`Disabled browser-prefixed property ${propName}`);
+      }
     }
 
     // Add the diff results for this rule to the structure-preserving cssRules object.
