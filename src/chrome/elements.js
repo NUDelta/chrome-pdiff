@@ -90,22 +90,29 @@ export async function getElementStyles (instance: Object, rootId: number, option
     includeInherited: false,
   });
 
-  // Extract only the parts we care about from the matched styles response
-  const {
-    matchedCSSRules,
-    // pseudoElements,
-    // cssKeyframesRules,
-  }: {
-    matchedCSSRules: RuleMatch[],
-  } = matchedStylesResponse;
+  debugger;
 
-  /**
-   * Disregard rules if any of the following are true:
-   * - origin is the user-agent
-   * - global selector (*) is used
-   * - exceeds the specified upper bound of selectors (probably a reset)
-   */
-  const filteredRuleMatches: RuleMatch[] = matchedCSSRules.filter(keepRuleMatch.bind(null, options));
+  // Provisionally set ruleMatches to the matches for the main DOM element.
+  let ruleMatches: RuleMatch[] = matchedStylesResponse.matchedCSSRules;
+
+  // Now, check if we're looking for a pseudo element, and grab those styles if so.
+  const targetPseudoType: ?PseudoType = options.pseudoElement;
+
+  if (targetPseudoType) {
+    const pseudoMatches: PseudoElementMatches[] = matchedStylesResponse.pseudoElements;
+    const targetPseudoMatch: ?PseudoElementMatches = pseudoMatches.find(p => p.pseudoType === targetPseudoType);
+
+    if (targetPseudoMatch) {
+      // Replace the cached ruleMatches with those of the pseudo element.
+      ruleMatches = targetPseudoMatch.matches;
+    } else {
+      console.error(`Unable to find a pseudo-element :${targetPseudoType} under the specified node.
+Falling back to the main node...`);
+    }
+  }
+
+  // Filter out all the relevant RuleMatches (see `keepRuleMatch` predicate definition).
+  const filteredRuleMatches: RuleMatch[] = ruleMatches.filter(keepRuleMatch.bind(null, options));
 
   return filteredRuleMatches;
 }

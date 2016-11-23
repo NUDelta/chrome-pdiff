@@ -23,6 +23,12 @@ function init (options, chrome) {
   DOM.enable();
   CSS.enable();
 
+  // DOM.pseudoElementAdded((params) => {
+  //     console.log(JSON.stringify(params, null, 2));
+
+  //     console.log('pseudoElement Added');
+  //   });
+
   chrome.once('ready', () => Page.navigate({ url: options.url }));
 
   chrome.on('error', (err) => {

@@ -9,7 +9,7 @@ export const cdpConfig = {
   // Output and logging options
   verbose: false,
   screenshotDir: 'screenshots',
-  writeScreenshots: false,
+  writeScreenshots: true,
 };
 
 export const sites: TestSite[] = [

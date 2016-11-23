@@ -15,7 +15,7 @@ export default function createDiffer (basePNG: PNG):
   const differ = (comparisonPNG: PNG, writeDiffFile = false, diffFilePath: string): number => {
     const diffPNG = writeDiffFile ? new PNG({ width, height }) : null;
 
-    const diffSize: number = pixelmatch(basePNG.data, comparisonPNG.data, diffPNG && diffPNG.data, width, height, { threshold: 0.2 });
+    const diffSize: number = pixelmatch(basePNG.data, comparisonPNG.data, diffPNG && diffPNG.data, width, height, { threshold: 0.1 });
 
     // Optionally write the diff image to disk.
     if (writeDiffFile) {

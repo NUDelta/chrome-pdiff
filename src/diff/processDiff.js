@@ -1,12 +1,11 @@
 import path from 'path';
+import ProgressBar from 'progress';
 import disableProperty from '../chrome/disableProperty';
 import screenshotPage from '../chrome/screenshot';
 import createDiffer from './pdiff';
 
 /**
  * Iterate over the diff results and return an ordering of normalized prop-diff pairs.
- * @param  {DiffResults} propDiffs   map from properties to pdiff scores
- * @return {DiffPair[]}              pairs ordered from largest to smallest score
  */
 export function normalizeScores (propDiffs: DiffResults): DiffResults {
   const props: string[] = Object.keys(propDiffs);
@@ -34,7 +33,13 @@ export function normalizeScores (propDiffs: DiffResults): DiffResults {
   return normalized;
 }
 
-export async function diffRuleMatches (instance: Object, options: Object, ruleMatches: RuleMatch[]): Promise<[ string, DiffResults ][]> {
+/**
+ * Main function to iterate over all the RuleMatches for a particular node,
+ * screenshotting each change and computing the diff.
+ */
+export async function diffRuleMatches (
+  instance: Object, options: Object, ruleMatches: RuleMatch[]
+): Promise<[ string, DiffResults ][]> {
   // Base path for all screenshots
   const screenshotDirPath: string = path.resolve(__dirname, '../../', options.screenshotDir);
 
@@ -54,6 +59,9 @@ export async function diffRuleMatches (instance: Object, options: Object, ruleMa
   for (const rm: RuleMatch of ruleMatches) {
     const rmRuleStyle: CSSStyle = rm.rule.style;
 
+    // Collect the diff for this rule
+    const rmDiff: DiffResults = {};
+
     /**
      * Want to extract just the matched selector from the RuleMatch
      * selector string.
@@ -63,18 +71,22 @@ export async function diffRuleMatches (instance: Object, options: Object, ruleMa
     const selectorString: string = matchingSelectorIndices.map(i => selectors[i].text)
       .join(', ');
 
-    console.log(JSON.stringify(selectorString, null, 2));
-
-    // Collect the diff for this rule
-    const rmDiff: DiffResults = {};
-
     /**
      * Iterate over props and toggle/screenshot each.
      */
     const props: CSSProperty[] = rmRuleStyle.cssProperties;
 
+    // Show progress bar
+    const bar = new ProgressBar(`${selectorString} [:bar] :percent :etas`, {
+      complete: '=',
+      incomplete: ' ',
+      width: 20,
+      total: props.length,
+    });
+
     for (const prop of props) {
       const propName = prop.name;
+      bar.tick();
 
       // Disable the property and save the reenabler function
       const reenabler: () => Promise<CSSStyle> = await disableProperty(instance, rmRuleStyle, propName);
@@ -100,7 +112,7 @@ export async function diffRuleMatches (instance: Object, options: Object, ruleMa
           reenabler(),
         ]);
 
-        console.log(prop.name, diff);
+        // console.log(prop.name, diff);
 
         // Add the result for this prop to the rmDiff for this rule block
         rmDiff[prop.name] = diff;

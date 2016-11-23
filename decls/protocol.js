@@ -1,6 +1,36 @@
 // @flow
 
 /**
+ * Pseudo-element.
+ * @type {String}
+ */
+declare type PseudoType =
+  | 'first-line'
+  | 'first-letter'
+  | 'before'
+  | 'after'
+  | 'backdrop'
+  | 'selection'
+  | 'first-line-inherited'
+  | 'scrollbar'
+  | 'scrollbar-thumb'
+  | 'scrollbar-button'
+  | 'scrollbar-track'
+  | 'scrollbar-track-piece'
+  | 'scrollbar-corner'
+  | 'resizer'
+  | 'input-list-button';
+
+/**
+ * CSS rule collection for a single pseudo style.
+ * @type {Object}
+ */
+declare type PseudoElementMatches = {
+  pseudoType: PseudoType,
+  matches: RuleMatch[],
+};
+
+/**
  * Pseudoclass.
  * @type {String}
  */
