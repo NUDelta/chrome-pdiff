@@ -4,14 +4,14 @@
   "description": "get pdiffs for elements using the Chrome Remote Protocol Viewer",
   "main": "index.js",
   "scripts": {
-    "inspect": "chrome-remote-interface inspect",
     "chrome": "/Applications/Google\\ Chrome\\ Canary.app/Contents/MacOS/Google\\ Chrome\\ Canary --remote-debugging-port=9222 http://localhost:9222",
     "start": "babel-node index.js",
+    "inspect": "chrome-remote-interface inspect",
     "lint": "eslint . || true",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
-    "denode": "denode build/index.js",
     "build:src": "babel ./src -d ./build/src -s -w",
     "build:index": "babel ./index.js -o ./build/index.js -s -w",
+    "build:config": "babel ./config.js -o ./build/config.js -s -w",
     "debug": "denode build/index.js"
   },
   "keywords": [],
