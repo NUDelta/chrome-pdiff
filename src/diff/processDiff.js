@@ -1,3 +1,4 @@
+// @flow
 import path from 'path';
 import disableProperty from '../chrome/disableProperty';
 import screenshotPage from '../chrome/screenshot';
@@ -5,7 +6,7 @@ import screenshotPage from '../chrome/screenshot';
 /**
  * Iterate over the diff results and return an ordering of normalized prop-diff pairs.
  */
-export function normalizeScores (propDiffs: DiffResults): DiffResults {
+export function normalizeScores (propDiffs: CSSStyleDiff): CSSStyleDiff {
   const props: string[] = Object.keys(propDiffs);
 
   // First compute the max pdiff value
@@ -18,7 +19,7 @@ export function normalizeScores (propDiffs: DiffResults): DiffResults {
   // console.log(Object.entries(propDiffs).find(pair => pair[1] === minScore));
 
   // Normalize everything
-  const normalized: DiffResults = {};
+  const normalized: CSSStyleDiff = {};
 
   for (const [ prop: string, score: number ] of Object.entries(propDiffs)) {
     const normalizedScore: number = range > 0
@@ -37,9 +38,10 @@ export function normalizeScores (propDiffs: DiffResults): DiffResults {
  */
 export async function diffRuleMatches (
   instance: Object, options: Object, ruleMatches: RuleMatch[], screenshotDirPath: string, differ: Differ
-): Promise<[ string, DiffResults ][]> {
+): Promise<{ ruleMatchDiffs: RuleMatchDiff[], total: number }> {
   // Collect diff scores
-  const cssRules: [ string, DiffResults ][] = [];
+  const cssRules: RuleMatchDiff[] = [];
+  let totalDiffScore: number = 0;
 
   /**
    * Iterate over each RuleMatch and toggle its styles
@@ -48,7 +50,7 @@ export async function diffRuleMatches (
     const rmRuleStyle: CSSStyle = rm.rule.style;
 
     // Collect the diff for this rule
-    const rmDiff: DiffResults = {};
+    const rmDiff: CSSStyleDiff = {};
 
     /**
      * Want to extract just the matched selector from the RuleMatch
@@ -90,6 +92,9 @@ export async function diffRuleMatches (
           reenabler(),
         ]);
 
+        // Add to the running count of diff size.
+        totalDiffScore += diff;
+
         // console.log(prop.name, diff);
 
         /**
@@ -111,5 +116,8 @@ export async function diffRuleMatches (
     cssRules.push([ selectorString, rmDiff ]);
   }
 
-  return cssRules;
+  return {
+    ruleMatchDiffs: cssRules,
+    total: totalDiffScore,
+  };
 }

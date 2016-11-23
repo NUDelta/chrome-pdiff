@@ -1,6 +1,42 @@
 // @flow
 /* eslint-disable no-unused-expressions, no-undef */
 
+declare type Node = {
+  nodeId: number,
+  backendNodeId: number,
+  nodeType: number,
+  nodeName: string,
+  localName: string,
+  nodeValue: string,
+  childNodeCount?: number,
+  children?: Node[],
+  attributes?: string[],
+  name?: string,
+  pseudoType?: string,
+  pseudoElements?: Node[],
+};
+
+({
+  nodeId: 198,
+  backendNodeId: 203,
+  nodeType: 1,
+  nodeName: 'H2',
+  localName: 'h2',
+  nodeValue: '',
+  childNodeCount: 1,
+  children: [
+    {
+      nodeId: 199,
+      backendNodeId: 204,
+      nodeType: 3,
+      nodeName: '#text',
+      localName: '',
+      nodeValue: 'Objectively innovate empowered manufactured products'
+    },
+  ],
+  attributes: [],
+}: Node);
+
 /**
  * Pseudo-element.
  * @type {String}

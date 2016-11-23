@@ -44,19 +44,26 @@ export default async function main (instance: Object, options: Object): Promise<
   /**
    * Actually diff everything.
    */
-  const differ = await createDiffer(basePNG);
-  const unnormalized: [ string, DiffResults ][] = await diffRuleMatches(instance, options, ruleMatches, screenshotDirPath, differ);
+  const differ: Differ = await createDiffer(basePNG);
+  const {
+    ruleMatchDiffs: unnormalized,
+    total,
+  }: {
+    ruleMatchDiffs: RuleMatchDiff[],
+    total: number
+  } = await diffRuleMatches(instance, options, ruleMatches, screenshotDirPath, differ);
 
   /**
    * Get the normalized output for each pair.
    */
-  const normalized: [ string, DiffResults ][] = [];
+  const normalized: RuleMatchDiff[] = [];
 
   for (const [ selector, dr ] of unnormalized) {
     normalized.push([ selector, normalizeScores(dr) ]);
   }
 
   const results = {
+    total,
     normalized,
     unnormalized,
   };
