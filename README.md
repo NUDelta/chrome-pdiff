@@ -1,4 +1,4 @@
-# `chrome-pdiff`
+# chrome-pdiff
 
 Computes the visual importance of individual CSS properties, given a URL and a selector for an element on that page.
 
@@ -20,6 +20,7 @@ Edit `config.js` to specify the site to test. A test site configuration has the 
 ```js
 declare type TestSite = {
   title: string,
+  type: 'TOY' | 'PROFESSIONAL' | 'URL',
   url: string,
   selector: string,
   pseudoElement?: string,
@@ -27,6 +28,7 @@ declare type TestSite = {
     selector: string,
     forcePseudoClasses: PseudoClass[],
   }],
+  groundtruth?: string,
 };
 ```
 

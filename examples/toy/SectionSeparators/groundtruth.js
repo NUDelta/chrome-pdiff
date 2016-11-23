@@ -1,0 +1,15 @@
+export default new Set([
+  'position',
+  'content',
+  'pointer-events',
+  'left',
+  'width',
+  'height',
+  '-webkit-transform',
+  'transform',
+  'top',
+  'background',
+  'bottom',
+  'z-index',
+  'background',
+]);

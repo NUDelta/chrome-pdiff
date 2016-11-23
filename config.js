@@ -1,3 +1,6 @@
+/**
+ * Configuration for the Chrome Remote Viewer instance.
+ */
 export const cdpConfig = {
   // Chrome instance to attach to
   host: 'localhost',
@@ -12,15 +15,21 @@ export const cdpConfig = {
   writeScreenshots: false,
 };
 
+/**
+ * Configuration for the sites.
+ */
 export const sites: TestSite[] = [
   {
     title: 'SectionSeparators',
-    url: 'file:///Users/sarah/git/chrome-pdiff/examples/SectionSeparators/index.html',
+    type: 'TOY',
+    url: './examples/toy/SectionSeparators/index.html',
     selector: 'body > div > section.col-2.ss-style-triangles',
     pseudoElement: 'before',
+    groundtruth: require('./examples/toy/SectionSeparators/groundtruth'),
   }, {
     title: 'TooltipStylesInspiration',
-    url: 'file:///Users/sarah/git/chrome-pdiff/examples/TooltipStylesInspiration/index.html',
+    type: 'TOY',
+    url: './examples/TooltipStylesInspiration/index.html',
     selector: 'body > div > div.content > div > p:nth-child(1) > span.tooltip.tooltip-effect-1 > span.tooltip-content.clearfix',
     pseudoStatesToForce: [{
       selector: 'body > div > div.content > div > p:nth-child(1) > span.tooltip.tooltip-effect-1',
@@ -28,10 +37,12 @@ export const sites: TestSite[] = [
     }],
   }, {
     title: 'JSBinTest',
+    type: 'URL',
     url: 'http://jsbin.com/lutuqe',
     selector: '.test-element',
   }, {
     title: 'tumblr',
+    type: 'PROFESSIONAL',
     url: 'http://tumblr.com',
     selector: '.login-section',
   },

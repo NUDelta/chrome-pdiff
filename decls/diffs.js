@@ -2,6 +2,7 @@
 
 declare type TestSite = {
   title: string,
+  type: 'TOY' | 'PROFESSIONAL' | 'URL',
   url: string,
   selector: string,
   pseudoElement?: string,
@@ -9,6 +10,7 @@ declare type TestSite = {
     selector: string,
     forcePseudoClasses: PseudoClass[],
   }],
+  groundtruth?: string,
 };
 
 declare type CSSStyleDiff = { [prop: string]: number };
