@@ -90,8 +90,6 @@ export async function getElementStyles (instance: Object, rootId: number, option
     includeInherited: false,
   });
 
-  debugger;
-
   // Provisionally set ruleMatches to the matches for the main DOM element.
   let ruleMatches: RuleMatch[] = matchedStylesResponse.matchedCSSRules;
 

@@ -6,7 +6,7 @@ import { diffRuleMatches, normalizeScores } from './diff/processDiff';
 /**
  * Function to execute once the page loads in Canary.
  */
-export default async function main (instance: Object, options: Object) {
+export default async function main (instance: Object, options: Object): void {
   // Get root node
   const rootId: number = await getDocumentRootId(instance);
 
@@ -19,18 +19,23 @@ export default async function main (instance: Object, options: Object) {
   const ruleMatches: RuleMatch[] = await getElementStyles(instance, rootId, options);
 
   // Diff everything
-  const cssRules: [ string, DiffResults ][] = await diffRuleMatches(instance, options, ruleMatches);
+  const unnormalized: [ string, DiffResults ][] = await diffRuleMatches(instance, options, ruleMatches);
 
   /**
-   * Normalize the output for each pair.
+   * Get the normalized output for each pair.
    */
   const normalized: [ string, DiffResults ][] = [];
 
-  for (const [ selector, dr ] of cssRules) {
+  for (const [ selector, dr ] of unnormalized) {
     normalized.push([ selector, normalizeScores(dr) ]);
   }
 
-  console.log(JSON.stringify(normalized, null, 2));
+  const results = {
+    normalized,
+    unnormalized,
+  };
+
+  console.log(JSON.stringify(results, null, 2));
 
   instance.close();
 }

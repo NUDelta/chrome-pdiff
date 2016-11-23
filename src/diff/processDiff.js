@@ -58,6 +58,8 @@ export async function diffRuleMatches (
   for (const rm: RuleMatch of ruleMatches) {
     const rmRuleStyle: CSSStyle = rm.rule.style;
 
+    debugger;
+
     // Collect the diff for this rule
     const rmDiff: DiffResults = {};
 
@@ -97,15 +99,22 @@ export async function diffRuleMatches (
           differ(
             comparisonPNG,
             options.writeScreenshots,
-            path.resolve(screenshotDirPath, `${prop.name}-diff.png`)
+            path.resolve(screenshotDirPath, `${propName}-diff.png`)
           ),
           reenabler(),
         ]);
 
         // console.log(prop.name, diff);
 
-        // Add the result for this prop to the rmDiff for this rule block
-        rmDiff[prop.name] = diff;
+        /**
+         * If the diff value was zero pixels, don't include it in the rmDiff.
+         * Otherwise, add the result for this prop to the rmDiff for this rule block.
+         */
+        if (diff !== 0) {
+          rmDiff[propName] = diff;
+        } else {
+          console.log(`Property ${propName} returned a diff of 0 pixels`);
+        }
       } else {
         // If it's a browser-prefixed property, keep disabled and continue loop
         console.log(`Disabled browser-prefixed property ${propName}`);
@@ -115,8 +124,6 @@ export async function diffRuleMatches (
     // Add the diff results for this rule to the structure-preserving cssRules list.
     cssRules.push([ selectorString, rmDiff ]);
   }
-
-  console.log(JSON.stringify(cssRules, null, 2));
 
   return cssRules;
 }
