@@ -1,7 +1,7 @@
 // @flow
 import 'babel-polyfill';
 import Chrome from 'chrome-remote-interface';
-import { cdpConfig, sites, site } from './config';
+import { cdpConfig, site } from './config';
 import main from './src/main';
 
 const fullOptions: Object = Object.assign({}, cdpConfig, site);
