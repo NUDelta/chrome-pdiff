@@ -77,6 +77,8 @@ export async function makeSiteResultsDir (title: string, screenshotsDirPath?: st
 
           resolve();
         });
+      } else {
+        resolve();
       }
     });
   }).catch(err => console.error(err));
