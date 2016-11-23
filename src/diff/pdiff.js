@@ -3,8 +3,10 @@ import fs from 'fs';
 import { PNG } from 'pngjs';
 import pixelmatch from 'pixelmatch';
 
+type Differ = (comparisonPNG: PNG, writeDiffFile: boolean, diffFilePath?: string) => number;
+
 export default function createDiffer (basePNG: PNG):
-  Promise<(comparisonPNG: PNG, writeDiffFile: boolean, diffFilePath?: string) => number> {
+  Promise<Differ> {
     // Get the width and height for the base PNG dimensions.
   const { width, height } = basePNG;
 
@@ -15,7 +17,16 @@ export default function createDiffer (basePNG: PNG):
   const differ = (comparisonPNG: PNG, writeDiffFile = false, diffFilePath: string): number => {
     const diffPNG = writeDiffFile ? new PNG({ width, height }) : null;
 
-    const diffSize: number = pixelmatch(basePNG.data, comparisonPNG.data, diffPNG && diffPNG.data, width, height, { threshold: 0.1 });
+    const diffArgs = [
+      basePNG.data,
+      comparisonPNG.data,
+      diffPNG && diffPNG.data,
+      width,
+      height,
+      { threshold: 0.01 },
+    ];
+
+    const diffSize: number = pixelmatch(...diffArgs);
 
     // Optionally write the diff image to disk.
     if (writeDiffFile) {

@@ -1,5 +1,4 @@
 import path from 'path';
-import ProgressBar from 'progress';
 import disableProperty from '../chrome/disableProperty';
 import screenshotPage from '../chrome/screenshot';
 import createDiffer from './pdiff';
@@ -76,17 +75,8 @@ export async function diffRuleMatches (
      */
     const props: CSSProperty[] = rmRuleStyle.cssProperties;
 
-    // Show progress bar
-    const bar = new ProgressBar(`${selectorString} [:bar] :percent :etas`, {
-      complete: '=',
-      incomplete: ' ',
-      width: 20,
-      total: props.length,
-    });
-
     for (const prop of props) {
       const propName = prop.name;
-      bar.tick();
 
       // Disable the property and save the reenabler function
       const reenabler: () => Promise<CSSStyle> = await disableProperty(instance, rmRuleStyle, propName);
