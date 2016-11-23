@@ -104,8 +104,7 @@ export async function getElementStyles (instance: Object, rootId: number, option
       // Replace the cached ruleMatches with those of the pseudo element.
       ruleMatches = targetPseudoMatch.matches;
     } else {
-      console.error(`Unable to find a pseudo-element :${targetPseudoType} under the specified node.
-Falling back to the main node...`);
+      console.error(`Unable to find a pseudo-element :${targetPseudoType} under the specified node. Falling back to the main node...`);
     }
   }
 

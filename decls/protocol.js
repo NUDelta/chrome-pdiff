@@ -1,4 +1,5 @@
 // @flow
+/* eslint-disable no-unused-expressions, no-undef */
 
 /**
  * Pseudo-element.

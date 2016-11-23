@@ -23,12 +23,6 @@ function init (options, chrome) {
   DOM.enable();
   CSS.enable();
 
-  // DOM.pseudoElementAdded((params) => {
-  //     console.log(JSON.stringify(params, null, 2));
-
-  //     console.log('pseudoElement Added');
-  //   });
-
   chrome.once('ready', () => Page.navigate({ url: options.url }));
 
   chrome.on('error', (err) => {
@@ -49,7 +43,7 @@ function handleConnectionError (err) {
     Chrome.New(cdpConfig)
       .then(() => Chrome(cdpConfig))
       .then(instance => init(fullOptions, instance))
-      .catch(err => console.error('Cannot connect to Chrome:', err));
+      .catch(connectionError => console.error('Cannot connect to Chrome:', connectionError));
 
     // Close tabs if > 4 are open
     Chrome.List(cdpConfig, (listErr, tabs) => {
@@ -57,7 +51,9 @@ function handleConnectionError (err) {
         console.error('Error fetching tabs:', listErr);
       }
 
-      if (tabs.length > 4) {
+      const maxOpenTabs: number = 4;
+
+      if (tabs.length > maxOpenTabs) {
         console.log('Closing tabs...');
 
         const allTabsButCurrent = tabs.slice(1);
