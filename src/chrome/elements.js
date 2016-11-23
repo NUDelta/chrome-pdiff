@@ -1,5 +1,8 @@
 // @flow
 
+/**
+ * Get the document root nodeId,
+ */
 export async function getDocumentRootId (instance: Object): Promise<number> {
   const { DOM } = instance;
 
@@ -12,10 +15,6 @@ export async function getDocumentRootId (instance: Object): Promise<number> {
 
 /**
  * Get the nodeId of the node matching the given selector.
- * @param  {ChromeRemoteInterface} instance
- * @param  {number}                rootId
- * @param  {string}                selector
- * @return {number}                nodeId
  */
 export async function getNodeId (instance: Object, rootId: number, selector: string): Promise<number> {
   const { DOM } = instance;
@@ -32,9 +31,6 @@ export async function getNodeId (instance: Object, rootId: number, selector: str
 
 /**
  * Predicate to filter out RuleMatch objects.
- * @param  {Object} options  contains options for filtering
- * @param  {RuleMatch} rm    a RuleMatch object
- * @return {boolean}         whether to keep the RuleMatch
  */
 function keepRuleMatch (options: Object, rm: RuleMatch): boolean {
   const selectorList: SelectorList = rm.rule.selectorList;
@@ -63,15 +59,32 @@ function keepRuleMatch (options: Object, rm: RuleMatch): boolean {
 }
 
 /**
+ * Get the children of a given nodeId.
+ */
+function getChildren (instance: Object, nodeId: number): Promise<Node[]> {
+  return new Promise((resolve, reject) => {
+    instance.once('DOM.setChildNodes', (params) => {
+      clearTimeout();
+      const { nodes } = params;
+      resolve(nodes);
+    });
+
+    instance.DOM.requestChildNodes({
+      nodeId,
+      depth: -1,
+    });
+
+    const waitUntil = 3000;
+
+    setTimeout(reject, waitUntil);
+  });
+}
+
+/**
  * Get the matched styles for an element corresponding to a nodeId.
- * @param  {Object} instance chrome-remote-interface session
- * @param  {number} rootId   nodeId of root node
- * @param  {Object} options  options object
- * @return {RuleMatch}
  */
 export async function getElementStyles (instance: Object, rootId: number, options: Object): Promise<RuleMatch[]> {
   const { CSS } = instance;
-
 
   const { selector } = options;
 
