@@ -1,7 +1,6 @@
 import path from 'path';
 import disableProperty from '../chrome/disableProperty';
 import screenshotPage from '../chrome/screenshot';
-import createDiffer from './pdiff';
 
 /**
  * Iterate over the diff results and return an ordering of normalized prop-diff pairs.
@@ -37,18 +36,8 @@ export function normalizeScores (propDiffs: DiffResults): DiffResults {
  * screenshotting each change and computing the diff.
  */
 export async function diffRuleMatches (
-  instance: Object, options: Object, ruleMatches: RuleMatch[]
+  instance: Object, options: Object, ruleMatches: RuleMatch[], screenshotDirPath: string, differ: Differ
 ): Promise<[ string, DiffResults ][]> {
-  // Base path for all screenshots
-  const screenshotDirPath: string = path.resolve(__dirname, '../../', options.screenshotDir);
-
-  /**
-   * Capture and write the base screenshot for comparison.
-   */
-  const basePNG: PNG = await screenshotPage(instance, options.writeScreenshots, path.resolve(screenshotDirPath, 'base.png'));
-
-  const differ = await createDiffer(basePNG);
-
   // Collect diff scores
   const cssRules: [ string, DiffResults ][] = [];
 
@@ -57,8 +46,6 @@ export async function diffRuleMatches (
    */
   for (const rm: RuleMatch of ruleMatches) {
     const rmRuleStyle: CSSStyle = rm.rule.style;
-
-    debugger;
 
     // Collect the diff for this rule
     const rmDiff: DiffResults = {};
@@ -79,7 +66,6 @@ export async function diffRuleMatches (
 
     for (const prop of props) {
       const propName = prop.name;
-
       // Disable the property and save the reenabler function
       const reenabler: () => Promise<CSSStyle> = await disableProperty(instance, rmRuleStyle, propName);
 

@@ -1,9 +1,7 @@
 // @flow
-import fs from 'fs';
+import fs from 'fs-extra';
 import { PNG } from 'pngjs';
 import pixelmatch from 'pixelmatch';
-
-type Differ = (comparisonPNG: PNG, writeDiffFile: boolean, diffFilePath?: string) => number;
 
 export default function createDiffer (basePNG: PNG):
   Promise<Differ> {
@@ -28,8 +26,8 @@ export default function createDiffer (basePNG: PNG):
 
     const diffSize: number = pixelmatch(...diffArgs);
 
-    // Optionally write the diff image to disk.
-    if (writeDiffFile) {
+    // Optionally write the diff image to disk, if diff is nonzero.
+    if (writeDiffFile && diffSize > 0) {
       diffPNG.pack().pipe(fs.createWriteStream(diffFilePath));
     }
 

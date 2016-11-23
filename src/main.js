@@ -1,25 +1,51 @@
 // @flow
-import { applyPseudoStates } from './chrome/preparePage';
+import path from 'path';
+import { writeResults, makeSiteResultsDir } from './fileUtils';
 import { getElementStyles, getDocumentRootId } from './chrome/elements';
+import { applyPseudoStates } from './chrome/preparePage';
+import screenshotPage from './chrome/screenshot';
+import createDiffer from './diff/pdiff';
 import { diffRuleMatches, normalizeScores } from './diff/processDiff';
 
 /**
  * Function to execute once the page loads in Canary.
  */
-export default async function main (instance: Object, options: Object): void {
-  // Get root node
-  const rootId: number = await getDocumentRootId(instance);
+export default async function main (instance: Object, options: Object): Promise<> {
+  /**
+   * Process these simultaneously to avoid blocking.
+   * - Get base path for all results and output.
+   * - Get the root node.
+   */
+  const [ resultsDir, rootId ]: [ string, number ] = await Promise.all([
+    makeSiteResultsDir(options.title, options.writeScreenshots && options.screenshotDir),
+    getDocumentRootId(instance),
+  ]);
+
+  // Now build the screenshot subdirectory path from the results directory.
+  const screenshotDirPath: string = path.resolve(resultsDir, options.screenshotDir);
 
   // Apply pseudo-states
   if (options.pseudoStatesToForce && options.pseudoStatesToForce.length) {
     await applyPseudoStates(instance, rootId, options);
   }
 
-  // Get element styles
-  const ruleMatches: RuleMatch[] = await getElementStyles(instance, rootId, options);
+  /**
+   * Process these simultaneously to avoid blocking:
+   * - Take base screenshot.
+   * - Get element styles.
+   */
+  const baseScreenshotPath: string = path.resolve(screenshotDirPath, 'base.png');
 
-  // Diff everything
-  const unnormalized: [ string, DiffResults ][] = await diffRuleMatches(instance, options, ruleMatches);
+  const [ basePNG, ruleMatches ]: [ PNG, RuleMatch[] ] = await Promise.all([
+    screenshotPage(instance, options.writeScreenshots, baseScreenshotPath),
+    getElementStyles(instance, rootId, options),
+  ]);
+
+  /**
+   * Actually diff everything.
+   */
+  const differ = await createDiffer(basePNG);
+  const unnormalized: [ string, DiffResults ][] = await diffRuleMatches(instance, options, ruleMatches, screenshotDirPath, differ);
 
   /**
    * Get the normalized output for each pair.
@@ -35,7 +61,8 @@ export default async function main (instance: Object, options: Object): void {
     unnormalized,
   };
 
-  console.log(JSON.stringify(results, null, 2));
+  writeResults(path.resolve(resultsDir, 'results.json'), results)
+    .then(() => console.log(`Results written to disk at ${resultsDir}`));
 
   instance.close();
 }

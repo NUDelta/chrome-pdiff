@@ -18,7 +18,6 @@ export default async function disableProperty (
     cssText: styleText,
     range: styleRange,
   } = cssStyle;
-
   // Get the range and text of the property to be disabled
   const styleProperties: CSSProperty[] = cssStyle.cssProperties;
   const prop: CSSProperty = styleProperties.find((p: CSSProperty) => p.name === propName);

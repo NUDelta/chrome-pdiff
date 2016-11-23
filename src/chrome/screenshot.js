@@ -21,7 +21,9 @@ async function captureScreenshot (instance: Object): Promise<string> {
  * Returns a Promise which resolves to a string of the data.
  * TODO: Streamify this.
  */
-export default async function screenshotPage (instance: Object, writeToDisk: boolean = false, screenshotFilePath?: string, delay?: number): Promise<PNG> {
+export default async function screenshotPage (
+  instance: Object, writeToDisk: boolean = false, screenshotFilePath?: string, delay?: number
+): Promise<PNG> {
   if (delay) {
     const timeout = ms => new Promise(resolve => setTimeout(resolve, ms));
     await timeout(delay);

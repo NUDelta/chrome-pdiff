@@ -20,6 +20,7 @@
   "dependencies": {
     "babel-polyfill": "^6.16.0",
     "chrome-remote-interface": "^0.14.3",
+    "fs-extra": "^1.0.0",
     "pixelmatch": "^4.0.2",
     "pngjs": "^3.0.0",
     "shortcss": "^0.1.3"

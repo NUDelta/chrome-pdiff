@@ -14,10 +14,12 @@ export const cdpConfig = {
 
 export const sites: TestSite[] = [
   {
+    title: 'SectionSeparators',
     url: 'file:///Users/sarah/git/chrome-pdiff/examples/SectionSeparators/index.html',
     selector: 'body > div > section.col-2.ss-style-triangles',
     pseudoElement: 'before',
   }, {
+    title: 'TooltipStylesInspiration',
     url: 'file:///Users/sarah/git/chrome-pdiff/examples/TooltipStylesInspiration/index.html',
     selector: 'body > div > div.content > div > p:nth-child(1) > span.tooltip.tooltip-effect-1 > span.tooltip-content.clearfix',
     pseudoStatesToForce: [{
@@ -25,9 +27,11 @@ export const sites: TestSite[] = [
       forcePseudoClasses: ['hover'],
     }],
   }, {
+    title: 'JSBinTest',
     url: 'http://jsbin.com/lutuqe',
     selector: '.test-element',
   }, {
+    title: 'tumblr',
     url: 'http://tumblr.com',
     selector: '.login-section',
   },
