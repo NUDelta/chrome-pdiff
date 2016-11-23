@@ -36,3 +36,6 @@ export const sites: TestSite[] = [
     selector: '.login-section',
   },
 ];
+
+// TODO: This is temporary
+export const site: TestSite = sites[0];
