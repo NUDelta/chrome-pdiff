@@ -56,7 +56,7 @@ export async function diffRuleMatches (
      * Want to extract just the matched selector from the RuleMatch
      * selector string.
      */
-    const matchingSelectorIndices: number = rm.matchingSelectors;
+    const matchingSelectorIndices: number[] = rm.matchingSelectors;
     const selectors: Value[] = rm.rule.selectorList.selectors;
     const selectorString: string = matchingSelectorIndices.map(i => selectors[i].text)
       .join(', ');
@@ -68,53 +68,56 @@ export async function diffRuleMatches (
 
     for (const prop of props) {
       const propName = prop.name;
+      console.log(propName);
+
       // Disable the property and save the reenabler function
-      const reenabler: () => Promise<CSSStyle> = await disableProperty(instance, rmRuleStyle, propName);
+      const reenabler: (() => Promise<CSSStyle>) | Error = await disableProperty(instance, rmRuleStyle, propName);
 
-      // Only continue if prop isn't browser-prefixed. If so, keep disabled and continue loop
-      const prefix: RegExp = /^-webkit-/;
+      if (reenabler instanceof Error) {
+        console.error('\t', reenabler);
+        continue;  // eslint-disable-line no-continue
+      }
 
-      if (!prefix.test(propName)) {
-        // Screenshot page
-        const comparisonPNG: PNG = await screenshotPage(
-          instance,
+      // TODO: Currently doesn't work with browser prefixed properties.
+
+      // Screenshot page
+      const comparisonPNG: PNG = await screenshotPage(
+        instance,
+        options.writeScreenshots,
+        path.resolve(screenshotDirPath, `${prop.name}.png`),
+      );
+
+      // Re-enable and compute diff simultaneously
+      const [ diff ] = await Promise.all([
+        differ(
+          comparisonPNG,
           options.writeScreenshots,
-          path.resolve(screenshotDirPath, `${prop.name}.png`),
-        );
+          path.resolve(screenshotDirPath, `${propName}-diff.png`)
+        ),
+        reenabler(),
+      ]);
 
-        // Re-enable and compute diff simultaneously
-        const [ diff ] = await Promise.all([
-          differ(
-            comparisonPNG,
-            options.writeScreenshots,
-            path.resolve(screenshotDirPath, `${propName}-diff.png`)
-          ),
-          reenabler(),
-        ]);
+      // Add to the running count of diff size.
+      totalDiffScore += diff;
 
-        // Add to the running count of diff size.
-        totalDiffScore += diff;
+      console.log('\t', diff);
 
-        // console.log(prop.name, diff);
-
-        /**
-         * If the diff value was zero pixels, don't include it in the rmDiff.
-         * Otherwise, add the result for this prop to the rmDiff for this rule block.
-         */
-        if (diff !== 0) {
-          rmDiff[propName] = diff;
-        } else {
-          console.log(`Property ${propName} returned a diff of 0 pixels`);
-        }
+      /**
+       * If the diff value was zero pixels, don't include it in the rmDiff.
+       * Otherwise, add the result for this prop to the rmDiff for this rule block.
+       */
+      if (diff !== 0) {
+        rmDiff[propName] = diff;
       } else {
-        // If it's a browser-prefixed property, keep disabled and continue loop
-        console.log(`Disabled browser-prefixed property ${propName}`);
+        console.log(`Property ${propName} returned a diff of 0 pixels`);
       }
     }
 
     // Add the diff results for this rule to the structure-preserving cssRules list.
     cssRules.push([ selectorString, rmDiff ]);
   }
+
+  console.log('Total diff score:', totalDiffScore);
 
   return {
     ruleMatchDiffs: cssRules,
