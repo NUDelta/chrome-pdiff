@@ -17,7 +17,7 @@ export default async function main (instance: Object, options: Object): Promise<
    * - Get the root node.
    */
   const [ resultsDir, rootId ]: [ string, number ] = await Promise.all([
-    makeSiteResultsDir(options.title, options.writeScreenshots && options.screenshotDir),
+    makeSiteResultsDir(options.title, options.type, options.writeScreenshots && options.screenshotDir),
     getDocumentRootId(instance),
   ]);
 

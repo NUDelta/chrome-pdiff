@@ -48,8 +48,8 @@ export function writeScreenshot (screenshotFilePath: string, data: PNG): void {
   data.pack().pipe(fs.createWriteStream(screenshotFilePath));
 }
 
-export async function makeSiteResultsDir (title: string, screenshotsDirPath?: string): Promise<string> {
-  const siteResultsDir: string = path.resolve(PATH_TO_RESULTS_ROOT, title);
+export async function makeSiteResultsDir (title: string, type: string, screenshotsDirPath?: string): Promise<string> {
+  const siteResultsDir: string = path.resolve(PATH_TO_RESULTS_ROOT, type.toLowerCase(), title);
 
   /**
    * Ensures that a directory is empty.
