@@ -1,7 +1,9 @@
+import path from 'path';
+
 /**
  * Configuration for the Chrome Remote Viewer instance.
  */
-export const cdpConfig = {
+export const CDP_CONFIG = {
   // Chrome instance to attach to
   host: 'localhost',
   port: 9222,
@@ -12,24 +14,26 @@ export const cdpConfig = {
   // Output and logging options
   verbose: false,
   screenshotDir: 'screenshots',
-  writeScreenshots: false,
+  writeScreenshots: true,
 };
+
+const url = (type, title) => `file://${path.resolve(__dirname, `./examples/${type}/${title}/index.html`)}`;
 
 /**
  * Configuration for the sites.
  */
-export const sites: TestSite[] = [
+export const SITES: TestSite[] = [
   {
     title: 'SectionSeparators',
     type: 'TOY',
-    url: './examples/toy/SectionSeparators/index.html',
+    url: url('toy', 'SectionSeparators'),
     selector: 'body > div > section.col-2.ss-style-triangles',
     pseudoElement: 'before',
-    groundtruth: require('./examples/toy/SectionSeparators/groundtruth'),
+    // groundtruth: require('./examples/toy/SectionSeparators/groundtruth'),
   }, {
     title: 'TooltipStylesInspiration',
     type: 'TOY',
-    url: './examples/TooltipStylesInspiration/index.html',
+    url: url('toy', 'TooltipStylesInspiration'),
     selector: 'body > div > div.content > div > p:nth-child(1) > span.tooltip.tooltip-effect-1 > span.tooltip-content.clearfix',
     pseudoStatesToForce: [{
       selector: 'body > div > div.content > div > p:nth-child(1) > span.tooltip.tooltip-effect-1',
@@ -43,10 +47,10 @@ export const sites: TestSite[] = [
   }, {
     title: 'tumblr',
     type: 'PROFESSIONAL',
-    url: 'http://tumblr.com',
+    url: url('professional', 'tumblr'),
     selector: '.login-section',
   },
 ];
 
 // TODO: This is temporary
-export const site: TestSite = sites[0];
+export const SITE: TestSite = SITES[3];
