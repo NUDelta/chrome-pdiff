@@ -35,9 +35,10 @@ export default async function main (instance: Object, options: Object): Promise<
    * - Get element styles.
    */
   const baseScreenshotPath: string = path.resolve(screenshotDirPath, 'base.png');
+  const { delay } = options;
 
   const [ basePNG, ruleMatches ]: [ PNG, RuleMatch[] ] = await Promise.all([
-    screenshotPage(instance, options.writeScreenshots, baseScreenshotPath),
+    screenshotPage(instance, options.writeScreenshots, baseScreenshotPath, delay),
     getElementStyles(instance, rootId, options),
   ]);
 

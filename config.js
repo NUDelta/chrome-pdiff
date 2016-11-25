@@ -13,6 +13,7 @@ export const CDP_CONFIG = {
 
   // Settings for pixelmatch
   diffThreshold: 0.01,
+  delay: 0,
 
   // Output and logging options
   verbose: false,
@@ -55,7 +56,8 @@ export const SITES: TestSite[] = [
     type: 'PROFESSIONAL',
     url: url('professional', 'tumblr'),
     selector: '.login-section',
-    diffThreshold: 0.1,
+    diffThreshold: 0.5,
+    delay: 2000,
   },
 ];
 
