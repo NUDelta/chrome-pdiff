@@ -3,8 +3,7 @@ import fs from 'fs-extra';
 import { PNG } from 'pngjs';
 import pixelmatch from 'pixelmatch';
 
-export default function createDiffer (basePNG: PNG):
-  Promise<Differ> {
+export default function createDiffer (basePNG: PNG, threshold: number): Promise<Differ> {
     // Get the width and height for the base PNG dimensions.
   const { width, height } = basePNG;
 
@@ -21,7 +20,7 @@ export default function createDiffer (basePNG: PNG):
       diffPNG && diffPNG.data,
       width,
       height,
-      { threshold: 0.01 },
+      { threshold },
     ];
 
     const diffSize: number = pixelmatch(...diffArgs);

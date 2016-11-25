@@ -44,7 +44,8 @@ export default async function main (instance: Object, options: Object): Promise<
   /**
    * Actually diff everything.
    */
-  const differ: Differ = await createDiffer(basePNG);
+  const { threshold } = options;
+  const differ: Differ = await createDiffer(basePNG, threshold);
   const {
     ruleMatchDiffs: unnormalized,
     total,

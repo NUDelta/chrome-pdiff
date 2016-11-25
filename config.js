@@ -11,6 +11,9 @@ export const CDP_CONFIG = {
   // How many CSS selectors to allow (used to filter out resets, etc.)
   maxRuleSelectors: 50,
 
+  // Settings for pixelmatch
+  diffThreshold: 0.01,
+
   // Output and logging options
   verbose: false,
   screenshotDir: 'screenshots',
@@ -29,6 +32,7 @@ export const SITES: TestSite[] = [
     url: url('toy', 'SectionSeparators'),
     selector: 'body > div > section.col-2.ss-style-triangles',
     pseudoElement: 'before',
+    diffThreshold: 0.01,
     // groundtruth: require('./examples/toy/SectionSeparators/groundtruth'),
   }, {
     title: 'TooltipStylesInspiration',
@@ -39,16 +43,19 @@ export const SITES: TestSite[] = [
       selector: 'body > div > div.content > div > p:nth-child(1) > span.tooltip.tooltip-effect-1',
       forcePseudoClasses: ['hover'],
     }],
+    diffThreshold: 0.01,
   }, {
     title: 'JSBinTest',
     type: 'URL',
     url: 'http://jsbin.com/lutuqe',
     selector: '.test-element',
+    diffThreshold: 0.01,
   }, {
     title: 'tumblr',
     type: 'PROFESSIONAL',
     url: url('professional', 'tumblr'),
     selector: '.login-section',
+    diffThreshold: 0.1,
   },
 ];
 
