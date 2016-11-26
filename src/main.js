@@ -73,5 +73,5 @@ export default async function main (instance: Object, options: Object): Promise<
   writeResults(path.resolve(resultsDir, 'results.json'), results)
     .then(() => console.log(`Results written to disk at ${resultsDir}`));
 
-  instance.close();
+  return instance.close();
 }

@@ -1,7 +1,7 @@
 // @flow
 import 'babel-polyfill';
 import Chrome from 'chrome-remote-interface';
-import { CDP_CONFIG, SITE, SITES } from './config';
+import { CDP_CONFIG, TOY_EXAMPLES, PROFESSIONAL_EXAMPLES, SITE } from './config';
 import main from './src/main';
 
 /**
@@ -9,7 +9,10 @@ import main from './src/main';
  * Expects an inspectable instance of Chrome running (use `npm run chrome`).
  */
 
-const TEST_ALL = false;
+const TEST_ALL = true;
+const TEST_SEQUENTIALLY = true;
+
+const sites: TestSite[] = TOY_EXAMPLES;
 
 function init (options, chrome) {
   const { Page, DOM, CSS } = chrome;
@@ -90,7 +93,7 @@ if (TEST_ALL) {
   closeAllTabs();
 
   // Map a full options object for each site.
-  const siteOptions: Object[] = SITES.map(s => Object.assign({}, CDP_CONFIG, s));
+  const siteOptions: Object[] = sites.map(s => Object.assign({}, CDP_CONFIG, s));
 
   const sitePromises = siteOptions.map(so => new Promise((resolve, reject) => {
     Chrome.New(CDP_CONFIG)

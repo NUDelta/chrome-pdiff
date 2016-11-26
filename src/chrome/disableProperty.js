@@ -20,7 +20,7 @@ export default async function disableProperty (
   } = cssStyle;
 
   if (!styleText || !styleRange) {
-    return new Error('CSSStyle missing property cssText or range');
+    return new Error('CSSStyle missing cssText or range');
   }
 
   // Get the range and text of the property to be disabled
@@ -28,13 +28,17 @@ export default async function disableProperty (
   const prop: CSSProperty = styleProperties.find((p: CSSProperty) => p.name === propName);
 
   /**
-   * Properties that are expansions of shorthand properties (e.g. `transition-duration`) will
-   * not have their own SourceRange or even text.
+   * Properties that are expansions of shorthand properties (e.g. `transition-duration`) will not have their own SourceRange or even text.
    * Can't disable these independently, so throw an error,
    * which will be handled in the upper scope.
    */
   if (!prop.text || !prop.range) {
-    return new Error(`Property ${prop.name} has no SourceRange`);
+    return new Error(`Property ${prop.name} missing cssText or SourceRange`);
+  }
+
+  if (Object.prototype.hasOwnProperty.call(prop, 'disabled') && prop.disabled === true) {
+    // Strictly speaking this shouldn't be an Error, but...
+    return new Error(`Property ${prop.name} is already disabled, skipping...`);
   }
 
   // Construct the replacement text
@@ -51,6 +55,7 @@ export default async function disableProperty (
     });
   } catch (err) {
     console.error(`Couldn't disable property ${propName}`, err);
+    return new Error(err);
   }
 
   // Since the protocol returns a response object, need to destructure

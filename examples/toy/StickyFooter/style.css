@@ -1,0 +1,74 @@
+<?php
+header('Content-type: text/css');
+?>
+
+/* set HTML5 elements as block for IE8 and below */
+
+header, footer, article, aside {
+	display: block;
+}
+body {
+	font-size: 0.8em;
+}
+.wrapper {
+	position: relative;
+	width: 700px;
+}
+header {
+	height: 190px;
+	background: url(images/header.png) no-repeat;
+}
+h1 {
+	text-indent: -500em;
+}
+h2 {
+	padding: 0 0 1em;
+	color: #d00;
+	font: 1.4em helvetica,arial,sans-serif;
+}
+p {
+	padding: 0 0 1em;
+	color: #666;
+	font: 1em/1.6em helvetica,arial,sans-serif;
+}
+.wrapper a {
+	color: #000;
+	text-decoration: none;
+	border-bottom: 2px solid #0bf;
+}
+a:hover {
+	color: #0bf;
+}
+strong {
+	font-weight: normal;
+}
+.download {
+	position: absolute;
+	left: 0;
+	top: 140px;
+	width: 700px;
+	text-align: center;
+}
+footer {
+	position: relative;
+	width: 700px;
+	margin: 0 auto;
+	background: url(/sticky-footer/images/footer.jpg) no-repeat;
+}
+footer a {
+	color: #0060b9;
+}
+footer a:hover {
+	color: #fff;
+}
+footer p {
+	padding: 95px 0 0;
+	color: #fff;
+	font: 1em helvetica,arial,sans-serif;
+	text-align: center;
+}
+footer p.copyright {
+	padding: 1em 0 0;
+	color: #0060b9;
+	font-size: 0.8em;
+}
