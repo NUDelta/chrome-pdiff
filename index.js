@@ -9,26 +9,32 @@ import main from './src/main';
  * Expects an inspectable instance of Chrome running (use `npm run chrome`).
  */
 
-const TEST_ALL = true;
-const TEST_SEQUENTIALLY = true;
+const TEST_ALL = false;
 
 const sites: TestSite[] = TOY_EXAMPLES;
 
 function init (options, chrome) {
-  const { Page, DOM, CSS } = chrome;
+  return new Promise((resolve, reject) => {
+    const { Page, DOM, CSS } = chrome;
 
-  const mainFunction = main.bind(null, chrome, options);
-  Page.loadEventFired(mainFunction);
+    const mainFunction = main.bind(null, chrome, options);
+    Page.loadEventFired(() => {
+      mainFunction()
+        .then(resolve)
+        .catch(reject);
+    });
 
-  Page.enable();
-  DOM.enable();
-  CSS.enable();
+    Page.enable();
+    DOM.enable();
+    CSS.enable();
 
-  chrome.once('ready', () => Page.navigate({ url: options.url }));
+    chrome.once('ready', () => Page.navigate({ url: options.url }));
 
-  chrome.on('error', (err) => {
-    console.error(err);
-    chrome.close();
+    chrome.on('error', (err) => {
+      console.error(err);
+      chrome.close();
+      reject();
+    });
   });
 }
 
@@ -89,7 +95,6 @@ if (TEST_ALL) {
   /**
    * Launch multiple browser tabs concurrently.
    */
-
   closeAllTabs();
 
   // Map a full options object for each site.
