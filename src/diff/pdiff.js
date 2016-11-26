@@ -20,7 +20,7 @@ export default function createDiffer (basePNG: PNG, threshold: number): Promise<
       diffPNG && diffPNG.data,
       width,
       height,
-      { threshold },
+      { threshold: 0.01 },
     ];
 
     const diffSize: number = pixelmatch(...diffArgs);
