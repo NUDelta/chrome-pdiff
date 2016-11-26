@@ -58,8 +58,13 @@ export const SITES: TestSite[] = [
     selector: '.login-section',
     diffThreshold: 0.5,
     delay: 2000,
+  }, {
+    title: 'ResponsiveGrid',
+    type: 'TOY',
+    url: 'http://tympanus.net/Blueprints/ResponsiveFullWidthGrid/',
+    selector: '.cbp-rfgrid li',
   },
 ];
 
 // TODO: This is temporary
-export const SITE: TestSite = SITES[3];
+export const SITE: TestSite = SITES[4];
