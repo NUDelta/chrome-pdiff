@@ -11,6 +11,7 @@ import { diffRuleMatches, normalizeScores } from './diff/processDiff';
  * Function to execute once the page loads in Canary.
  */
 export default async function main (instance: Object, options: Object): Promise<> {
+  console.log('\nProcessing example', options.title);
   /**
    * Process these simultaneously to avoid blocking.
    * - Get base path for all results and output.

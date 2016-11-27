@@ -42,6 +42,9 @@ export async function diffRuleMatches (
   // Collect diff scores
   const cssRules: RuleMatchDiff[] = [];
   let totalDiffScore: number = 0;
+  let numPropsRemoved: number = 0;
+
+  const { lowerBound } = options;
 
   /**
    * Iterate over each RuleMatch and toggle its styles
@@ -68,7 +71,6 @@ export async function diffRuleMatches (
 
     for (const prop of props) {
       const propName = prop.name;
-      console.log(propName);
 
       // Disable the property and save the reenabler function
       const reenabler: (() => Promise<CSSStyle>) | Error = await disableProperty(instance, rmRuleStyle, propName);
@@ -77,6 +79,9 @@ export async function diffRuleMatches (
         console.error('\t', reenabler);
         continue;  // eslint-disable-line no-continue
       }
+
+      // This is moved down here so that we don't log the name of a property that we're skipping.
+      console.log(propName);
 
       // TODO: Currently doesn't work with browser prefixed properties.
 
@@ -100,16 +105,16 @@ export async function diffRuleMatches (
       // Add to the running count of diff size.
       totalDiffScore += diff;
 
-      console.log('\t', diff);
-
       /**
        * If the diff value was zero pixels, don't include it in the rmDiff.
        * Otherwise, add the result for this prop to the rmDiff for this rule block.
        */
-      if (diff !== 0) {
+      if (diff > lowerBound) {
         rmDiff[propName] = diff;
+        console.log('\t', diff);
       } else {
-        console.log(`Property ${propName} returned a diff of 0 pixels`);
+        numPropsRemoved += 1;
+        console.log(`\tProperty ${propName} returned a diff below the lower bound of ${lowerBound}`);
       }
     }
 
@@ -117,10 +122,11 @@ export async function diffRuleMatches (
     cssRules.push([ selectorString, rmDiff ]);
   }
 
-  console.log('Total diff score:', totalDiffScore);
+  console.log('TOTAL DIFF SCORE:', totalDiffScore);
 
   return {
     ruleMatchDiffs: cssRules,
     total: totalDiffScore,
+    removed: numPropsRemoved,
   };
 }

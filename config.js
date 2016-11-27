@@ -17,6 +17,9 @@ export const CDP_CONFIG = {
   pseudoElement: false,
   pseudoStatesToForce: false,
 
+  // Discard properties if their pdiff score is not strictly greater than this value
+  lowerBound: 0,
+
   // Output and logging options
   verbose: false,
   screenshotDir: 'screenshots',
