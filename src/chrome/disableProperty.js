@@ -29,8 +29,7 @@ export default async function disableProperty (
 
   /**
    * Properties that are expansions of shorthand properties (e.g. `transition-duration`) will not have their own SourceRange or even text.
-   * Can't disable these independently, so throw an error,
-   * which will be handled in the upper scope.
+   * Can't disable these independently, so throw an error, which will be handled in the upper scope.
    */
   if (!prop.text || !prop.range) {
     return new Error(`Property ${prop.name} missing cssText or SourceRange`);
@@ -39,6 +38,11 @@ export default async function disableProperty (
   if (Object.prototype.hasOwnProperty.call(prop, 'disabled') && prop.disabled === true) {
     // Strictly speaking this shouldn't be an Error, but...
     return new Error(`Property ${prop.name} is already disabled, skipping...`);
+  }
+
+  // Don't disable the `content` property, because it will make its pseudo-element disappear.
+  if (propName === 'content') {
+    return new Error('Ignoring the content property...');
   }
 
   // Construct the replacement text
