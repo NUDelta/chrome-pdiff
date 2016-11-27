@@ -32,6 +32,39 @@ declare type TestSite = {
 };
 ```
 
+Note that the site's assets, including an `index.html` file, should be stored in the `examples` directory under the appropriate type subfolder.
+
+### Preprocessing browser-prefixed properties
+
+Currently, the script doesn't handle browser-prefixed properties well. You need to open local copies of any CSS files referenced in your examples, and comment out every browser-prefixed property (e.g. something with `-webkit-`).
+
+You can use the following regex to search for such lines:
+
+```
+(?!\/\*\s?)(-(?:webkit|moz|o|ms)-[a-zA-Z\-]+:[^;]+?;|[a-z\-]+?:[^;]+?-(?:webkit|moz|o|ms)[^;]+?;)(?!\s?\*\/)
+```
+
+and replace all matches with
+
+```
+/\* $1 \*/
+```
+
+*Explanation of regex:* so I don't forget
+
+- `(?!\/\*\s?)` ignore matches already commented out (disabled)
+- `(` start the main capturing group (to simplify replacement)
+  + `-(?:webkit|moz|o|ms)` a browser-prefixed property key
+  + `-[a-zA-Z\-]+:` whatever comes after the browser prefix, until the colon
+  + `[^;]+?;` the value, until the semicolon
+- `|` *or*
+  + `[a-z\-]+?:` any property key, not necessarily browser-prefixed
+  + `[^;]+?` any value substring
+  + `-(?:webkit|moz|o|ms)` any browser-prefixed value
+  + `[^;]+?;` the rest of the value substring
++ `)` end capturing group
+- `(?!\s?\*\/)` ignore matches already commented out (disabled)
+
 ## Running
 
 ```
