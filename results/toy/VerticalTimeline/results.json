@@ -1,0 +1,57 @@
+{
+  "total": 305911,
+  "normalized": [
+    [
+      ".cbp_tmtimeline > li .cbp_tmicon",
+      {
+        "width": 0.004793625101164166,
+        "height": 0,
+        "font-family": 0.0007643514771697552,
+        "speak": 0,
+        "font-style": 0,
+        "font-weight": 0,
+        "font-variant": 0,
+        "text-transform": 0,
+        "font-size": 0.000809313328767976,
+        "line-height": 0.0006571347541278438,
+        "-webkit-font-smoothing": 0.000325108773094828,
+        "position": 1,
+        "color": 0.0006986380017569708,
+        "background": 0.0030401128888335512,
+        "border-radius": 0.003098909156308148,
+        "box-shadow": 0.0037629611183741794,
+        "text-align": 0.0011136704780482405,
+        "left": 0.01428403439235787,
+        "top": 0.014643729205143636,
+        "margin": 0.009756721796813934
+      }
+    ]
+  ],
+  "unnormalized": [
+    [
+      ".cbp_tmtimeline > li .cbp_tmicon",
+      {
+        "width": 1390,
+        "height": 4,
+        "font-family": 225,
+        "speak": 4,
+        "font-style": 4,
+        "font-weight": 4,
+        "font-variant": 4,
+        "text-transform": 4,
+        "font-size": 238,
+        "line-height": 194,
+        "-webkit-font-smoothing": 98,
+        "position": 289138,
+        "color": 206,
+        "background": 883,
+        "border-radius": 900,
+        "box-shadow": 1092,
+        "text-align": 326,
+        "left": 4134,
+        "top": 4238,
+        "margin": 2825
+      }
+    ]
+  ]
+}

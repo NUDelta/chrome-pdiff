@@ -1,0 +1,53 @@
+{
+  "total": 71023,
+  "normalized": [
+    [
+      "section::before",
+      {
+        "position": 1,
+        "pointer-events": 0
+      }
+    ],
+    [
+      ".ss-style-triangles::before",
+      {
+        "left": 1,
+        "width": 0,
+        "height": 0,
+        "transform": 0.08048289738430583
+      }
+    ],
+    [
+      ".ss-style-triangles::before",
+      {
+        "top": 1,
+        "background": 0
+      }
+    ]
+  ],
+  "unnormalized": [
+    [
+      "section::before",
+      {
+        "position": 9947,
+        "pointer-events": 3
+      }
+    ],
+    [
+      ".ss-style-triangles::before",
+      {
+        "left": 19883,
+        "width": 9943,
+        "height": 9943,
+        "transform": 10743
+      }
+    ],
+    [
+      ".ss-style-triangles::before",
+      {
+        "top": 5588,
+        "background": 4973
+      }
+    ]
+  ]
+}

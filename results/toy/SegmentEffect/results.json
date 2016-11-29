@@ -1,0 +1,31 @@
+{
+  "total": 2764197,
+  "normalized": [
+    [
+      ".segmenter__piece-wrap",
+      {
+        "position": 0.4991740543668428,
+        "width": 1,
+        "height": 1,
+        "top": 0,
+        "left": 0,
+        "-webkit-transform-style": 0,
+        "transform-style": 0
+      }
+    ]
+  ],
+  "unnormalized": [
+    [
+      ".segmenter__piece-wrap",
+      {
+        "position": 552103,
+        "width": 1106019,
+        "height": 1106019,
+        "top": 14,
+        "left": 14,
+        "-webkit-transform-style": 14,
+        "transform-style": 14
+      }
+    ]
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "total": 2941228,
+  "normalized": [
+    [
+      ".about-tumblr-showcase .section",
+      {
+        "height": 1,
+        "width": 0
+      }
+    ],
+    [
+      ".about-tumblr-showcase .section.login-section",
+      {}
+    ]
+  ],
+  "unnormalized": [
+    [
+      ".about-tumblr-showcase .section",
+      {
+        "height": 1486660,
+        "width": 1454568
+      }
+    ],
+    [
+      ".about-tumblr-showcase .section.login-section",
+      {}
+    ]
+  ]
+}

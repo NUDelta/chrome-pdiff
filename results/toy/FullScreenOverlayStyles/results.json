@@ -1,0 +1,61 @@
+{
+  "total": 8714113,
+  "normalized": [
+    [
+      ".overlay",
+      {
+        "position": 0.856193287132346,
+        "width": 0.8241603136697424,
+        "height": 0.7543206880162036,
+        "top": 0.8561918424485656,
+        "left": 0,
+        "background": 1
+      }
+    ],
+    [
+      ".overlay-hugeinc",
+      {
+        "opacity": 0,
+        "visibility": 0,
+        "transition": 0
+      }
+    ],
+    [
+      ".overlay-hugeinc.open",
+      {
+        "opacity": 1,
+        "visibility": 0.9981703016913184,
+        "transition": 0
+      }
+    ]
+  ],
+  "unnormalized": [
+    [
+      ".overlay",
+      {
+        "position": 1185304,
+        "width": 1140958,
+        "height": 1044273,
+        "top": 1185302,
+        "left": 2,
+        "background": 1384388
+      }
+    ],
+    [
+      ".overlay-hugeinc",
+      {
+        "opacity": 2,
+        "visibility": 2,
+        "transition": 2
+      }
+    ],
+    [
+      ".overlay-hugeinc.open",
+      {
+        "opacity": 1388209,
+        "visibility": 1385669,
+        "transition": 2
+      }
+    ]
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "total": 440978,
+  "normalized": [
+    [
+      "input",
+      {
+        "line-height": 0
+      }
+    ],
+    [
+      ".questions input",
+      {
+        "display": 0,
+        "margin": 0.45813882966992575,
+        "padding": 1,
+        "width": 0.008063478644416673,
+        "border": 0.22305741380577815,
+        "background": 0.2966854737925458,
+        "color": 0.020013967507167538,
+        "font-size": 0,
+        "line-height": 0,
+        "opacity": 0,
+        "transition": 0
+      }
+    ],
+    [
+      ".questions .current input",
+      {
+        "opacity": 0
+      }
+    ]
+  ],
+  "unnormalized": [
+    [
+      "input",
+      {
+        "line-height": 2
+      }
+    ],
+    [
+      ".questions input",
+      {
+        "display": 2,
+        "margin": 99715,
+        "padding": 217650,
+        "width": 1757,
+        "border": 48550,
+        "background": 64575,
+        "color": 4358,
+        "font-size": 2,
+        "line-height": 2,
+        "opacity": 2,
+        "transition": 2
+      }
+    ],
+    [
+      ".questions .current input",
+      {
+        "opacity": 4361
+      }
+    ]
+  ]
+}

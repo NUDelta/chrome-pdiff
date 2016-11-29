@@ -1,0 +1,27 @@
+{
+  "total": 17,
+  "normalized": [
+    [
+      "footer",
+      {
+        "height": 0
+      }
+    ],
+    [
+      "footer",
+      {}
+    ]
+  ],
+  "unnormalized": [
+    [
+      "footer",
+      {
+        "height": 17
+      }
+    ],
+    [
+      "footer",
+      {}
+    ]
+  ]
+}

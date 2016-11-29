@@ -1,0 +1,51 @@
+{
+  "total": 1930589,
+  "normalized": [
+    [
+      ".pricing__item",
+      {
+        "position": 0,
+        "flex-direction": 0.7398782817655533,
+        "align-items": 0,
+        "text-align": 0.017373598313338925,
+        "flex": 1
+      }
+    ],
+    [
+      ".pricing--sonam .pricing__item",
+      {
+        "margin": 1,
+        "padding": 0.2760001177474905,
+        "cursor": 0,
+        "border-radius": 0.00034146772246916487,
+        "background": 0.8263185265864021,
+        "box-shadow": 0.012675517353036413,
+        "transition": 0
+      }
+    ]
+  ],
+  "unnormalized": [
+    [
+      ".pricing__item",
+      {
+        "position": 3,
+        "flex-direction": 359006,
+        "align-items": 3,
+        "text-align": 8433,
+        "flex": 485222
+      }
+    ],
+    [
+      ".pricing--sonam .pricing__item",
+      {
+        "margin": 509568,
+        "padding": 140643,
+        "cursor": 3,
+        "border-radius": 177,
+        "background": 421066,
+        "box-shadow": 6462,
+        "transition": 3
+      }
+    ]
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "total": 1381854,
+  "normalized": [
+    [
+      ".tooltip-content",
+      {
+        "position": 1,
+        "z-index": 0.004841457839837094,
+        "width": 0.22909307512224855,
+        "left": 0.10773109476513042,
+        "margin": 0.22849049024089543,
+        "bottom": 0.49049716715843134,
+        "text-align": 0,
+        "font-size": 0.20354209090027567,
+        "line-height": 0.004841457839837094,
+        "box-shadow": 0.007514995359403787,
+        "background": 0.0950975910457272,
+        "opacity": 0.7450096275055756,
+        "cursor": 0.004841457839837094,
+        "pointer-events": 0.004841457839837094
+      }
+    ],
+    [
+      ".tooltip-effect-1 .tooltip-content",
+      {
+        "-webkit-transform": 0,
+        "transform": 0,
+        "-webkit-transition": 0,
+        "transition": 0
+      }
+    ],
+    [
+      ".tooltip:hover .tooltip-content",
+      {
+        "pointer-events": 0,
+        "opacity": 1,
+        "-webkit-transform": 0,
+        "transform": 0.487746383871693
+      }
+    ]
+  ],
+  "unnormalized": [
+    [
+      ".tooltip-content",
+      {
+        "position": 185516,
+        "z-index": 41837,
+        "width": 74214,
+        "left": 56692,
+        "margin": 74127,
+        "bottom": 111955,
+        "text-align": 41138,
+        "font-size": 70525,
+        "line-height": 41837,
+        "box-shadow": 42223,
+        "background": 54868,
+        "opacity": 148701,
+        "cursor": 41837,
+        "pointer-events": 41837
+      }
+    ],
+    [
+      ".tooltip-effect-1 .tooltip-content",
+      {
+        "-webkit-transform": 41837,
+        "transform": 41837,
+        "-webkit-transition": 41837,
+        "transition": 41837
+      }
+    ],
+    [
+      ".tooltip:hover .tooltip-content",
+      {
+        "pointer-events": 41837,
+        "opacity": 55180,
+        "-webkit-transform": 41837,
+        "transform": 48345
+      }
+    ]
+  ]
+}

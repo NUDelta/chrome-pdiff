@@ -45,10 +45,15 @@ export default async function disableProperty (
     return new Error('Ignoring the content property...');
   }
 
+  if (prop.implicit) {
+    console.log(`${propName} is implicit`);
+  }
+
   // Construct the replacement text
   const styleTextDisabled: string = styleText.replace(prop.text, `/* ${prop.text} */`);
 
   let response: ?Object;
+
   try {
     response = await CSS.setStyleTexts({
       edits: [{
