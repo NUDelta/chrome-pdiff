@@ -113,6 +113,7 @@ export async function diffRuleMatches (
         rmDiff[propName] = diff;
         console.log('\t', diff);
       } else {
+        rmDiff[propName] = -1;
         numPropsRemoved += 1;
         console.log(`\tProperty ${propName} returned a diff below the lower bound of ${lowerBound}`);
       }
