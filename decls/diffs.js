@@ -40,3 +40,13 @@ declare type RuleMatchDiff = [ string, CSSStyleDiff ];
     transform: 9726,
   },
 ]: RuleMatchDiff);
+
+declare type Stats = {
+  original: number,
+  numFiltered: number,
+  numPruned: number,
+  prunedProps: string[],
+  percentReductionFromOriginal: number,
+  percentReductionFromFiltered: number,
+};
+

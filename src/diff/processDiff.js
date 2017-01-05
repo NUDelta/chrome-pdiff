@@ -9,10 +9,12 @@ import screenshotPage from '../chrome/screenshot';
 export function normalizeScores (propDiffs: CSSStyleDiff): CSSStyleDiff {
   const props: string[] = Object.keys(propDiffs);
 
-  // First compute the max pdiff value
-  const allScores: number[] = props.map(k => propDiffs[k]);
-  const maxScore: number = Math.max.apply(null, allScores);
-  const minScore: number = Math.min.apply(null, allScores);
+  // First compute the min and max positivepdiff value
+  const positiveScores: number[] = props.map(k => propDiffs[k])
+    .filter(s => s > 0);
+
+  const maxScore: number = Math.max.apply(null, positiveScores);
+  const minScore: number = Math.min.apply(null, positiveScores);
   const range: number = maxScore - minScore;
 
   // console.log(Object.entries(propDiffs).find(pair => pair[1] === maxScore));
@@ -37,12 +39,22 @@ export function normalizeScores (propDiffs: CSSStyleDiff): CSSStyleDiff {
  * screenshotting each change and computing the diff.
  */
 export async function diffRuleMatches (
-  instance: Object, options: Object, ruleMatches: RuleMatch[], screenshotDirPath: string, differ: Differ
-): Promise<{ ruleMatchDiffs: RuleMatchDiff[], total: number }> {
+  instance: Object,
+  options: Object,
+  ruleMatches: RuleMatch[],
+  screenshotDirPath: string,
+  differ: Differ,
+): Promise<{
+  ruleMatchDiffs: RuleMatchDiff[],
+  totalPropsBeforePruning: number,
+  pruned: string[],
+  totalDiffScore: number,
+}> {
   // Collect diff scores
   const cssRules: RuleMatchDiff[] = [];
   let totalDiffScore: number = 0;
-  let numPropsRemoved: number = 0;
+  let totalProps: number = 0;
+  const removedProps: string[] = [];
 
   const { lowerBound } = options;
 
@@ -70,13 +82,20 @@ export async function diffRuleMatches (
     const props: CSSProperty[] = rmRuleStyle.cssProperties;
 
     for (const prop of props) {
+      totalProps += 1;
+
       const propName = prop.name;
 
       // Disable the property and save the reenabler function
       const reenabler: (() => Promise<CSSStyle>) | Error = await disableProperty(instance, rmRuleStyle, propName);
 
       if (reenabler instanceof Error) {
-        console.error('\t', reenabler);
+        // Don't want to log as error if it was missing a SourceRange
+        if (reenabler.message.indexOf('missing cssText or SourceRange') === -1) {
+          console.error('\t', reenabler);
+        } else {
+          console.log('\t', reenabler.message);
+        }
         continue;  // eslint-disable-line no-continue
       }
 
@@ -114,7 +133,8 @@ export async function diffRuleMatches (
         console.log('\t', diff);
       } else {
         rmDiff[propName] = -1;
-        numPropsRemoved += 1;
+        removedProps.push(propName);
+
         console.log(`\tProperty ${propName} returned a diff below the lower bound of ${lowerBound}`);
       }
     }
@@ -123,11 +143,10 @@ export async function diffRuleMatches (
     cssRules.push([ selectorString, rmDiff ]);
   }
 
-  console.log('TOTAL DIFF SCORE:', totalDiffScore);
-
   return {
     ruleMatchDiffs: cssRules,
-    total: totalDiffScore,
-    removed: numPropsRemoved,
+    totalPropsBeforePruning: totalProps,
+    totalDiffScore,
+    pruned: removedProps,
   };
 }

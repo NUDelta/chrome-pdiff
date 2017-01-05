@@ -23,7 +23,7 @@ export const CDP_CONFIG = {
   // Output and logging options
   verbose: false,
   screenshotDir: 'screenshots',
-  writeScreenshots: true,
+  writeScreenshots: false,
 };
 
 const url = (type, title) => `file://${path.resolve(__dirname, `./examples/${type}/${title}/index.html`)}`;
@@ -39,6 +39,13 @@ export const PROFESSIONAL_EXAMPLES: TestSite[] = [
     selector: '.login-section',
     diffThreshold: 0.5,
     delay: 2000,
+  }, {
+    title: 'airbnb',
+    type: 'PROFESSIONAL',
+    url: 'http://airbnb.com',
+    // selector: '#search-location',
+    selector: '#site-content > div > div > div > div:nth-child(2) > div.row > div.col-sm-12.hide-sm > div > form > div > div > div.SearchForm__submit > button',
+    diffThreshold: 0.01,
   },
 ];
 
@@ -59,16 +66,6 @@ export const TOY_EXAMPLES: TestSite[] = [
       selector: 'body > div > div.content > div > p:nth-child(1) > span.tooltip.tooltip-effect-1',
       forcePseudoClasses: ['hover'],
     }],
-  }, {
-    title: 'SectionSeparators',
-    type: 'TOY',
-    url: 'file:///Users/sarah/git/chrome-pdiff/examples/toy/SectionSeparators/index.html',
-    selector: 'body > div > section.col-2.ss-style-triangles',
-  }, {
-    title: 'TooltipStylesInspiration',
-    type: 'TOY',
-    url: 'file:///Users/sarah/git/chrome-pdiff/examples/toy/TooltipStylesInspiration/index.html',
-    selector: 'body > div > div.content > div > p:nth-child(1) > span.tooltip.tooltip-effect-1 > span.tooltip-content.clearfix',
   }, {
     title: 'SegmentEffect',
     type: 'TOY',
@@ -109,8 +106,8 @@ export const TOY_EXAMPLES: TestSite[] = [
     type: 'TOY',
     url: 'file:///Users/sarah/git/chrome-pdiff/examples/toy/ProductTour/index.html',
     selector: 'body > ul',
-  }
+  },
 ];
 
 // TODO: This is temporary
-export const SITE: TestSite = TOY_EXAMPLES[0];
+export const SITE: TestSite = TOY_EXAMPLES[9];

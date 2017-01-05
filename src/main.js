@@ -6,6 +6,7 @@ import { applyPseudoStates } from './chrome/preparePage';
 import screenshotPage from './chrome/screenshot';
 import createDiffer from './diff/pdiff';
 import { diffRuleMatches, normalizeScores } from './diff/processDiff';
+import computeStatistics from './analyzeResults';
 
 /**
  * Function to execute once the page loads in Canary.
@@ -13,48 +14,81 @@ import { diffRuleMatches, normalizeScores } from './diff/processDiff';
 export default async function main (instance: Object, options: Object): Promise<> {
   console.log('\nProcessing example', options.title);
   /**
-   * Process these simultaneously to avoid blocking.
-   * - Get base path for all results and output.
-   * - Get the root node.
+   * Prepare filesystem.
    */
+
   const [ resultsDir, rootId ]: [ string, number ] = await Promise.all([
+    // Get base path for all results and output.
     makeSiteResultsDir(options.title, options.type, options.writeScreenshots && options.screenshotDir),
+
+    // Get the root node.
     getDocumentRootId(instance),
   ]);
 
   // Now build the screenshot subdirectory path from the results directory.
   const screenshotDirPath: string = path.resolve(resultsDir, options.screenshotDir);
 
+  /**
+   * Prepare page for processing.
+   */
+
   // Apply pseudo-states
-  if (options.pseudoStatesToForce && options.pseudoStatesToForce.length) {
+  const shouldApplyPseudoStates: boolean = Object.prototype.hasOwnProperty.call(options, 'pseudoStatesToForce')
+    && options.pseudoStatesToForce.length;
+
+  if (shouldApplyPseudoStates) {
     await applyPseudoStates(instance, rootId, options);
   }
 
   /**
-   * Process these simultaneously to avoid blocking:
-   * - Take base screenshot.
-   * - Get element styles.
+   * Start the actual processing.
    */
+
   const baseScreenshotPath: string = path.resolve(screenshotDirPath, 'base.png');
   const { delay } = options;
 
-  const [ basePNG, ruleMatches ]: [ PNG, RuleMatch[] ] = await Promise.all([
+  const [
+    basePNG,
+    ruleMatchesAndTotalProps,
+  ]: [
+    PNG,
+    [ RuleMatch[], number ]
+  ] = await Promise.all([
+    // Take base screenshot.
     screenshotPage(instance, options.writeScreenshots, baseScreenshotPath, delay),
+
+    // Get element styles.
     getElementStyles(instance, rootId, options),
   ]);
+
+  // Destructure the output from getElementStyles
+  const [
+    ruleMatches,
+    totalPropsBeforeFiltering,
+  ]: [ RuleMatch[], number ] = ruleMatchesAndTotalProps;
 
   /**
    * Actually diff everything.
    */
   const { threshold } = options;
   const differ: Differ = await createDiffer(basePNG, threshold);
+
   const {
     ruleMatchDiffs: unnormalized,
-    total,
+    totalDiffScore,
+    totalPropsBeforePruning,
+    pruned: prunedProps,
   }: {
     ruleMatchDiffs: RuleMatchDiff[],
-    total: number
+    totalDiffScore: number,
+    totalPropsBeforePruning: number,
+    pruned: string[],
   } = await diffRuleMatches(instance, options, ruleMatches, screenshotDirPath, differ);
+
+  /**
+   * Compute statistics.
+   */
+  const stats: Stats = computeStatistics(totalPropsBeforeFiltering, totalPropsBeforePruning, prunedProps);
 
   /**
    * Get the normalized output for each pair.
@@ -66,7 +100,8 @@ export default async function main (instance: Object, options: Object): Promise<
   }
 
   const results = {
-    total,
+    ...stats,
+    totalDiffScore,
     normalized,
     unnormalized,
   };

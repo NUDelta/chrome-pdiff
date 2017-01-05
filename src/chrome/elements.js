@@ -83,7 +83,7 @@ function getChildren (instance: Object, nodeId: number): Promise<Node[]> {
 /**
  * Get the matched styles for an element corresponding to a nodeId.
  */
-export async function getElementStyles (instance: Object, rootId: number, options: Object): Promise<RuleMatch[]> {
+export async function getElementStyles (instance: Object, rootId: number, options: Object): Promise<[RuleMatch[], number]> {
   const { CSS } = instance;
 
   const { selector } = options;
@@ -124,5 +124,13 @@ export async function getElementStyles (instance: Object, rootId: number, option
   // Filter out all the relevant RuleMatches (see `keepRuleMatch` predicate definition).
   const filteredRuleMatches: RuleMatch[] = ruleMatches.filter(keepRuleMatch.bind(null, options));
 
-  return filteredRuleMatches;
+  // Count total number of matched rules so we can quantify heuristic reduction.
+  const numPropsBeforeFiltering: number = ruleMatches
+    .map(rm => rm.rule.style.cssProperties.length)
+    .reduce((prev, next) => prev + next, 0);
+
+  return [
+    filteredRuleMatches,
+    numPropsBeforeFiltering,
+  ];
 }
