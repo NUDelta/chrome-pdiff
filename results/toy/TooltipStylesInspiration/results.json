@@ -1,23 +1,23 @@
 {
-  "total": 1381854,
+  "total": 4807595,
   "normalized": [
     [
       ".tooltip-content",
       {
-        "position": 1,
-        "z-index": 0.004841457839837094,
-        "width": 0.22909307512224855,
-        "left": 0.10773109476513042,
-        "margin": 0.22849049024089543,
-        "bottom": 0.49049716715843134,
+        "position": 0.6806999821736288,
+        "z-index": 0.005978436693274176,
+        "width": 0.44797670687503716,
+        "left": 0.12466905672087204,
+        "margin": 0.6865595763926027,
+        "bottom": 1,
         "text-align": 0,
-        "font-size": 0.20354209090027567,
-        "line-height": 0.004841457839837094,
-        "box-shadow": 0.007514995359403787,
-        "background": 0.0950975910457272,
-        "opacity": 0.7450096275055756,
-        "cursor": 0.004841457839837094,
-        "pointer-events": 0.004841457839837094
+        "font-size": 0.39500597513551344,
+        "line-height": 0.005978436693274176,
+        "box-shadow": 0.0177240345699553,
+        "background": 0.20850581998006087,
+        "opacity": 0.4094717452017351,
+        "cursor": 0.005978436693274176,
+        "pointer-events": 0.005978436693274176
       }
     ],
     [
@@ -35,7 +35,7 @@
         "pointer-events": 0,
         "opacity": 1,
         "-webkit-transform": 0,
-        "transform": 0.487746383871693
+        "transform": 0.21709407094701028
       }
     ]
   ],
@@ -43,38 +43,38 @@
     [
       ".tooltip-content",
       {
-        "position": 185516,
-        "z-index": 41837,
-        "width": 74214,
-        "left": 56692,
-        "margin": 74127,
-        "bottom": 111955,
-        "text-align": 41138,
-        "font-size": 70525,
-        "line-height": 41837,
-        "box-shadow": 42223,
-        "background": 54868,
-        "opacity": 148701,
-        "cursor": 41837,
-        "pointer-events": 41837
+        "position": 363798,
+        "z-index": 159410,
+        "width": 293301,
+        "left": 195364,
+        "margin": 365573,
+        "bottom": 460521,
+        "text-align": 157599,
+        "font-size": 277255,
+        "line-height": 159410,
+        "box-shadow": 162968,
+        "background": 220760,
+        "opacity": 281637,
+        "cursor": 159410,
+        "pointer-events": 159410
       }
     ],
     [
       ".tooltip-effect-1 .tooltip-content",
       {
-        "-webkit-transform": 41837,
-        "transform": 41837,
-        "-webkit-transition": 41837,
-        "transition": 41837
+        "-webkit-transform": 159410,
+        "transform": 159410,
+        "-webkit-transition": 159410,
+        "transition": 159410
       }
     ],
     [
       ".tooltip:hover .tooltip-content",
       {
-        "pointer-events": 41837,
-        "opacity": 55180,
-        "-webkit-transform": 41837,
-        "transform": 48345
+        "pointer-events": 159410,
+        "opacity": 254636,
+        "-webkit-transform": 159410,
+        "transform": 180083
       }
     ]
   ]

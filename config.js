@@ -44,7 +44,8 @@ export const PROFESSIONAL_EXAMPLES: TestSite[] = [
     type: 'PROFESSIONAL',
     url: 'http://airbnb.com',
     // selector: '#search-location',
-    selector: '#site-content > div > div > div > div:nth-child(2) > div.row > div.col-sm-12.hide-sm > div > form > div > div > div.SearchForm__submit > button',
+    // selector: '#site-content > div > div > div > div:nth-child(2) > div.row > div.col-sm-12.hide-sm > div > form > div > div > div.SearchForm__submit > button',
+    selector: '#site-content > div > div > div:nth-child(2) > div:nth-child(1) > div.container_avg348-o_O-mediumAndAbove_1fqrq3n > div',
     diffThreshold: 0.01,
   },
 ];
@@ -110,4 +111,4 @@ export const TOY_EXAMPLES: TestSite[] = [
 ];
 
 // TODO: This is temporary
-export const SITE: TestSite = TOY_EXAMPLES[9];
+export const SITE: TestSite = PROFESSIONAL_EXAMPLES[1];

@@ -7,6 +7,10 @@ export default {
    *
    * TOTAL NON-PREFIXED: 10 (+ 10)
    * TOTAL RELEVANT: 9
+   *
+   * 41 is the baseline
+   *
+   * 1 false neg
    */
   FullScreenOverlayStyles: [
     [
@@ -16,7 +20,7 @@ export default {
         "width": 1,
         "height": 1,
         "top": 1,
-        "left": -1,
+        "left": -1,  // 0 in normalized, > 0 in unnormalized
         "background": 1,
       }
     ],
@@ -28,6 +32,7 @@ export default {
       {
         "opacity": 1,
         "visibility": 1,
+        // "transition": 1,
       }
     ],
     [
@@ -35,12 +40,16 @@ export default {
       {
         "opacity": 1,
         "visibility": 1,
+        // "transition": -1,
       }
     ],
   ],
 
   /**
    * Placeholder text needed in a form (fix).
+   *
+   * 2 false neg
+   * 1 false pos
    */
   MinimalForm: [
     [
@@ -53,12 +62,12 @@ export default {
       ".questions input",
       {
         "display": -1,
-        "margin": 0,
+        "margin": 0,  // false pos
         "padding": 1,
-        "width": 1,
+        "width": 1,  // false neg
         "border": 1,
         "background": 1,
-        "color": -1,
+        "color": 0,  // false neg
         "font-size": -1,
         "line-height": -1,
         "opacity": -1,
@@ -126,6 +135,7 @@ export default {
         "visibility": 1,  // Overridden by active class
         "opacity": 1,  // Overridden by active class
       }
+
     ],
     [
       ".cd-tour-wrapper",
@@ -219,14 +229,16 @@ export default {
    * Tricky because it relies on another element on the page to use a negative margin.
    */
   "StickyFooter": [
-    [
-      "footer",
+    [      "footer",
       {
         "height": 1,
       }
     ]
   ],
 
+  /**
+   * Miscategorizes line height, cursor, pointer events
+   */
   TooltipStylesInspiration: [
     [
       ".tooltip:hover .tooltip-content",
@@ -264,6 +276,9 @@ export default {
     ]
   ],
 
+  /**
+   * 100%
+   */
   VerticalTimeline: [
     [
       ".cbp-tmtimeline > li .cbp_tmicon",

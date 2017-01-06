@@ -85,6 +85,9 @@ export default async function main (instance: Object, options: Object): Promise<
     pruned: string[],
   } = await diffRuleMatches(instance, options, ruleMatches, screenshotDirPath, differ);
 
+  // Reverse `unnormalized` for ease of interpreting results.
+  unnormalized.reverse();
+
   /**
    * Compute statistics.
    */

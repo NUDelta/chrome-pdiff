@@ -1,0 +1,179 @@
+{
+  "total": 3256657,
+  "normalized": [
+    [
+      "input",
+      {
+        "line-height": 0
+      }
+    ],
+    [
+      "input",
+      {
+        "line-height": 0
+      }
+    ],
+    [
+      "input",
+      {
+        "font-family": 0
+      }
+    ],
+    [
+      "[type=\"text\"]",
+      {
+        "border": 0,
+        "-webkit-border-radius": 0,
+        "-moz-border-radius": 0,
+        "border-radius": 0,
+        "background-color": 1,
+        "color": 0
+      }
+    ],
+    [
+      "[type=\"text\"]",
+      {
+        "-webkit-transition": 0,
+        "-o-transition": 0,
+        "-moz-transition": 0,
+        "transition": 0
+      }
+    ],
+    [
+      "[type=\"text\"]",
+      {
+        "display": 0,
+        "padding": 0,
+        "width": 1
+      }
+    ],
+    [
+      ".input-large",
+      {
+        "font-size": 0,
+        "padding-top": 0,
+        "padding-bottom": 0
+      }
+    ],
+    [
+      ".SearchForm__inputs-wrapper input",
+      {
+        "padding": 0
+      }
+    ],
+    [
+      ".SearchForm__inputs-wrapper input",
+      {
+        "font-size": 0.0008828647685924686,
+        "letter-spacing": 0,
+        "line-height": 1
+      }
+    ],
+    [
+      ".SearchForm__inputs-wrapper .LocationInput",
+      {
+        "border-style": 0
+      }
+    ],
+    [
+      ".SearchForm__inputs-wrapper .SearchForm__location input",
+      {
+        "border-right": 0,
+        "-webkit-border-top-right-radius": 0,
+        "-moz-border-radius-topright": 0,
+        "border-top-right-radius": 0,
+        "-webkit-border-bottom-right-radius": 0,
+        "-moz-border-radius-bottomright": 0,
+        "border-bottom-right-radius": 0
+      }
+    ]
+  ],
+  "unnormalized": [
+    [
+      "input",
+      {
+        "line-height": -1
+      }
+    ],
+    [
+      "input",
+      {
+        "line-height": 791410
+      }
+    ],
+    [
+      "input",
+      {
+        "font-family": -1
+      }
+    ],
+    [
+      "[type=\"text\"]",
+      {
+        "border": -1,
+        "-webkit-border-radius": -1,
+        "-moz-border-radius": -1,
+        "border-radius": -1,
+        "background-color": 21318,
+        "color": -1
+      }
+    ],
+    [
+      "[type=\"text\"]",
+      {
+        "-webkit-transition": -1,
+        "-o-transition": -1,
+        "-moz-transition": -1,
+        "transition": -1
+      }
+    ],
+    [
+      "[type=\"text\"]",
+      {
+        "display": -1,
+        "padding": -1,
+        "width": 127
+      }
+    ],
+    [
+      ".input-large",
+      {
+        "font-size": -1,
+        "padding-top": -1,
+        "padding-bottom": -1
+      }
+    ],
+    [
+      ".SearchForm__inputs-wrapper input",
+      {
+        "padding": 854970
+      }
+    ],
+    [
+      ".SearchForm__inputs-wrapper input",
+      {
+        "font-size": 4779,
+        "letter-spacing": 4087,
+        "line-height": 787899
+      }
+    ],
+    [
+      ".SearchForm__inputs-wrapper .LocationInput",
+      {
+        "border-style": 792067
+      }
+    ],
+    [
+      ".SearchForm__inputs-wrapper .SearchForm__location input",
+      {
+        "border-right": -1,
+        "-webkit-border-top-right-radius": -1,
+        "-moz-border-radius-topright": -1,
+        "border-top-right-radius": -1,
+        "-webkit-border-bottom-right-radius": -1,
+        "-moz-border-radius-bottomright": -1,
+        "border-bottom-right-radius": -1
+      }
+    ]
+  ]
+}

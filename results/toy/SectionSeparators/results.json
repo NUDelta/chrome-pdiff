@@ -1,5 +1,5 @@
 {
-  "total": 71023,
+  "total": 162948,
   "normalized": [
     [
       "section::before",
@@ -14,7 +14,7 @@
         "left": 1,
         "width": 0,
         "height": 0,
-        "transform": 0.08048289738430583
+        "transform": 0.08611955420466058
       }
     ],
     [
@@ -29,24 +29,24 @@
     [
       "section::before",
       {
-        "position": 9947,
-        "pointer-events": 3
+        "position": 19770,
+        "pointer-events": 30
       }
     ],
     [
       ".ss-style-triangles::before",
       {
-        "left": 19883,
-        "width": 9943,
-        "height": 9943,
-        "transform": 10743
+        "left": 39510,
+        "width": 19770,
+        "height": 19770,
+        "transform": 21470
       }
     ],
     [
       ".ss-style-triangles::before",
       {
-        "top": 5588,
-        "background": 4973
+        "top": 22858,
+        "background": 19770
       }
     ]
   ]

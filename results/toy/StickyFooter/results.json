@@ -1,5 +1,5 @@
 {
-  "total": 17,
+  "total": 133,
   "normalized": [
     [
       "footer",
@@ -9,19 +9,29 @@
     ],
     [
       "footer",
-      {}
+      {
+        "position": 0,
+        "width": 0,
+        "margin": 0,
+        "background": 0
+      }
     ]
   ],
   "unnormalized": [
     [
       "footer",
       {
-        "height": 17
+        "height": 133
       }
     ],
     [
       "footer",
-      {}
+      {
+        "position": -1,
+        "width": -1,
+        "margin": -1,
+        "background": -1
+      }
     ]
   ]
 }

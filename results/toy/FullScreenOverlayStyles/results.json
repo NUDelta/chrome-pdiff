@@ -1,15 +1,15 @@
 {
-  "total": 8714113,
+  "total": 22175051,
   "normalized": [
     [
       ".overlay",
       {
-        "position": 0.856193287132346,
-        "width": 0.8241603136697424,
-        "height": 0.7543206880162036,
-        "top": 0.8561918424485656,
+        "position": 1,
+        "width": 0.8551953685892413,
+        "height": 0.5265353942815961,
+        "top": 0.9991335228865853,
         "left": 0,
-        "background": 1
+        "background": 0.9978445914487077
       }
     ],
     [
@@ -23,8 +23,8 @@
     [
       ".overlay-hugeinc.open",
       {
-        "opacity": 1,
-        "visibility": 0.9981703016913184,
+        "opacity": 0.999973231910096,
+        "visibility": 1,
         "transition": 0
       }
     ]
@@ -33,28 +33,28 @@
     [
       ".overlay",
       {
-        "position": 1185304,
-        "width": 1140958,
-        "height": 1044273,
-        "top": 1185302,
-        "left": 2,
-        "background": 1384388
+        "position": 3477340,
+        "width": 2973811,
+        "height": 1830962,
+        "top": 3474327,
+        "left": 41,
+        "background": 3469845
       }
     ],
     [
       ".overlay-hugeinc",
       {
-        "opacity": 2,
-        "visibility": 2,
-        "transition": 2
+        "opacity": 41,
+        "visibility": 41,
+        "transition": 41
       }
     ],
     [
       ".overlay-hugeinc.open",
       {
-        "opacity": 1388209,
-        "visibility": 1385669,
-        "transition": 2
+        "opacity": 3474234,
+        "visibility": 3474327,
+        "transition": 41
       }
     ]
   ]

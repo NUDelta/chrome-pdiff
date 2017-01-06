@@ -1,10 +1,10 @@
 {
-  "total": 2764197,
+  "total": 7988762,
   "normalized": [
     [
       ".segmenter__piece-wrap",
       {
-        "position": 0.4991740543668428,
+        "position": 0.5706765678479347,
         "width": 1,
         "height": 1,
         "top": 0,
@@ -18,13 +18,13 @@
     [
       ".segmenter__piece-wrap",
       {
-        "position": 552103,
-        "width": 1106019,
-        "height": 1106019,
-        "top": 14,
-        "left": 14,
-        "-webkit-transform-style": 14,
-        "transform-style": 14
+        "position": 1773434,
+        "width": 3107560,
+        "height": 3107560,
+        "top": 52,
+        "left": 52,
+        "-webkit-transform-style": 52,
+        "transform-style": 52
       }
     ]
   ]

@@ -1,24 +1,25 @@
 {
-  "total": 3526612,
+  "original": 84,
+  "numFiltered": 47,
+  "numPruned": 7,
+  "prunedProps": [
+    "list-style",
+    "bottom",
+    "right",
+    "visibility",
+    "opacity",
+    "transition",
+    "visibility"
+  ],
+  "percentReductionFromOriginal": 0.6428571428571429,
+  "percentReductionFromFiltered": 0.1891891891891892,
+  "totalDiffScore": 3446665,
   "normalized": [
     [
-      "ul",
-      {}
-    ],
-    [
-      ".cd-tour-wrapper",
+      ".cd-tour-wrapper.active",
       {
-        "position": 0.6991716422657833,
-        "z-index": 0.5801821205594482,
-        "height": 0.842266692112653,
-        "width": 0.5762857038995974,
-        "left": 0.8626552886756272,
-        "top": 0.7979838599743723,
-        "bottom": 0,
-        "right": 0,
-        "transform": 1,
-        "visibility": 0,
-        "opacity": 0,
+        "visibility": -83.01158556769282,
+        "opacity": 1,
         "transition": 0
       }
     ],
@@ -30,49 +31,66 @@
       }
     ],
     [
-      ".cd-tour-wrapper.active",
+      ".cd-tour-wrapper",
       {
-        "visibility": 0,
-        "opacity": 1,
-        "transition": 0
+        "position": 0.28709602387997984,
+        "z-index": 0.011035445229818962,
+        "height": 0.6174486670887875,
+        "width": 0,
+        "left": 0.6629666481450373,
+        "top": 0.49158773437399045,
+        "bottom": -1.6388992983317612,
+        "right": -1.6388992983317612,
+        "transform": 1,
+        "visibility": -1.6388992983317612,
+        "opacity": -1.6388992983317612,
+        "transition": -1.6388992983317612
+      }
+    ],
+    [
+      "ul",
+      {
+        "list-style": 0
       }
     ]
   ],
   "unnormalized": [
     [
-      "ul",
-      {}
-    ],
-    [
-      ".cd-tour-wrapper",
-      {
-        "position": 307741,
-        "z-index": 255368,
-        "height": 370724,
-        "width": 253653,
-        "left": 379698,
-        "top": 351233,
-        "bottom": 2,
-        "right": 2,
-        "transform": 440150,
-        "visibility": 2,
-        "opacity": 2,
-        "transition": 2
-      }
-    ],
-    [
-      ".cd-tour-wrapper",
-      {
-        "max-width": 558841,
-        "max-height": 355388
-      }
-    ],
-    [
       ".cd-tour-wrapper.active",
       {
-        "visibility": 2,
-        "opacity": 253802,
-        "transition": 2
+        "visibility": -1,
+        "opacity": 253798,
+        "transition": 250777
+      }
+    ],
+    [
+      ".cd-tour-wrapper",
+      {
+        "max-width": 483652,
+        "max-height": 207655
+      }
+    ],
+    [
+      ".cd-tour-wrapper",
+      {
+        "position": 298093,
+        "z-index": 255366,
+        "height": 349223,
+        "width": 253658,
+        "left": 356268,
+        "top": 329743,
+        "bottom": -1,
+        "right": -1,
+        "transform": 408432,
+        "visibility": -1,
+        "opacity": -1,
+        "transition": -1
+      }
+    ],
+    [
+      "ul",
+      {
+        "list-style": -1
       }
     ]
   ]

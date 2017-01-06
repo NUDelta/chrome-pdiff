@@ -1,5 +1,5 @@
 {
-  "total": 981920,
+  "total": 1941382,
   "normalized": [
     [
       ".cbp-rfgrid li",
@@ -8,24 +8,16 @@
         "float": 1,
         "overflow": 0
       }
-    ],
-    [
-      ".cbp-rfgrid li",
-      {}
     ]
   ],
   "unnormalized": [
     [
       ".cbp-rfgrid li",
       {
-        "position": 45260,
-        "float": 891400,
-        "overflow": 45260
+        "position": 34,
+        "float": 1941314,
+        "overflow": 34
       }
-    ],
-    [
-      ".cbp-rfgrid li",
-      {}
     ]
   ]
 }

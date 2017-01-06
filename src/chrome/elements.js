@@ -51,9 +51,9 @@ function keepRuleMatch (options: Object, rm: RuleMatch): boolean {
    */
   const exclude = origin === 'user-agent'
     || selectors.length > maxRuleSelectors
-    || selectors.some(s => s.text === '*')
-    || (selectors.length > maxRuleSelectorsForReset
-        && selectors.every(s => startsWithLetter.test(s.text)));
+    || selectors.some(s => s.text === '*');
+    // || (selectors.length > maxRuleSelectorsForReset
+    //     && selectors.every(s => startsWithLetter.test(s.text)));
 
   return !exclude;
 }
