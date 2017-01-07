@@ -47,7 +47,13 @@ export const PROFESSIONAL_EXAMPLES: TestSite[] = [
     // selector: '#site-content > div > div > div > div:nth-child(2) > div.row > div.col-sm-12.hide-sm > div > form > div > div > div.SearchForm__submit > button',
     selector: '#site-content > div > div > div:nth-child(2) > div:nth-child(1) > div.container_avg348-o_O-mediumAndAbove_1fqrq3n > div',
     diffThreshold: 0.01,
-  },
+  }, {
+    title: 'uber',
+    type: 'PROFESSIONAL',
+    url: url('professional', 'uber'),
+    selector: '#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right',
+    diffThreshold: 0.01,
+  }
 ];
 
 export const TOY_EXAMPLES: TestSite[] = [
@@ -110,5 +116,13 @@ export const TOY_EXAMPLES: TestSite[] = [
   },
 ];
 
+const TEST_SITE: TestSite = {
+  title: 'TestSite',
+  type: 'TEST',
+  url: 'http://jsbin.com/fixusunoja',
+  selector: '#tree',
+};
+
 // TODO: This is temporary
-export const SITE: TestSite = PROFESSIONAL_EXAMPLES[1];
+export const SITE: TestSite = PROFESSIONAL_EXAMPLES[2];
+// export const SITE: TestSite = TEST_SITE;

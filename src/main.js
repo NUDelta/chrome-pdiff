@@ -1,27 +1,41 @@
 // @flow
 import path from 'path';
 import { writeResults, makeSiteResultsDir } from './fileUtils';
-import { getElementStyles, getDocumentRootId } from './chrome/elements';
+import { getElementStyles, getDocumentRootId, getChildren, getNodeId } from './chrome/elements';
 import { applyPseudoStates } from './chrome/preparePage';
 import screenshotPage from './chrome/screenshot';
 import createDiffer from './diff/pdiff';
 import { diffRuleMatches, normalizeScores } from './diff/processDiff';
 import computeStatistics from './analyzeResults';
 
+type NodeLike = { nodeId: number } & { children: Node[] };
+
+async function depthFirstHelper (node: NodeLike, fn: Function): Promise<Object> {
+  const currentResult: Object = await fn(node.nodeId);
+  const result: Object = {
+    ...currentResult,
+    children: [],
+  };
+
+  for (const child of node.children) {
+    const childResult: Object = await depthFirstHelper(child, fn);
+    result.children.push(childResult);
+  }
+
+  return result;
+}
+
 /**
  * Function to execute once the page loads in Canary.
  */
 export default async function main (instance: Object, options: Object): Promise<> {
-  console.log('\nProcessing example', options.title);
   /**
    * Prepare filesystem.
    */
+  console.log('\nProcessing example', options.title);
 
   const [ resultsDir, rootId ]: [ string, number ] = await Promise.all([
-    // Get base path for all results and output.
     makeSiteResultsDir(options.title, options.type, options.writeScreenshots && options.screenshotDir),
-
-    // Get the root node.
     getDocumentRootId(instance),
   ]);
 
@@ -31,7 +45,6 @@ export default async function main (instance: Object, options: Object): Promise<
   /**
    * Prepare page for processing.
    */
-
   // Apply pseudo-states
   const shouldApplyPseudoStates: boolean = Object.prototype.hasOwnProperty.call(options, 'pseudoStatesToForce')
     && options.pseudoStatesToForce.length;
@@ -40,76 +53,64 @@ export default async function main (instance: Object, options: Object): Promise<
     await applyPseudoStates(instance, rootId, options);
   }
 
-  /**
-   * Start the actual processing.
-   */
-
   const baseScreenshotPath: string = path.resolve(screenshotDirPath, 'base.png');
   const { delay } = options;
-
-  const [
-    basePNG,
-    ruleMatchesAndTotalProps,
-  ]: [
-    PNG,
-    [ RuleMatch[], number ]
-  ] = await Promise.all([
-    // Take base screenshot.
-    screenshotPage(instance, options.writeScreenshots, baseScreenshotPath, delay),
-
-    // Get element styles.
-    getElementStyles(instance, rootId, options),
-  ]);
-
-  // Destructure the output from getElementStyles
-  const [
-    ruleMatches,
-    totalPropsBeforeFiltering,
-  ]: [ RuleMatch[], number ] = ruleMatchesAndTotalProps;
+  const basePNG: PNG = await screenshotPage(instance, options.writeScreenshots, baseScreenshotPath, delay);
 
   /**
-   * Actually diff everything.
+   * TODO: Refactor this to not be, like, a ginromous closure.
    */
-  const { threshold } = options;
-  const differ: Differ = await createDiffer(basePNG, threshold);
+  async function processNode (nodeId) {
+    const [ ruleMatches, totalPropsBeforeFiltering ]: [ RuleMatch[], number ] = await getElementStyles(
+      instance, rootId, nodeId, options
+    );
 
-  const {
-    ruleMatchDiffs: unnormalized,
-    totalDiffScore,
-    totalPropsBeforePruning,
-    pruned: prunedProps,
-  }: {
-    ruleMatchDiffs: RuleMatchDiff[],
-    totalDiffScore: number,
-    totalPropsBeforePruning: number,
-    pruned: string[],
-  } = await diffRuleMatches(instance, options, ruleMatches, screenshotDirPath, differ);
+    const { threshold } = options;
+    const differ: Differ = await createDiffer(basePNG, threshold);
 
-  // Reverse `unnormalized` for ease of interpreting results.
-  unnormalized.reverse();
+    const drmResult: Object = diffRuleMatches(instance, options, ruleMatches, screenshotDirPath, differ);
 
-  /**
-   * Compute statistics.
-   */
-  const stats: Stats = computeStatistics(totalPropsBeforeFiltering, totalPropsBeforePruning, prunedProps);
+    // This really should be destructured, but it's too verbose with Flow annotations
+    const unnormalized: RuleMatchDiff[] = drmResult.ruleMatchDiffs;
+    const totalDiffScore: number = drmResult.totalDiffScore;
+    const totalPropsBeforePruning: number = drmResult.totalPropsBeforePruning;
+    const prunedProps: string[] = drmResult.pruned;
 
-  /**
-   * Get the normalized output for each pair.
-   */
-  const normalized: RuleMatchDiff[] = [];
+    // Reverse `unnormalized` for ease of interpreting results.
+    unnormalized.reverse();
 
-  for (const [ selector, dr ] of unnormalized) {
-    normalized.push([ selector, normalizeScores(dr) ]);
+    const stats: Stats = computeStatistics(totalPropsBeforeFiltering, totalPropsBeforePruning, prunedProps);
+
+    const normalized: RuleMatchDiff[] = [];
+
+    for (const [ selector, dr ] of unnormalized) {
+      normalized.push([ selector, normalizeScores(dr) ]);
+    }
+
+    const results = {
+      selector: options.selector,
+      ...stats,
+      totalDiffScore,
+      unnormalized,
+      normalized,
+    };
+
+    return results;
   }
 
-  const results = {
-    ...stats,
-    totalDiffScore,
-    normalized,
-    unnormalized,
-  };
+  /**
+   * Get starting node info.
+   */
+  const baseNodeId: number = await getNodeId(instance, rootId, options.selector);
+  const baseNodeChildren: Node[] = await getChildren(instance, baseNodeId);
+  const startingNodeLike: NodeLike = Object.assign({},
+    { nodeId: baseNodeId },
+    { children: baseNodeChildren }
+  );
 
-  writeResults(path.resolve(resultsDir, 'results.json'), results)
+  const resultsTree: Object = await depthFirstHelper(startingNodeLike, processNode);
+
+  writeResults(path.resolve(resultsDir, 'results.json'), resultsTree)
     .then(() => console.log(`Results written to disk at ${resultsDir}`));
 
   return instance.close();

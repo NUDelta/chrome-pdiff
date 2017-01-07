@@ -61,7 +61,7 @@ function keepRuleMatch (options: Object, rm: RuleMatch): boolean {
 /**
  * Get the children of a given nodeId.
  */
-function getChildren (instance: Object, nodeId: number): Promise<Node[]> {
+export function getChildren (instance: Object, nodeId: number): Promise<Node[]> {
   return new Promise((resolve, reject) => {
     instance.once('DOM.setChildNodes', (params) => {
       clearTimeout();
@@ -83,13 +83,8 @@ function getChildren (instance: Object, nodeId: number): Promise<Node[]> {
 /**
  * Get the matched styles for an element corresponding to a nodeId.
  */
-export async function getElementStyles (instance: Object, rootId: number, options: Object): Promise<[RuleMatch[], number]> {
+export async function getElementStyles (instance: Object, rootId: number, nodeId: number, options: Object): Promise<[RuleMatch[], number]> {
   const { CSS } = instance;
-
-  const { selector } = options;
-
-  // Get the nodeId of the element matching the selector
-  const nodeId: number = await getNodeId(instance, rootId, selector);
 
   // Handle the case where the element is not returned
   if (nodeId === 0) {
