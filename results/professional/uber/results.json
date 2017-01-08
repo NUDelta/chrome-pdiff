@@ -1,406 +1,143 @@
 {
-  "selector": "#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right",
-  "original": 11,
+  "original": 3,
   "numFiltered": 2,
-  "numPruned": 4,
-  "prunedProps": [
-    "padding-left",
-    "width",
-    "padding-left",
-    "vertical-align"
-  ],
-  "percentReductionFromOriginal": 0.5454545454545454,
-  "percentReductionFromFiltered": 0.4444444444444444,
-  "totalDiffScore": 118188,
+  "numPruned": 0,
+  "prunedProps": [],
+  "percentReductionFromOriginal": 0.6666666666666666,
+  "percentReductionFromFiltered": 0,
+  "totalDiffScore": 2612,
   "unnormalized": [
     [
-      ".layout--middle>.layout__item",
+      ".position--relative",
       {
-        "vertical-align": -1
-      }
-    ],
-    [
-      ".layout>.layout__item",
-      {
-        "padding-left": -1
-      }
-    ],
-    [
-      ".layout__item",
-      {
-        "display": 7,
-        "padding-left": -1,
-        "vertical-align": 7,
-        "width": -1
-      }
-    ],
-    [
-      ".hard--left",
-      {
-        "padding-left": 97274
-      }
-    ],
-    [
-      ".soft--right",
-      {
-        "padding-right": 14188
-      }
-    ],
-    [
-      ".one-third",
-      {
-        "width": 6712
+        "position": 2612
       }
     ]
   ],
   "normalized": [
     [
-      ".layout--middle>.layout__item",
+      ".position--relative",
       {
-        "vertical-align": 0
-      }
-    ],
-    [
-      ".layout>.layout__item",
-      {
-        "padding-left": 0
-      }
-    ],
-    [
-      ".layout__item",
-      {
-        "display": 0,
-        "padding-left": 0,
-        "vertical-align": 0,
-        "width": 0
-      }
-    ],
-    [
-      ".hard--left",
-      {
-        "padding-left": 0
-      }
-    ],
-    [
-      ".soft--right",
-      {
-        "padding-right": 0
-      }
-    ],
-    [
-      ".one-third",
-      {
-        "width": 0
+        "position": 0
       }
     ]
   ],
   "children": [
     {
-      "selector": "#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right",
-      "original": 4,
+      "original": 9,
       "numFiltered": 2,
-      "numPruned": 0,
-      "prunedProps": [],
-      "percentReductionFromOriginal": 0.5,
-      "percentReductionFromFiltered": 0,
-      "totalDiffScore": 879483,
+      "numPruned": 1,
+      "prunedProps": [
+        "z-index"
+      ],
+      "percentReductionFromOriginal": 0.3333333333333333,
+      "percentReductionFromFiltered": 0.14285714285714285,
+      "totalDiffScore": 438,
       "unnormalized": [
         [
-          ".inline-estimate__route-entry",
+          ".fare-estimate__input-connector",
           {
-            "margin-bottom": 874762
+            "position": 81,
+            "top": 67,
+            "bottom": 58,
+            "left": 134,
+            "width": 49,
+            "background-color": 49
           }
         ],
         [
-          ".position--relative",
+          ".z-10",
           {
-            "position": 4721
+            "z-index": -1
           }
         ]
       ],
       "normalized": [
         [
-          ".inline-estimate__route-entry",
+          ".fare-estimate__input-connector",
           {
-            "margin-bottom": 0
+            "position": 0.3764705882352941,
+            "top": 0.21176470588235294,
+            "bottom": 0.10588235294117647,
+            "left": 1,
+            "width": 0,
+            "background-color": 0
           }
         ],
         [
-          ".position--relative",
+          ".z-10",
           {
-            "position": 0
+            "z-index": 0
+          }
+        ]
+      ],
+      "children": []
+    },
+    {
+      "original": 3,
+      "numFiltered": 2,
+      "numPruned": 0,
+      "prunedProps": [],
+      "percentReductionFromOriginal": 0.6666666666666666,
+      "percentReductionFromFiltered": 0,
+      "totalDiffScore": 51919,
+      "unnormalized": [
+        [
+          ".push-tiny--bottom",
+          {
+            "margin-bottom": 51919
+          }
+        ]
+      ],
+      "normalized": [
+        [
+          ".push-tiny--bottom",
+          {
+            "margin-bottom": 0
           }
         ]
       ],
       "children": [
         {
-          "selector": "#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right",
-          "original": 31,
-          "numFiltered": 8,
-          "numPruned": 9,
-          "prunedProps": [
-            "padding",
-            "font-size",
-            "font-size",
-            "line-height",
-            "font-size",
-            "font-size",
-            "line-height",
-            "font-size",
-            "font-size"
-          ],
-          "percentReductionFromOriginal": 0.5483870967741935,
-          "percentReductionFromFiltered": 0.391304347826087,
-          "totalDiffScore": 1800613,
-          "unnormalized": [
-            [
-              "h3",
-              {
-                "font-size": -1,
-                "line-height": 397468
-              }
-            ],
-            [
-              "h3",
-              {
-                "font-family": 10647,
-                "font-weight": 904
-              }
-            ],
-            [
-              "h3",
-              {
-                "letter-spacing": 3951
-              }
-            ],
-            [
-              "h3",
-              {
-                "font-size": -1,
-                "line-height": -1
-              }
-            ],
-            [
-              "h3",
-              {
-                "font-size": -1,
-                "line-height": -1
-              }
-            ],
-            [
-              "h3",
-              {
-                "margin-bottom": 706403
-              }
-            ],
-            [
-              "h3",
-              {
-                "margin": 681240,
-                "padding": -1
-              }
-            ]
-          ],
-          "normalized": [
-            [
-              "h3",
-              {
-                "font-size": 0,
-                "line-height": 0
-              }
-            ],
-            [
-              "h3",
-              {
-                "font-family": 1,
-                "font-weight": 0
-              }
-            ],
-            [
-              "h3",
-              {
-                "letter-spacing": 0
-              }
-            ],
-            [
-              "h3",
-              {
-                "font-size": 0,
-                "line-height": 0
-              }
-            ],
-            [
-              "h3",
-              {
-                "font-size": 0,
-                "line-height": 0
-              }
-            ],
-            [
-              "h3",
-              {
-                "margin-bottom": 0
-              }
-            ],
-            [
-              "h3",
-              {
-                "margin": 0,
-                "padding": 0
-              }
-            ]
-          ],
-          "children": [
-            {
-              "selector": "#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right",
-              "original": 9,
-              "numFiltered": 2,
-              "numPruned": 3,
-              "prunedProps": [
-                "margin-bottom",
-                "font-size",
-                "font-size"
-              ],
-              "percentReductionFromOriginal": 0.5555555555555556,
-              "percentReductionFromFiltered": 0.42857142857142855,
-              "totalDiffScore": 605405,
-              "unnormalized": [
-                [
-                  "h3 .eyebrow",
-                  {
-                    "font-size": -1,
-                    "line-height": 601274
-                  }
-                ],
-                [
-                  "h3 .eyebrow",
-                  {
-                    "letter-spacing": 3951
-                  }
-                ],
-                [
-                  ".eyebrow",
-                  {
-                    "color": 100
-                  }
-                ],
-                [
-                  ".eyebrow",
-                  {
-                    "font-weight": 80
-                  }
-                ],
-                [
-                  ".eyebrow",
-                  {
-                    "margin-bottom": -1
-                  }
-                ]
-              ],
-              "normalized": [
-                [
-                  "h3 .eyebrow",
-                  {
-                    "font-size": 0,
-                    "line-height": 0
-                  }
-                ],
-                [
-                  "h3 .eyebrow",
-                  {
-                    "letter-spacing": 0
-                  }
-                ],
-                [
-                  ".eyebrow",
-                  {
-                    "color": 0
-                  }
-                ],
-                [
-                  ".eyebrow",
-                  {
-                    "font-weight": 0
-                  }
-                ],
-                [
-                  ".eyebrow",
-                  {
-                    "margin-bottom": 0
-                  }
-                ]
-              ],
-              "children": []
-            },
-            {
-              "selector": "#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right",
-              "original": 2,
-              "numFiltered": 2,
-              "numPruned": 0,
-              "prunedProps": [],
-              "percentReductionFromOriginal": 1,
-              "percentReductionFromFiltered": null,
-              "totalDiffScore": 0,
-              "unnormalized": [],
-              "normalized": [],
-              "children": []
-            }
-          ]
-        },
-        {
-          "selector": "#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right",
-          "original": 4,
+          "original": 3,
           "numFiltered": 2,
           "numPruned": 1,
           "prunedProps": [
-            "pointer-events"
+            "width"
           ],
-          "percentReductionFromOriginal": 0.75,
-          "percentReductionFromFiltered": 0.5,
-          "totalDiffScore": 697827,
+          "percentReductionFromOriginal": 1,
+          "percentReductionFromFiltered": 1,
+          "totalDiffScore": 0,
           "unnormalized": [
             [
-              ".pointer-events--all",
+              ".autocomplete-container",
               {
-                "pointer-events": -1
-              }
-            ],
-            [
-              ".bg-primary-layer-color",
-              {
-                "background-color": 697827
+                "width": -1
               }
             ]
           ],
           "normalized": [
             [
-              ".pointer-events--all",
+              ".autocomplete-container",
               {
-                "pointer-events": 0
-              }
-            ],
-            [
-              ".bg-primary-layer-color",
-              {
-                "background-color": 0
+                "width": 0
               }
             ]
           ],
           "children": [
             {
-              "selector": "#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right",
               "original": 3,
               "numFiltered": 2,
               "numPruned": 0,
               "prunedProps": [],
               "percentReductionFromOriginal": 0.6666666666666666,
               "percentReductionFromFiltered": 0,
-              "totalDiffScore": 4721,
+              "totalDiffScore": 2612,
               "unnormalized": [
                 [
                   ".position--relative",
                   {
-                    "position": 4721
+                    "position": 2612
                   }
                 ]
               ],
@@ -414,76 +151,68 @@
               ],
               "children": [
                 {
-                  "selector": "#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right",
-                  "original": 9,
+                  "original": 33,
                   "numFiltered": 2,
-                  "numPruned": 1,
+                  "numPruned": 3,
                   "prunedProps": [
-                    "z-index"
+                    "margin-bottom",
+                    "height",
+                    "width"
                   ],
-                  "percentReductionFromOriginal": 0.3333333333333333,
-                  "percentReductionFromFiltered": 0.14285714285714285,
-                  "totalDiffScore": 438,
+                  "percentReductionFromOriginal": 0.15151515151515152,
+                  "percentReductionFromFiltered": 0.0967741935483871,
+                  "totalDiffScore": 19024,
                   "unnormalized": [
                     [
-                      ".fare-estimate__input-connector",
+                      ".autocomplete div",
                       {
-                        "position": 81,
-                        "top": 67,
-                        "bottom": 58,
-                        "left": 134,
-                        "width": 49,
-                        "background-color": 49
+                        "padding": 796
                       }
                     ],
                     [
-                      ".z-10",
+                      ".autocomplete__input",
                       {
-                        "z-index": -1
+                        "height": -1,
+                        "width": -1,
+                        "border": 2295
+                      }
+                    ],
+                    [
+                      ".hard",
+                      {
+                        "padding": 15933
+                      }
+                    ],
+                    [
+                      ".flush--bottom",
+                      {
+                        "margin-bottom": -1
                       }
                     ]
                   ],
                   "normalized": [
                     [
-                      ".fare-estimate__input-connector",
+                      ".autocomplete div",
                       {
-                        "position": 0.3764705882352941,
-                        "top": 0.21176470588235294,
-                        "bottom": 0.10588235294117647,
-                        "left": 1,
+                        "padding": 0
+                      }
+                    ],
+                    [
+                      ".autocomplete__input",
+                      {
+                        "height": 0,
                         "width": 0,
-                        "background-color": 0
+                        "border": 0
                       }
                     ],
                     [
-                      ".z-10",
+                      ".hard",
                       {
-                        "z-index": 0
+                        "padding": 0
                       }
-                    ]
-                  ],
-                  "children": []
-                },
-                {
-                  "selector": "#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right",
-                  "original": 3,
-                  "numFiltered": 2,
-                  "numPruned": 0,
-                  "prunedProps": [],
-                  "percentReductionFromOriginal": 0.6666666666666666,
-                  "percentReductionFromFiltered": 0,
-                  "totalDiffScore": 606643,
-                  "unnormalized": [
+                    ],
                     [
-                      ".push-tiny--bottom",
-                      {
-                        "margin-bottom": 606643
-                      }
-                    ]
-                  ],
-                  "normalized": [
-                    [
-                      ".push-tiny--bottom",
+                      ".flush--bottom",
                       {
                         "margin-bottom": 0
                       }
@@ -491,1027 +220,122 @@
                   ],
                   "children": [
                     {
-                      "selector": "#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right",
-                      "original": 3,
+                      "original": 7,
                       "numFiltered": 2,
-                      "numPruned": 1,
-                      "prunedProps": [
-                        "width"
-                      ],
-                      "percentReductionFromOriginal": 1,
-                      "percentReductionFromFiltered": 1,
-                      "totalDiffScore": 0,
+                      "numPruned": 0,
+                      "prunedProps": [],
+                      "percentReductionFromOriginal": 0.2857142857142857,
+                      "percentReductionFromFiltered": 0,
+                      "totalDiffScore": 796,
                       "unnormalized": [
                         [
-                          ".autocomplete-container",
+                          ".autocomplete div",
                           {
-                            "width": -1
+                            "padding": 796
                           }
                         ]
                       ],
                       "normalized": [
                         [
-                          ".autocomplete-container",
+                          ".autocomplete div",
                           {
-                            "width": 0
+                            "padding": 0
                           }
                         ]
                       ],
                       "children": [
                         {
-                          "selector": "#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right",
-                          "original": 3,
-                          "numFiltered": 2,
-                          "numPruned": 0,
-                          "prunedProps": [],
-                          "percentReductionFromOriginal": 0.6666666666666666,
-                          "percentReductionFromFiltered": 0,
-                          "totalDiffScore": 4721,
-                          "unnormalized": [
-                            [
-                              ".position--relative",
-                              {
-                                "position": 4721
-                              }
-                            ]
-                          ],
-                          "normalized": [
-                            [
-                              ".position--relative",
-                              {
-                                "position": 0
-                              }
-                            ]
-                          ],
-                          "children": [
-                            {
-                              "selector": "#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right",
-                              "original": 33,
-                              "numFiltered": 2,
-                              "numPruned": 3,
-                              "prunedProps": [
-                                "margin-bottom",
-                                "height",
-                                "width"
-                              ],
-                              "percentReductionFromOriginal": 0.15151515151515152,
-                              "percentReductionFromFiltered": 0.0967741935483871,
-                              "totalDiffScore": 274072,
-                              "unnormalized": [
-                                [
-                                  ".autocomplete div",
-                                  {
-                                    "padding": 796
-                                  }
-                                ],
-                                [
-                                  ".autocomplete__input",
-                                  {
-                                    "height": -1,
-                                    "width": -1,
-                                    "border": 2295
-                                  }
-                                ],
-                                [
-                                  ".hard",
-                                  {
-                                    "padding": 270981
-                                  }
-                                ],
-                                [
-                                  ".flush--bottom",
-                                  {
-                                    "margin-bottom": -1
-                                  }
-                                ]
-                              ],
-                              "normalized": [
-                                [
-                                  ".autocomplete div",
-                                  {
-                                    "padding": 0
-                                  }
-                                ],
-                                [
-                                  ".autocomplete__input",
-                                  {
-                                    "height": 0,
-                                    "width": 0,
-                                    "border": 0
-                                  }
-                                ],
-                                [
-                                  ".hard",
-                                  {
-                                    "padding": 0
-                                  }
-                                ],
-                                [
-                                  ".flush--bottom",
-                                  {
-                                    "margin-bottom": 0
-                                  }
-                                ]
-                              ],
-                              "children": [
-                                {
-                                  "selector": "#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right",
-                                  "original": 7,
-                                  "numFiltered": 2,
-                                  "numPruned": 0,
-                                  "prunedProps": [],
-                                  "percentReductionFromOriginal": 0.2857142857142857,
-                                  "percentReductionFromFiltered": 0,
-                                  "totalDiffScore": 796,
-                                  "unnormalized": [
-                                    [
-                                      ".autocomplete div",
-                                      {
-                                        "padding": 796
-                                      }
-                                    ]
-                                  ],
-                                  "normalized": [
-                                    [
-                                      ".autocomplete div",
-                                      {
-                                        "padding": 0
-                                      }
-                                    ]
-                                  ],
-                                  "children": [
-                                    {
-                                      "selector": "#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right",
-                                      "original": 130,
-                                      "numFiltered": 50,
-                                      "numPruned": 12,
-                                      "prunedProps": [
-                                        "color",
-                                        "margin",
-                                        "line-height",
-                                        "padding",
-                                        "border-radius",
-                                        "border",
-                                        "margin",
-                                        "width",
-                                        "width",
-                                        "overflow",
-                                        "white-space",
-                                        "text-overflow"
-                                      ],
-                                      "percentReductionFromOriginal": 0.47692307692307695,
-                                      "percentReductionFromFiltered": 0.15,
-                                      "totalDiffScore": 3472,
-                                      "unnormalized": [
-                                        [
-                                          ".autocomplete div input",
-                                          {
-                                            "width": -1,
-                                            "border": 1236,
-                                            "padding": 1423,
-                                            "overflow": -1,
-                                            "white-space": -1,
-                                            "text-overflow": -1
-                                          }
-                                        ],
-                                        [
-                                          ".autocomplete div input",
-                                          {
-                                            "padding": -1,
-                                            "border-radius": -1,
-                                            "border": -1,
-                                            "margin": -1,
-                                            "width": -1
-                                          }
-                                        ],
-                                        [
-                                          "input",
-                                          {
-                                            "line-height": -1
-                                          }
-                                        ],
-                                        [
-                                          "input",
-                                          {
-                                            "color": -1,
-                                            "font": 813,
-                                            "margin": -1
-                                          }
-                                        ]
-                                      ],
-                                      "normalized": [
-                                        [
-                                          ".autocomplete div input",
-                                          {
-                                            "width": -6.614973262032086,
-                                            "border": 0,
-                                            "padding": 1,
-                                            "overflow": -6.614973262032086,
-                                            "white-space": -6.614973262032086,
-                                            "text-overflow": -6.614973262032086
-                                          }
-                                        ],
-                                        [
-                                          ".autocomplete div input",
-                                          {
-                                            "padding": 0,
-                                            "border-radius": 0,
-                                            "border": 0,
-                                            "margin": 0,
-                                            "width": 0
-                                          }
-                                        ],
-                                        [
-                                          "input",
-                                          {
-                                            "line-height": 0
-                                          }
-                                        ],
-                                        [
-                                          "input",
-                                          {
-                                            "color": 0,
-                                            "font": 0,
-                                            "margin": 0
-                                          }
-                                        ]
-                                      ],
-                                      "children": []
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "selector": "#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right",
-                      "original": 21,
-                      "numFiltered": 2,
-                      "numPruned": 9,
-                      "prunedProps": [
-                        "speak",
-                        "font-variant",
-                        "text-transform",
-                        "line-height",
-                        "-webkit-font-smoothing",
-                        "-moz-osx-font-smoothing",
-                        "cursor",
-                        "font-size",
-                        "font-size"
-                      ],
-                      "percentReductionFromOriginal": 0.5238095238095238,
-                      "percentReductionFromFiltered": 0.47368421052631576,
-                      "totalDiffScore": 752581,
-                      "unnormalized": [
-                        [
-                          ".fare-estimate__location-icon",
-                          {
-                            "top": 66,
-                            "right": 85,
-                            "color": 40,
-                            "cursor": -1,
-                            "font-size": -1,
-                            "line-height": 51
-                          }
-                        ],
-                        [
-                          ".position--absolute",
-                          {
-                            "position": 752096
-                          }
-                        ],
-                        [
-                          ".icon",
-                          {
-                            "font-family": 162,
-                            "speak": -1,
-                            "font-style": 47,
-                            "font-weight": 34,
-                            "font-variant": -1,
-                            "text-transform": -1,
-                            "line-height": -1,
-                            "-webkit-font-smoothing": -1,
-                            "-moz-osx-font-smoothing": -1
-                          }
-                        ]
-                      ],
-                      "normalized": [
-                        [
-                          ".fare-estimate__location-icon",
-                          {
-                            "top": 0.5777777777777777,
-                            "right": 1,
-                            "color": 0,
-                            "cursor": -0.9111111111111111,
-                            "font-size": -0.9111111111111111,
-                            "line-height": 0.24444444444444444
-                          }
-                        ],
-                        [
-                          ".position--absolute",
-                          {
-                            "position": 0
-                          }
-                        ],
-                        [
-                          ".icon",
-                          {
-                            "font-family": 1,
-                            "speak": -0.2734375,
-                            "font-style": 0.1015625,
-                            "font-weight": 0,
-                            "font-variant": -0.2734375,
-                            "text-transform": -0.2734375,
-                            "line-height": -0.2734375,
-                            "-webkit-font-smoothing": -0.2734375,
-                            "-moz-osx-font-smoothing": -0.2734375
-                          }
-                        ]
-                      ],
-                      "children": []
-                    }
-                  ]
-                },
-                {
-                  "selector": "#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right",
-                  "original": 3,
-                  "numFiltered": 2,
-                  "numPruned": 1,
-                  "prunedProps": [
-                    "width"
-                  ],
-                  "percentReductionFromOriginal": 1,
-                  "percentReductionFromFiltered": 1,
-                  "totalDiffScore": 0,
-                  "unnormalized": [
-                    [
-                      ".fare-estimate__destination-row",
-                      {
-                        "width": -1
-                      }
-                    ]
-                  ],
-                  "normalized": [
-                    [
-                      ".fare-estimate__destination-row",
-                      {
-                        "width": 0
-                      }
-                    ]
-                  ],
-                  "children": [
-                    {
-                      "selector": "#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right",
-                      "original": 4,
-                      "numFiltered": 2,
-                      "numPruned": 1,
-                      "prunedProps": [
-                        "display"
-                      ],
-                      "percentReductionFromOriginal": 0.75,
-                      "percentReductionFromFiltered": 0.5,
-                      "totalDiffScore": 60,
-                      "unnormalized": [
-                        [
-                          ".fare-estimate__destination",
-                          {
-                            "width": 60,
-                            "display": -1
-                          }
-                        ]
-                      ],
-                      "normalized": [
-                        [
-                          ".fare-estimate__destination",
-                          {
-                            "width": 0,
-                            "display": 0
-                          }
-                        ]
-                      ],
-                      "children": [
-                        {
-                          "selector": "#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right",
-                          "original": 3,
-                          "numFiltered": 2,
-                          "numPruned": 1,
+                          "original": 130,
+                          "numFiltered": 50,
+                          "numPruned": 12,
                           "prunedProps": [
-                            "width"
+                            "color",
+                            "margin",
+                            "line-height",
+                            "padding",
+                            "border-radius",
+                            "border",
+                            "margin",
+                            "width",
+                            "width",
+                            "overflow",
+                            "white-space",
+                            "text-overflow"
                           ],
-                          "percentReductionFromOriginal": 1,
-                          "percentReductionFromFiltered": 1,
-                          "totalDiffScore": 0,
+                          "percentReductionFromOriginal": 0.47692307692307695,
+                          "percentReductionFromFiltered": 0.15,
+                          "totalDiffScore": 3472,
                           "unnormalized": [
                             [
-                              ".autocomplete-container",
+                              ".autocomplete div input",
                               {
+                                "width": -1,
+                                "border": 1236,
+                                "padding": 1423,
+                                "overflow": -1,
+                                "white-space": -1,
+                                "text-overflow": -1
+                              }
+                            ],
+                            [
+                              ".autocomplete div input",
+                              {
+                                "padding": -1,
+                                "border-radius": -1,
+                                "border": -1,
+                                "margin": -1,
                                 "width": -1
                               }
+                            ],
+                            [
+                              "input",
+                              {
+                                "line-height": -1
+                              }
+                            ],
+                            [
+                              "input",
+                              {
+                                "color": -1,
+                                "font": 813,
+                                "margin": -1
+                              }
                             ]
                           ],
                           "normalized": [
                             [
-                              ".autocomplete-container",
+                              ".autocomplete div input",
                               {
+                                "width": -6.614973262032086,
+                                "border": 0,
+                                "padding": 1,
+                                "overflow": -6.614973262032086,
+                                "white-space": -6.614973262032086,
+                                "text-overflow": -6.614973262032086
+                              }
+                            ],
+                            [
+                              ".autocomplete div input",
+                              {
+                                "padding": 0,
+                                "border-radius": 0,
+                                "border": 0,
+                                "margin": 0,
                                 "width": 0
                               }
-                            ]
-                          ],
-                          "children": [
-                            {
-                              "selector": "#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right",
-                              "original": 3,
-                              "numFiltered": 2,
-                              "numPruned": 0,
-                              "prunedProps": [],
-                              "percentReductionFromOriginal": 0.6666666666666666,
-                              "percentReductionFromFiltered": 0,
-                              "totalDiffScore": 4721,
-                              "unnormalized": [
-                                [
-                                  ".position--relative",
-                                  {
-                                    "position": 4721
-                                  }
-                                ]
-                              ],
-                              "normalized": [
-                                [
-                                  ".position--relative",
-                                  {
-                                    "position": 0
-                                  }
-                                ]
-                              ],
-                              "children": [
-                                {
-                                  "selector": "#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right",
-                                  "original": 33,
-                                  "numFiltered": 2,
-                                  "numPruned": 3,
-                                  "prunedProps": [
-                                    "margin-bottom",
-                                    "height",
-                                    "width"
-                                  ],
-                                  "percentReductionFromOriginal": 0.15151515151515152,
-                                  "percentReductionFromFiltered": 0.0967741935483871,
-                                  "totalDiffScore": 274072,
-                                  "unnormalized": [
-                                    [
-                                      ".autocomplete div",
-                                      {
-                                        "padding": 796
-                                      }
-                                    ],
-                                    [
-                                      ".autocomplete__input",
-                                      {
-                                        "height": -1,
-                                        "width": -1,
-                                        "border": 2295
-                                      }
-                                    ],
-                                    [
-                                      ".hard",
-                                      {
-                                        "padding": 270981
-                                      }
-                                    ],
-                                    [
-                                      ".flush--bottom",
-                                      {
-                                        "margin-bottom": -1
-                                      }
-                                    ]
-                                  ],
-                                  "normalized": [
-                                    [
-                                      ".autocomplete div",
-                                      {
-                                        "padding": 0
-                                      }
-                                    ],
-                                    [
-                                      ".autocomplete__input",
-                                      {
-                                        "height": 0,
-                                        "width": 0,
-                                        "border": 0
-                                      }
-                                    ],
-                                    [
-                                      ".hard",
-                                      {
-                                        "padding": 0
-                                      }
-                                    ],
-                                    [
-                                      ".flush--bottom",
-                                      {
-                                        "margin-bottom": 0
-                                      }
-                                    ]
-                                  ],
-                                  "children": [
-                                    {
-                                      "selector": "#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right",
-                                      "original": 10,
-                                      "numFiltered": 2,
-                                      "numPruned": 3,
-                                      "prunedProps": [
-                                        "box-sizing",
-                                        "width",
-                                        "padding-right"
-                                      ],
-                                      "percentReductionFromOriginal": 0.5,
-                                      "percentReductionFromFiltered": 0.375,
-                                      "totalDiffScore": 796,
-                                      "unnormalized": [
-                                        [
-                                          ".fare-estimate__destination .autocomplete__input div",
-                                          {
-                                            "box-sizing": -1,
-                                            "width": -1,
-                                            "padding-right": -1
-                                          }
-                                        ],
-                                        [
-                                          ".autocomplete div",
-                                          {
-                                            "padding": 796
-                                          }
-                                        ]
-                                      ],
-                                      "normalized": [
-                                        [
-                                          ".fare-estimate__destination .autocomplete__input div",
-                                          {
-                                            "box-sizing": 0,
-                                            "width": 0,
-                                            "padding-right": 0
-                                          }
-                                        ],
-                                        [
-                                          ".autocomplete div",
-                                          {
-                                            "padding": 0
-                                          }
-                                        ]
-                                      ],
-                                      "children": [
-                                        {
-                                          "selector": "#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right",
-                                          "original": 130,
-                                          "numFiltered": 50,
-                                          "numPruned": 12,
-                                          "prunedProps": [
-                                            "color",
-                                            "margin",
-                                            "line-height",
-                                            "padding",
-                                            "border-radius",
-                                            "border",
-                                            "margin",
-                                            "width",
-                                            "width",
-                                            "overflow",
-                                            "white-space",
-                                            "text-overflow"
-                                          ],
-                                          "percentReductionFromOriginal": 0.47692307692307695,
-                                          "percentReductionFromFiltered": 0.15,
-                                          "totalDiffScore": 3472,
-                                          "unnormalized": [
-                                            [
-                                              ".autocomplete div input",
-                                              {
-                                                "width": -1,
-                                                "border": 1236,
-                                                "padding": 1423,
-                                                "overflow": -1,
-                                                "white-space": -1,
-                                                "text-overflow": -1
-                                              }
-                                            ],
-                                            [
-                                              ".autocomplete div input",
-                                              {
-                                                "padding": -1,
-                                                "border-radius": -1,
-                                                "border": -1,
-                                                "margin": -1,
-                                                "width": -1
-                                              }
-                                            ],
-                                            [
-                                              "input",
-                                              {
-                                                "line-height": -1
-                                              }
-                                            ],
-                                            [
-                                              "input",
-                                              {
-                                                "color": -1,
-                                                "font": 813,
-                                                "margin": -1
-                                              }
-                                            ]
-                                          ],
-                                          "normalized": [
-                                            [
-                                              ".autocomplete div input",
-                                              {
-                                                "width": -6.614973262032086,
-                                                "border": 0,
-                                                "padding": 1,
-                                                "overflow": -6.614973262032086,
-                                                "white-space": -6.614973262032086,
-                                                "text-overflow": -6.614973262032086
-                                              }
-                                            ],
-                                            [
-                                              ".autocomplete div input",
-                                              {
-                                                "padding": 0,
-                                                "border-radius": 0,
-                                                "border": 0,
-                                                "margin": 0,
-                                                "width": 0
-                                              }
-                                            ],
-                                            [
-                                              "input",
-                                              {
-                                                "line-height": 0
-                                              }
-                                            ],
-                                            [
-                                              "input",
-                                              {
-                                                "color": 0,
-                                                "font": 0,
-                                                "margin": 0
-                                              }
-                                            ]
-                                          ],
-                                          "children": []
-                                        }
-                                      ]
-                                    }
-                                  ]
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "selector": "#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right",
-                      "original": 168,
-                      "numFiltered": 52,
-                      "numPruned": 27,
-                      "prunedProps": [
-                        "color",
-                        "margin",
-                        "overflow",
-                        "text-transform",
-                        "-webkit-appearance",
-                        "cursor",
-                        "pointer-events",
-                        "-webkit-transition",
-                        "transition",
-                        "vertical-align",
-                        "font",
-                        "text-align",
-                        "margin",
-                        "cursor",
-                        "overflow",
-                        "background-color",
-                        "font-family",
-                        "text-decoration",
-                        "padding",
-                        "border-radius",
-                        "outline",
-                        "position",
-                        "font-size",
-                        "font-size",
-                        "padding-top",
-                        "padding-bottom",
-                        "padding-bottom"
-                      ],
-                      "percentReductionFromOriginal": 0.47023809523809523,
-                      "percentReductionFromFiltered": 0.23275862068965517,
-                      "totalDiffScore": 766297,
-                      "unnormalized": [
-                        [
-                          ".fare-estimate__button--inactive",
-                          {
-                            "border-color": 336,
-                            "background-color": 1566
-                          }
-                        ],
-                        [
-                          ".btn--bit",
-                          {
-                            "padding-top": 72,
-                            "padding-bottom": -1,
-                            "width": 210
-                          }
-                        ],
-                        [
-                          ".btn",
-                          {
-                            "font-size": -1,
-                            "line-height": 80,
-                            "padding-top": -1,
-                            "padding-bottom": -1
-                          }
-                        ],
-                        [
-                          ".btn--bit",
-                          {
-                            "padding": 60,
-                            "font-size": 54,
-                            "height": 168
-                          }
-                        ],
-                        [
-                          ".right",
-                          {
-                            "right": 3731
-                          }
-                        ],
-                        [
-                          ".btn",
-                          {
-                            "font-weight": 465,
-                            "padding": -1,
-                            "border-radius": -1,
-                            "border": 1860,
-                            "outline": -1,
-                            "position": -1
-                          }
-                        ],
-                        [
-                          ".btn",
-                          {
-                            "text-decoration": -1,
-                            "color": 404
-                          }
-                        ],
-                        [
-                          ".btn",
-                          {
-                            "font-family": -1,
-                            "text-transform": 1495
-                          }
-                        ],
-                        [
-                          ".btn",
-                          {
-                            "display": 2887,
-                            "font": -1,
-                            "text-align": -1,
-                            "margin": -1,
-                            "cursor": -1,
-                            "overflow": -1,
-                            "background-color": -1
-                          }
-                        ],
-                        [
-                          ".btn",
-                          {
-                            "vertical-align": -1
-                          }
-                        ],
-                        [
-                          ".btn, .transition",
-                          {
-                            "-webkit-transition": -1,
-                            "transition": -1
-                          }
-                        ],
-                        [
-                          ".position--absolute",
-                          {
-                            "position": 752096
-                          }
-                        ],
-                        [
-                          ".pointer-events--none",
-                          {
-                            "pointer-events": -1
-                          }
-                        ],
-                        [
-                          "button",
-                          {
-                            "-webkit-appearance": -1,
-                            "cursor": -1
-                          }
-                        ],
-                        [
-                          "button",
-                          {
-                            "text-transform": -1
-                          }
-                        ],
-                        [
-                          "button",
-                          {
-                            "overflow": -1
-                          }
-                        ],
-                        [
-                          "button",
-                          {
-                            "color": -1,
-                            "font": 813,
-                            "margin": -1
-                          }
-                        ]
-                      ],
-                      "normalized": [
-                        [
-                          ".fare-estimate__button--inactive",
-                          {
-                            "border-color": 0,
-                            "background-color": 1
-                          }
-                        ],
-                        [
-                          ".btn--bit",
-                          {
-                            "padding-top": 0,
-                            "padding-bottom": -0.5289855072463768,
-                            "width": 1
-                          }
-                        ],
-                        [
-                          ".btn",
-                          {
-                            "font-size": 0,
-                            "line-height": 0,
-                            "padding-top": 0,
-                            "padding-bottom": 0
-                          }
-                        ],
-                        [
-                          ".btn--bit",
-                          {
-                            "padding": 0.05263157894736842,
-                            "font-size": 0,
-                            "height": 1
-                          }
-                        ],
-                        [
-                          ".right",
-                          {
-                            "right": 0
-                          }
-                        ],
-                        [
-                          ".btn",
-                          {
-                            "font-weight": 0,
-                            "padding": -0.3340501792114695,
-                            "border-radius": -0.3340501792114695,
-                            "border": 1,
-                            "outline": -0.3340501792114695,
-                            "position": -0.3340501792114695
-                          }
-                        ],
-                        [
-                          ".btn",
-                          {
-                            "text-decoration": 0,
-                            "color": 0
-                          }
-                        ],
-                        [
-                          ".btn",
-                          {
-                            "font-family": 0,
-                            "text-transform": 0
-                          }
-                        ],
-                        [
-                          ".btn",
-                          {
-                            "display": 0,
-                            "font": 0,
-                            "text-align": 0,
-                            "margin": 0,
-                            "cursor": 0,
-                            "overflow": 0,
-                            "background-color": 0
-                          }
-                        ],
-                        [
-                          ".btn",
-                          {
-                            "vertical-align": 0
-                          }
-                        ],
-                        [
-                          ".btn, .transition",
-                          {
-                            "-webkit-transition": 0,
-                            "transition": 0
-                          }
-                        ],
-                        [
-                          ".position--absolute",
-                          {
-                            "position": 0
-                          }
-                        ],
-                        [
-                          ".pointer-events--none",
-                          {
-                            "pointer-events": 0
-                          }
-                        ],
-                        [
-                          "button",
-                          {
-                            "-webkit-appearance": 0,
-                            "cursor": 0
-                          }
-                        ],
-                        [
-                          "button",
-                          {
-                            "text-transform": 0
-                          }
-                        ],
-                        [
-                          "button",
-                          {
-                            "overflow": 0
-                          }
-                        ],
-                        [
-                          "button",
-                          {
-                            "color": 0,
-                            "font": 0,
-                            "margin": 0
-                          }
-                        ]
-                      ],
-                      "children": [
-                        {
-                          "selector": "#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right",
-                          "original": 13,
-                          "numFiltered": 2,
-                          "numPruned": 6,
-                          "prunedProps": [
-                            "speak",
-                            "font-variant",
-                            "text-transform",
-                            "line-height",
-                            "-webkit-font-smoothing",
-                            "-moz-osx-font-smoothing"
-                          ],
-                          "percentReductionFromOriginal": 0.6153846153846154,
-                          "percentReductionFromFiltered": 0.5454545454545454,
-                          "totalDiffScore": 243,
-                          "unnormalized": [
+                            ],
                             [
-                              ".icon",
+                              "input",
                               {
-                                "font-family": 162,
-                                "speak": -1,
-                                "font-style": 47,
-                                "font-weight": 34,
-                                "font-variant": -1,
-                                "text-transform": -1,
-                                "line-height": -1,
-                                "-webkit-font-smoothing": -1,
-                                "-moz-osx-font-smoothing": -1
+                                "line-height": 0
                               }
-                            ]
-                          ],
-                          "normalized": [
+                            ],
                             [
-                              ".icon",
+                              "input",
                               {
-                                "font-family": 1,
-                                "speak": -0.2734375,
-                                "font-style": 0.1015625,
-                                "font-weight": 0,
-                                "font-variant": -0.2734375,
-                                "text-transform": -0.2734375,
-                                "line-height": -0.2734375,
-                                "-webkit-font-smoothing": -0.2734375,
-                                "-moz-osx-font-smoothing": -0.2734375
+                                "color": 0,
+                                "font": 0,
+                                "margin": 0
                               }
                             ]
                           ],
@@ -1524,8 +348,770 @@
               ]
             }
           ]
+        },
+        {
+          "original": 21,
+          "numFiltered": 2,
+          "numPruned": 9,
+          "prunedProps": [
+            "speak",
+            "font-variant",
+            "text-transform",
+            "line-height",
+            "-webkit-font-smoothing",
+            "-moz-osx-font-smoothing",
+            "cursor",
+            "font-size",
+            "font-size"
+          ],
+          "percentReductionFromOriginal": 0.5238095238095238,
+          "percentReductionFromFiltered": 0.47368421052631576,
+          "totalDiffScore": 106371,
+          "unnormalized": [
+            [
+              ".fare-estimate__location-icon",
+              {
+                "top": 66,
+                "right": 85,
+                "color": 40,
+                "cursor": -1,
+                "font-size": -1,
+                "line-height": 51
+              }
+            ],
+            [
+              ".position--absolute",
+              {
+                "position": 105886
+              }
+            ],
+            [
+              ".icon",
+              {
+                "font-family": 162,
+                "speak": -1,
+                "font-style": 47,
+                "font-weight": 34,
+                "font-variant": -1,
+                "text-transform": -1,
+                "line-height": -1,
+                "-webkit-font-smoothing": -1,
+                "-moz-osx-font-smoothing": -1
+              }
+            ]
+          ],
+          "normalized": [
+            [
+              ".fare-estimate__location-icon",
+              {
+                "top": 0.5777777777777777,
+                "right": 1,
+                "color": 0,
+                "cursor": -0.9111111111111111,
+                "font-size": -0.9111111111111111,
+                "line-height": 0.24444444444444444
+              }
+            ],
+            [
+              ".position--absolute",
+              {
+                "position": 0
+              }
+            ],
+            [
+              ".icon",
+              {
+                "font-family": 1,
+                "speak": -0.2734375,
+                "font-style": 0.1015625,
+                "font-weight": 0,
+                "font-variant": -0.2734375,
+                "text-transform": -0.2734375,
+                "line-height": -0.2734375,
+                "-webkit-font-smoothing": -0.2734375,
+                "-moz-osx-font-smoothing": -0.2734375
+              }
+            ]
+          ],
+          "children": []
+        }
+      ]
+    },
+    {
+      "original": 3,
+      "numFiltered": 2,
+      "numPruned": 1,
+      "prunedProps": [
+        "width"
+      ],
+      "percentReductionFromOriginal": 1,
+      "percentReductionFromFiltered": 1,
+      "totalDiffScore": 0,
+      "unnormalized": [
+        [
+          ".fare-estimate__destination-row",
+          {
+            "width": -1
+          }
+        ]
+      ],
+      "normalized": [
+        [
+          ".fare-estimate__destination-row",
+          {
+            "width": 0
+          }
+        ]
+      ],
+      "children": [
+        {
+          "original": 4,
+          "numFiltered": 2,
+          "numPruned": 1,
+          "prunedProps": [
+            "display"
+          ],
+          "percentReductionFromOriginal": 0.75,
+          "percentReductionFromFiltered": 0.5,
+          "totalDiffScore": 60,
+          "unnormalized": [
+            [
+              ".fare-estimate__destination",
+              {
+                "width": 60,
+                "display": -1
+              }
+            ]
+          ],
+          "normalized": [
+            [
+              ".fare-estimate__destination",
+              {
+                "width": 0,
+                "display": 0
+              }
+            ]
+          ],
+          "children": [
+            {
+              "original": 3,
+              "numFiltered": 2,
+              "numPruned": 1,
+              "prunedProps": [
+                "width"
+              ],
+              "percentReductionFromOriginal": 1,
+              "percentReductionFromFiltered": 1,
+              "totalDiffScore": 0,
+              "unnormalized": [
+                [
+                  ".autocomplete-container",
+                  {
+                    "width": -1
+                  }
+                ]
+              ],
+              "normalized": [
+                [
+                  ".autocomplete-container",
+                  {
+                    "width": 0
+                  }
+                ]
+              ],
+              "children": [
+                {
+                  "original": 3,
+                  "numFiltered": 2,
+                  "numPruned": 0,
+                  "prunedProps": [],
+                  "percentReductionFromOriginal": 0.6666666666666666,
+                  "percentReductionFromFiltered": 0,
+                  "totalDiffScore": 2612,
+                  "unnormalized": [
+                    [
+                      ".position--relative",
+                      {
+                        "position": 2612
+                      }
+                    ]
+                  ],
+                  "normalized": [
+                    [
+                      ".position--relative",
+                      {
+                        "position": 0
+                      }
+                    ]
+                  ],
+                  "children": [
+                    {
+                      "original": 33,
+                      "numFiltered": 2,
+                      "numPruned": 3,
+                      "prunedProps": [
+                        "margin-bottom",
+                        "height",
+                        "width"
+                      ],
+                      "percentReductionFromOriginal": 0.15151515151515152,
+                      "percentReductionFromFiltered": 0.0967741935483871,
+                      "totalDiffScore": 19024,
+                      "unnormalized": [
+                        [
+                          ".autocomplete div",
+                          {
+                            "padding": 796
+                          }
+                        ],
+                        [
+                          ".autocomplete__input",
+                          {
+                            "height": -1,
+                            "width": -1,
+                            "border": 2295
+                          }
+                        ],
+                        [
+                          ".hard",
+                          {
+                            "padding": 15933
+                          }
+                        ],
+                        [
+                          ".flush--bottom",
+                          {
+                            "margin-bottom": -1
+                          }
+                        ]
+                      ],
+                      "normalized": [
+                        [
+                          ".autocomplete div",
+                          {
+                            "padding": 0
+                          }
+                        ],
+                        [
+                          ".autocomplete__input",
+                          {
+                            "height": 0,
+                            "width": 0,
+                            "border": 0
+                          }
+                        ],
+                        [
+                          ".hard",
+                          {
+                            "padding": 0
+                          }
+                        ],
+                        [
+                          ".flush--bottom",
+                          {
+                            "margin-bottom": 0
+                          }
+                        ]
+                      ],
+                      "children": [
+                        {
+                          "original": 10,
+                          "numFiltered": 2,
+                          "numPruned": 3,
+                          "prunedProps": [
+                            "box-sizing",
+                            "width",
+                            "padding-right"
+                          ],
+                          "percentReductionFromOriginal": 0.5,
+                          "percentReductionFromFiltered": 0.375,
+                          "totalDiffScore": 796,
+                          "unnormalized": [
+                            [
+                              ".fare-estimate__destination .autocomplete__input div",
+                              {
+                                "box-sizing": -1,
+                                "width": -1,
+                                "padding-right": -1
+                              }
+                            ],
+                            [
+                              ".autocomplete div",
+                              {
+                                "padding": 796
+                              }
+                            ]
+                          ],
+                          "normalized": [
+                            [
+                              ".fare-estimate__destination .autocomplete__input div",
+                              {
+                                "box-sizing": 0,
+                                "width": 0,
+                                "padding-right": 0
+                              }
+                            ],
+                            [
+                              ".autocomplete div",
+                              {
+                                "padding": 0
+                              }
+                            ]
+                          ],
+                          "children": [
+                            {
+                              "original": 130,
+                              "numFiltered": 50,
+                              "numPruned": 12,
+                              "prunedProps": [
+                                "color",
+                                "margin",
+                                "line-height",
+                                "padding",
+                                "border-radius",
+                                "border",
+                                "margin",
+                                "width",
+                                "width",
+                                "overflow",
+                                "white-space",
+                                "text-overflow"
+                              ],
+                              "percentReductionFromOriginal": 0.47692307692307695,
+                              "percentReductionFromFiltered": 0.15,
+                              "totalDiffScore": 3472,
+                              "unnormalized": [
+                                [
+                                  ".autocomplete div input",
+                                  {
+                                    "width": -1,
+                                    "border": 1236,
+                                    "padding": 1423,
+                                    "overflow": -1,
+                                    "white-space": -1,
+                                    "text-overflow": -1
+                                  }
+                                ],
+                                [
+                                  ".autocomplete div input",
+                                  {
+                                    "padding": -1,
+                                    "border-radius": -1,
+                                    "border": -1,
+                                    "margin": -1,
+                                    "width": -1
+                                  }
+                                ],
+                                [
+                                  "input",
+                                  {
+                                    "line-height": -1
+                                  }
+                                ],
+                                [
+                                  "input",
+                                  {
+                                    "color": -1,
+                                    "font": 813,
+                                    "margin": -1
+                                  }
+                                ]
+                              ],
+                              "normalized": [
+                                [
+                                  ".autocomplete div input",
+                                  {
+                                    "width": -6.614973262032086,
+                                    "border": 0,
+                                    "padding": 1,
+                                    "overflow": -6.614973262032086,
+                                    "white-space": -6.614973262032086,
+                                    "text-overflow": -6.614973262032086
+                                  }
+                                ],
+                                [
+                                  ".autocomplete div input",
+                                  {
+                                    "padding": 0,
+                                    "border-radius": 0,
+                                    "border": 0,
+                                    "margin": 0,
+                                    "width": 0
+                                  }
+                                ],
+                                [
+                                  "input",
+                                  {
+                                    "line-height": 0
+                                  }
+                                ],
+                                [
+                                  "input",
+                                  {
+                                    "color": 0,
+                                    "font": 0,
+                                    "margin": 0
+                                  }
+                                ]
+                              ],
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "original": 168,
+          "numFiltered": 52,
+          "numPruned": 25,
+          "prunedProps": [
+            "color",
+            "margin",
+            "overflow",
+            "text-transform",
+            "-webkit-appearance",
+            "cursor",
+            "pointer-events",
+            "-webkit-transition",
+            "transition",
+            "vertical-align",
+            "font",
+            "text-align",
+            "margin",
+            "cursor",
+            "overflow",
+            "background-color",
+            "font-family",
+            "text-decoration",
+            "padding",
+            "border-radius",
+            "outline",
+            "position",
+            "font-size",
+            "font-size",
+            "padding-bottom"
+          ],
+          "percentReductionFromOriginal": 0.4583333333333333,
+          "percentReductionFromFiltered": 0.21551724137931033,
+          "totalDiffScore": 120083,
+          "unnormalized": [
+            [
+              ".fare-estimate__button--inactive",
+              {
+                "border-color": 336,
+                "background-color": 1566
+              }
+            ],
+            [
+              ".btn--bit",
+              {
+                "padding-top": 72,
+                "padding-bottom": -1,
+                "width": 210
+              }
+            ],
+            [
+              ".btn",
+              {
+                "font-size": -1,
+                "line-height": 81,
+                "padding-top": 1,
+                "padding-bottom": 1
+              }
+            ],
+            [
+              ".btn--bit",
+              {
+                "padding": 60,
+                "font-size": 54,
+                "height": 168
+              }
+            ],
+            [
+              ".right",
+              {
+                "right": 3731
+              }
+            ],
+            [
+              ".btn",
+              {
+                "font-weight": 465,
+                "padding": -1,
+                "border-radius": -1,
+                "border": 1860,
+                "outline": -1,
+                "position": -1
+              }
+            ],
+            [
+              ".btn",
+              {
+                "text-decoration": -1,
+                "color": 404
+              }
+            ],
+            [
+              ".btn",
+              {
+                "font-family": -1,
+                "text-transform": 1495
+              }
+            ],
+            [
+              ".btn",
+              {
+                "display": 2880,
+                "font": -1,
+                "text-align": -1,
+                "margin": -1,
+                "cursor": -1,
+                "overflow": -1,
+                "background-color": -1
+              }
+            ],
+            [
+              ".btn",
+              {
+                "vertical-align": -1
+              }
+            ],
+            [
+              ".btn, .transition",
+              {
+                "-webkit-transition": -1,
+                "transition": -1
+              }
+            ],
+            [
+              ".position--absolute",
+              {
+                "position": 105886
+              }
+            ],
+            [
+              ".pointer-events--none",
+              {
+                "pointer-events": -1
+              }
+            ],
+            [
+              "button",
+              {
+                "-webkit-appearance": -1,
+                "cursor": -1
+              }
+            ],
+            [
+              "button",
+              {
+                "text-transform": -1
+              }
+            ],
+            [
+              "button",
+              {
+                "overflow": -1
+              }
+            ],
+            [
+              "button",
+              {
+                "color": -1,
+                "font": 813,
+                "margin": -1
+              }
+            ]
+          ],
+          "normalized": [
+            [
+              ".fare-estimate__button--inactive",
+              {
+                "border-color": 0,
+                "background-color": 1
+              }
+            ],
+            [
+              ".btn--bit",
+              {
+                "padding-top": 0,
+                "padding-bottom": -0.5289855072463768,
+                "width": 1
+              }
+            ],
+            [
+              ".btn",
+              {
+                "font-size": -0.025,
+                "line-height": 1,
+                "padding-top": 0,
+                "padding-bottom": 0
+              }
+            ],
+            [
+              ".btn--bit",
+              {
+                "padding": 0.05263157894736842,
+                "font-size": 0,
+                "height": 1
+              }
+            ],
+            [
+              ".right",
+              {
+                "right": 0
+              }
+            ],
+            [
+              ".btn",
+              {
+                "font-weight": 0,
+                "padding": -0.3340501792114695,
+                "border-radius": -0.3340501792114695,
+                "border": 1,
+                "outline": -0.3340501792114695,
+                "position": -0.3340501792114695
+              }
+            ],
+            [
+              ".btn",
+              {
+                "text-decoration": 0,
+                "color": 0
+              }
+            ],
+            [
+              ".btn",
+              {
+                "font-family": 0,
+                "text-transform": 0
+              }
+            ],
+            [
+              ".btn",
+              {
+                "display": 0,
+                "font": 0,
+                "text-align": 0,
+                "margin": 0,
+                "cursor": 0,
+                "overflow": 0,
+                "background-color": 0
+              }
+            ],
+            [
+              ".btn",
+              {
+                "vertical-align": 0
+              }
+            ],
+            [
+              ".btn, .transition",
+              {
+                "-webkit-transition": 0,
+                "transition": 0
+              }
+            ],
+            [
+              ".position--absolute",
+              {
+                "position": 0
+              }
+            ],
+            [
+              ".pointer-events--none",
+              {
+                "pointer-events": 0
+              }
+            ],
+            [
+              "button",
+              {
+                "-webkit-appearance": 0,
+                "cursor": 0
+              }
+            ],
+            [
+              "button",
+              {
+                "text-transform": 0
+              }
+            ],
+            [
+              "button",
+              {
+                "overflow": 0
+              }
+            ],
+            [
+              "button",
+              {
+                "color": 0,
+                "font": 0,
+                "margin": 0
+              }
+            ]
+          ],
+          "children": [
+            {
+              "original": 13,
+              "numFiltered": 2,
+              "numPruned": 6,
+              "prunedProps": [
+                "speak",
+                "font-variant",
+                "text-transform",
+                "line-height",
+                "-webkit-font-smoothing",
+                "-moz-osx-font-smoothing"
+              ],
+              "percentReductionFromOriginal": 0.6153846153846154,
+              "percentReductionFromFiltered": 0.5454545454545454,
+              "totalDiffScore": 243,
+              "unnormalized": [
+                [
+                  ".icon",
+                  {
+                    "font-family": 162,
+                    "speak": -1,
+                    "font-style": 47,
+                    "font-weight": 34,
+                    "font-variant": -1,
+                    "text-transform": -1,
+                    "line-height": -1,
+                    "-webkit-font-smoothing": -1,
+                    "-moz-osx-font-smoothing": -1
+                  }
+                ]
+              ],
+              "normalized": [
+                [
+                  ".icon",
+                  {
+                    "font-family": 1,
+                    "speak": -0.2734375,
+                    "font-style": 0.1015625,
+                    "font-weight": 0,
+                    "font-variant": -0.2734375,
+                    "text-transform": -0.2734375,
+                    "line-height": -0.2734375,
+                    "-webkit-font-smoothing": -0.2734375,
+                    "-moz-osx-font-smoothing": -0.2734375
+                  }
+                ]
+              ],
+              "children": []
+            }
+          ]
         }
       ]
     }
-  ]
+  ],
+  "selector": "#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right > div > div > div"
 }

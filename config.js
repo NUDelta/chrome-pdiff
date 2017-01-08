@@ -51,9 +51,9 @@ export const PROFESSIONAL_EXAMPLES: TestSite[] = [
     title: 'uber',
     type: 'PROFESSIONAL',
     url: url('professional', 'uber'),
-    selector: '#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right',
+    selector: '#react-app > div > div > div > div.bg-primary-layer-color.position--relative > div > div > div > div:nth-child(1) > div > div > div > div > div > div.layout__item.one-third.lap-one-half.hard--left.soft--right > div > div > div',
     diffThreshold: 0.01,
-  }
+  },
 ];
 
 export const TOY_EXAMPLES: TestSite[] = [

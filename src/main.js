@@ -98,7 +98,6 @@ export default async function main (instance: Object, options: Object): Promise<
     }
 
     const results = {
-      selector: options.selector,
       ...stats,
       totalDiffScore,
       unnormalized,
@@ -119,6 +118,9 @@ export default async function main (instance: Object, options: Object): Promise<
   );
 
   const resultsTree: Object = await depthFirstHelper(startingNodeLike, processNode);
+
+  // Add the base selector.
+  resultsTree.selector = options.selector;
 
   writeResults(path.resolve(resultsDir, 'results.json'), resultsTree)
     .then(() => console.log(`Results written to disk at ${resultsDir}`));
