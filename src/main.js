@@ -18,8 +18,10 @@ async function depthFirstHelper (node: NodeLike, fn: Function): Promise<Object> 
   };
 
   for (const child of node.children) {
-    const childResult: Object = await depthFirstHelper(child, fn);
-    result.children.push(childResult);
+    if (child.nodeName !== '#text') {
+      const childResult: Object = await depthFirstHelper(child, fn);
+      result.children.push(childResult);
+    }
   }
 
   return result;
@@ -61,14 +63,22 @@ export default async function main (instance: Object, options: Object): Promise<
    * TODO: Refactor this to not be, like, a ginromous closure.
    */
   async function processNode (nodeId) {
-    const [ ruleMatches, totalPropsBeforeFiltering ]: [ RuleMatch[], number ] = await getElementStyles(
-      instance, rootId, nodeId, options
-    );
+    console.log(`NODE: ${nodeId}`);
+
+    let ruleMatches: RuleMatch[];
+    let totalPropsBeforeFiltering: number;
+
+    try {
+      [ ruleMatches, totalPropsBeforeFiltering ] = await getElementStyles(instance, rootId, nodeId, options);
+    } catch (err) {
+      debugger;
+      console.error(err);
+    }
 
     const { threshold } = options;
     const differ: Differ = await createDiffer(basePNG, threshold);
 
-    const drmResult: Object = diffRuleMatches(instance, options, ruleMatches, screenshotDirPath, differ);
+    const drmResult: Object = await diffRuleMatches(instance, options, ruleMatches, screenshotDirPath, differ);
 
     // This really should be destructured, but it's too verbose with Flow annotations
     const unnormalized: RuleMatchDiff[] = drmResult.ruleMatchDiffs;

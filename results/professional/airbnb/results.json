@@ -1,0 +1,55 @@
+{
+  "original": 36,
+  "numFiltered": 4,
+  "numPruned": 0,
+  "prunedProps": [],
+  "percentReductionFromOriginal": 0.1111111111111111,
+  "percentReductionFromFiltered": 0,
+  "totalDiffScore": 5591283,
+  "normalized": [
+    [
+      ".SearchForm",
+      {
+        "border": 1,
+        "-webkit-border-radius": 0,
+        "-moz-border-radius": 0,
+        "border-radius": 0,
+        "-webkit-box-shadow": 0,
+        "-moz-box-shadow": 0,
+        "box-shadow": 0,
+        "margin-left": 0.13113416337986375,
+        "margin-right": 0.1548609651454642
+      }
+    ],
+    [
+      ".row",
+      {
+        "margin-left": 0,
+        "margin-right": 0
+      }
+    ]
+  ],
+  "unnormalized": [
+    [
+      ".SearchForm",
+      {
+        "border": 579722,
+        "-webkit-border-radius": 498843,
+        "-moz-border-radius": 498843,
+        "border-radius": 498843,
+        "-webkit-box-shadow": 498843,
+        "-moz-box-shadow": 498843,
+        "box-shadow": 498843,
+        "margin-left": 509449,
+        "margin-right": 511368
+      }
+    ],
+    [
+      ".row",
+      {
+        "margin-left": 498843,
+        "margin-right": 498843
+      }
+    ]
+  ]
+}

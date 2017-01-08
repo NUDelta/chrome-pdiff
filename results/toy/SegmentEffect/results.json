@@ -1,31 +1,152 @@
 {
-  "total": 7988762,
-  "normalized": [
-    [
-      ".segmenter__piece-wrap",
-      {
-        "position": 0.5706765678479347,
-        "width": 1,
-        "height": 1,
-        "top": 0,
-        "left": 0,
-        "-webkit-transform-style": 0,
-        "transform-style": 0
-      }
-    ]
+  "selector": "body > main > div.segmenter > div.segmenter__pieces > div:nth-child(4)",
+  "original": 10,
+  "numFiltered": 3,
+  "numPruned": 4,
+  "prunedProps": [
+    "top",
+    "left",
+    "-webkit-transform-style",
+    "transform-style"
   ],
+  "percentReductionFromOriginal": 0.7,
+  "percentReductionFromFiltered": 0.5714285714285714,
+  "totalDiffScore": 3331388,
   "unnormalized": [
     [
       ".segmenter__piece-wrap",
       {
-        "position": 1773434,
-        "width": 3107560,
-        "height": 3107560,
-        "top": 52,
-        "left": 52,
-        "-webkit-transform-style": 52,
-        "transform-style": 52
+        "position": 686386,
+        "width": 1322501,
+        "height": 1322501,
+        "top": -1,
+        "left": -1,
+        "-webkit-transform-style": -1,
+        "transform-style": -1
       }
     ]
+  ],
+  "normalized": [
+    [
+      ".segmenter__piece-wrap",
+      {
+        "position": 0,
+        "width": 1,
+        "height": 1,
+        "top": -1.0790297351893918,
+        "left": -1.0790297351893918,
+        "-webkit-transform-style": -1.0790297351893918,
+        "transform-style": -1.0790297351893918
+      }
+    ]
+  ],
+  "children": [
+    {
+      "selector": "body > main > div.segmenter > div.segmenter__pieces > div:nth-child(4)",
+      "original": 7,
+      "numFiltered": 3,
+      "numPruned": 2,
+      "prunedProps": [
+        "opacity",
+        "box-shadow"
+      ],
+      "percentReductionFromOriginal": 0.7142857142857143,
+      "percentReductionFromFiltered": 0.5,
+      "totalDiffScore": 312077,
+      "unnormalized": [
+        [
+          ".demo-1 .segmenter__shadow",
+          {
+            "box-shadow": 146213
+          }
+        ],
+        [
+          ".segmenter__shadow",
+          {
+            "position": 165864,
+            "opacity": -1,
+            "box-shadow": -1
+          }
+        ]
+      ],
+      "normalized": [
+        [
+          ".demo-1 .segmenter__shadow",
+          {
+            "box-shadow": 0
+          }
+        ],
+        [
+          ".segmenter__shadow",
+          {
+            "position": 0,
+            "opacity": 0,
+            "box-shadow": 0
+          }
+        ]
+      ],
+      "children": []
+    },
+    {
+      "selector": "body > main > div.segmenter > div.segmenter__pieces > div:nth-child(4)",
+      "original": 17,
+      "numFiltered": 3,
+      "numPruned": 5,
+      "prunedProps": [
+        "top",
+        "left",
+        "-webkit-transform-style",
+        "transform-style",
+        "background-repeat"
+      ],
+      "percentReductionFromOriginal": 0.47058823529411764,
+      "percentReductionFromFiltered": 0.35714285714285715,
+      "totalDiffScore": 5697977,
+      "unnormalized": [
+        [
+          ".segmenter__piece",
+          {
+            "background-size": 1197699,
+            "background-repeat": -1,
+            "background-position": 1168890
+          }
+        ],
+        [
+          ".segmenter__piece",
+          {
+            "position": 686386,
+            "width": 1322501,
+            "height": 1322501,
+            "top": -1,
+            "left": -1,
+            "-webkit-transform-style": -1,
+            "transform-style": -1
+          }
+        ]
+      ],
+      "normalized": [
+        [
+          ".segmenter__piece",
+          {
+            "background-size": 1,
+            "background-repeat": -40.57381373876219,
+            "background-position": 0
+          }
+        ],
+        [
+          ".segmenter__piece",
+          {
+            "position": 0,
+            "width": 1,
+            "height": 1,
+            "top": -1.0790297351893918,
+            "left": -1.0790297351893918,
+            "-webkit-transform-style": -1.0790297351893918,
+            "transform-style": -1.0790297351893918
+          }
+        ]
+      ],
+      "children": []
+    }
   ]
 }

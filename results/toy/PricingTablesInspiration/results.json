@@ -1,51 +1,370 @@
 {
-  "total": 8088712,
-  "normalized": [
-    [
-      ".pricing__item",
-      {
-        "position": 0,
-        "flex-direction": 1,
-        "align-items": 0,
-        "text-align": 0.052893073874366835,
-        "flex": 0.35132598427590506
-      }
-    ],
+  "selector": "body > div > section.pricing-section.bg-1 > div > div:nth-child(1)",
+  "original": 50,
+  "numFiltered": 3,
+  "numPruned": 4,
+  "prunedProps": [
+    "position",
+    "align-items",
+    "cursor",
+    "transition"
+  ],
+  "percentReductionFromOriginal": 0.14,
+  "percentReductionFromFiltered": 0.0851063829787234,
+  "totalDiffScore": 1297570,
+  "unnormalized": [
     [
       ".pricing--sonam .pricing__item",
       {
-        "margin": 0.49841905084733407,
-        "padding": 0.29027684378764435,
-        "cursor": 0,
-        "border-radius": 0.0008601821326320662,
-        "background": 1,
-        "box-shadow": 0,
-        "transition": 0
+        "margin": 76656,
+        "padding": 82194,
+        "cursor": -1,
+        "border-radius": 174,
+        "background": 435644,
+        "box-shadow": 6459,
+        "transition": -1
+      }
+    ],
+    [
+      ".pricing__item",
+      {
+        "position": -1,
+        "flex-direction": 559692,
+        "align-items": -1,
+        "text-align": 8430,
+        "flex": 128321
       }
     ]
   ],
-  "unnormalized": [
-    [
-      ".pricing__item",
-      {
-        "position": 530639,
-        "flex-direction": 1056965,
-        "align-items": 530639,
-        "text-align": 558478,
-        "flex": 715551
-      }
-    ],
+  "normalized": [
     [
       ".pricing--sonam .pricing__item",
       {
-        "margin": 804132,
-        "padding": 689920,
-        "cursor": 530639,
-        "border-radius": 531111,
-        "background": 1079360,
-        "box-shadow": 530639,
-        "transition": 530639
+        "margin": 0.17563092750361678,
+        "padding": 0.18834822146186878,
+        "cursor": -0.00040186465198521136,
+        "border-radius": 0,
+        "background": 1,
+        "box-shadow": 0.014432681929868877,
+        "transition": -0.00040186465198521136
+      }
+    ],
+    [
+      ".pricing__item",
+      {
+        "position": -0.015293998135187987,
+        "flex-direction": 1,
+        "align-items": -0.015293998135187987,
+        "text-align": 0,
+        "flex": 0.21748460804481354
       }
     ]
+  ],
+  "children": [
+    {
+      "selector": "body > div > section.pricing-section.bg-1 > div > div:nth-child(1)",
+      "original": 25,
+      "numFiltered": 9,
+      "numPruned": 1,
+      "prunedProps": [
+        "width"
+      ],
+      "percentReductionFromOriginal": 0.4,
+      "percentReductionFromFiltered": 0.0625,
+      "totalDiffScore": 262718,
+      "unnormalized": [
+        [
+          ".pricing--sonam .pricing__title",
+          {
+            "font-size": 75321,
+            "width": -1,
+            "margin": 119541,
+            "padding": 53063,
+            "border-bottom": 14793
+          }
+        ]
+      ],
+      "normalized": [
+        [
+          ".pricing--sonam .pricing__title",
+          {
+            "font-size": 0.5778439683812578,
+            "width": -0.14123420017565969,
+            "margin": 1,
+            "padding": 0.36535303776683087,
+            "border-bottom": 0
+          }
+        ]
+      ],
+      "children": []
+    },
+    {
+      "selector": "body > div > section.pricing-section.bg-1 > div > div:nth-child(1)",
+      "original": 10,
+      "numFiltered": 3,
+      "numPruned": 0,
+      "prunedProps": [],
+      "percentReductionFromOriginal": 0.3,
+      "percentReductionFromFiltered": 0,
+      "totalDiffScore": 206742,
+      "unnormalized": [
+        [
+          ".pricing--sonam .pricing__price",
+          {
+            "color": 562,
+            "font-size": 92798,
+            "padding": 113382
+          }
+        ]
+      ],
+      "normalized": [
+        [
+          ".pricing--sonam .pricing__price",
+          {
+            "color": 0,
+            "font-size": 0.8175500797730899,
+            "padding": 1
+          }
+        ]
+      ],
+      "children": [
+        {
+          "selector": "body > div > section.pricing-section.bg-1 > div > div:nth-child(1)",
+          "original": 2,
+          "numFiltered": 2,
+          "numPruned": 0,
+          "prunedProps": [],
+          "percentReductionFromOriginal": 1,
+          "percentReductionFromFiltered": null,
+          "totalDiffScore": 0,
+          "unnormalized": [],
+          "normalized": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "selector": "body > div > section.pricing-section.bg-1 > div > div:nth-child(1)",
+      "original": 8,
+      "numFiltered": 7,
+      "numPruned": 0,
+      "prunedProps": [],
+      "percentReductionFromOriginal": 0.875,
+      "percentReductionFromFiltered": 0,
+      "totalDiffScore": 2660,
+      "unnormalized": [
+        [
+          ".pricing--sonam .pricing__sentence",
+          {
+            "font-weight": 2660
+          }
+        ]
+      ],
+      "normalized": [
+        [
+          ".pricing--sonam .pricing__sentence",
+          {
+            "font-weight": 0
+          }
+        ]
+      ],
+      "children": []
+    },
+    {
+      "selector": "body > div > section.pricing-section.bg-1 > div > div:nth-child(1)",
+      "original": 20,
+      "numFiltered": 9,
+      "numPruned": 0,
+      "prunedProps": [],
+      "percentReductionFromOriginal": 0.45,
+      "percentReductionFromFiltered": 0,
+      "totalDiffScore": 196545,
+      "unnormalized": [
+        [
+          ".pricing--sonam .pricing__feature-list",
+          {
+            "margin": 78033,
+            "padding": 111679
+          }
+        ],
+        [
+          ".pricing__feature-list",
+          {
+            "text-align": 6833
+          }
+        ]
+      ],
+      "normalized": [
+        [
+          ".pricing--sonam .pricing__feature-list",
+          {
+            "margin": 0,
+            "padding": 1
+          }
+        ],
+        [
+          ".pricing__feature-list",
+          {
+            "text-align": 0
+          }
+        ]
+      ],
+      "children": [
+        {
+          "selector": "body > div > section.pricing-section.bg-1 > div > div:nth-child(1)",
+          "original": 4,
+          "numFiltered": 4,
+          "numPruned": 0,
+          "prunedProps": [],
+          "percentReductionFromOriginal": 1,
+          "percentReductionFromFiltered": null,
+          "totalDiffScore": 0,
+          "unnormalized": [],
+          "normalized": [],
+          "children": []
+        },
+        {
+          "selector": "body > div > section.pricing-section.bg-1 > div > div:nth-child(1)",
+          "original": 4,
+          "numFiltered": 4,
+          "numPruned": 0,
+          "prunedProps": [],
+          "percentReductionFromOriginal": 1,
+          "percentReductionFromFiltered": null,
+          "totalDiffScore": 0,
+          "unnormalized": [],
+          "normalized": [],
+          "children": []
+        },
+        {
+          "selector": "body > div > section.pricing-section.bg-1 > div > div:nth-child(1)",
+          "original": 4,
+          "numFiltered": 4,
+          "numPruned": 0,
+          "prunedProps": [],
+          "percentReductionFromOriginal": 1,
+          "percentReductionFromFiltered": null,
+          "totalDiffScore": 0,
+          "unnormalized": [],
+          "normalized": [],
+          "children": []
+        }
+      ]
+    },
+    {
+      "selector": "body > div > section.pricing-section.bg-1 > div > div:nth-child(1)",
+      "original": 123,
+      "numFiltered": 53,
+      "numPruned": 7,
+      "prunedProps": [
+        "margin",
+        "line-height",
+        "text-transform",
+        "-webkit-appearance",
+        "cursor",
+        "background",
+        "transition"
+      ],
+      "percentReductionFromOriginal": 0.4878048780487805,
+      "percentReductionFromFiltered": 0.1,
+      "totalDiffScore": 222008,
+      "unnormalized": [
+        [
+          ".pricing--sonam .pricing__action",
+          {
+            "font-weight": 1092,
+            "margin-top": 35336,
+            "padding": 56609,
+            "border-radius": 36,
+            "background": 34770,
+            "transition": -1
+          }
+        ],
+        [
+          ".pricing__action",
+          {
+            "color": 849,
+            "border": 22196,
+            "background": -1
+          }
+        ],
+        [
+          "button",
+          {
+            "-webkit-appearance": -1,
+            "cursor": -1
+          }
+        ],
+        [
+          "button",
+          {
+            "text-transform": -1
+          }
+        ],
+        [
+          "button",
+          {
+            "line-height": -1
+          }
+        ],
+        [
+          "button",
+          {
+            "font-family": 22679,
+            "font-size": 48441,
+            "margin": -1
+          }
+        ]
+      ],
+      "normalized": [
+        [
+          ".pricing--sonam .pricing__action",
+          {
+            "font-weight": 0.01866614816255104,
+            "margin-top": 0.6239725664186095,
+            "padding": 1,
+            "border-radius": 0,
+            "background": 0.613967793823909,
+            "transition": -0.0006540222367560497
+          }
+        ],
+        [
+          ".pricing__action",
+          {
+            "color": 0,
+            "border": 1,
+            "background": -0.03981824143907809
+          }
+        ],
+        [
+          "button",
+          {
+            "-webkit-appearance": 0,
+            "cursor": 0
+          }
+        ],
+        [
+          "button",
+          {
+            "text-transform": 0
+          }
+        ],
+        [
+          "button",
+          {
+            "line-height": 0
+          }
+        ],
+        [
+          "button",
+          {
+            "font-family": 0,
+            "font-size": 1,
+            "margin": -0.8803664311777036
+          }
+        ]
+      ],
+      "children": []
+    }
   ]
 }

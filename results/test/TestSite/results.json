@@ -1,0 +1,11 @@
+{
+  "original": 1,
+  "numFiltered": 1,
+  "numPruned": 0,
+  "prunedProps": [],
+  "percentReductionFromOriginal": 1,
+  "percentReductionFromFiltered": null,
+  "totalDiffScore": 0,
+  "normalized": [],
+  "unnormalized": []
+}
