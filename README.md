@@ -1,6 +1,6 @@
 # chrome-pdiff
 
-Computes the visual importance of individual CSS properties, given a URL and a selector for an element on that page.
+Computes the visual importance of individual CSS properties, given a URL and a selector for an element on that page. Read the [CHI 2017 extended abstract](https://dl.dropboxusercontent.com/u/14218448/src1037-lim.pdf) for more information.
 
 Instruments the [Chrome Debugging Protocol](https://developer.chrome.com/devtools/docs/debugger-protocol) through the [chrome-remote-interface](https://github.com/cyrus-and/chrome-remote-interface), in order to:
 
