@@ -11,11 +11,19 @@ import computeStatistics from './analyzeResults';
 type NodeLike = { nodeId: number } & { children: Node[] };
 
 async function depthFirstHelper (node: NodeLike, fn: Function): Promise<Object> {
+  const result: Object = {};
+  const hasClassName: boolean = Object.prototype.hasOwnProperty.call(node, 'attributes')
+    && node.attributes.indexOf('class') !== -1;
+
+  if (hasClassName) {
+    const classNameIndex: number = node.attributes.indexOf('class');
+    result.class = node.attributes[classNameIndex + 1];
+    result.name = node.nodeName;
+  }
+
   const currentResult: Object = await fn(node.nodeId);
-  const result: Object = {
-    ...currentResult,
-    children: [],
-  };
+  result.currentResult = currentResult;
+  result.children = [];
 
   for (const child of node.children) {
     if (child.nodeName !== '#text') {
